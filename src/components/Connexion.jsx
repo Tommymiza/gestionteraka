@@ -54,7 +54,7 @@ export default function Connexion() {
         } else {
           setUser(res.data.user);
           setAlert({ type: "success", message: res.data.message });
-          localStorage.setItem("session", res.data.token)
+          localStorage.setItem("token", res.data.token)
         }
       })
       .catch((err) => {

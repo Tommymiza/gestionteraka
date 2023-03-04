@@ -28,7 +28,7 @@ export default function Gestion() {
         url: server + url,
         method: "get",
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("session"),
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
         .then((res) => {
@@ -51,7 +51,7 @@ export default function Gestion() {
           url: server + url,
           method: "get",
           headers: {
-            Authorization: "Bearer " + localStorage.getItem("session"),
+            Authorization: "Bearer " + localStorage.getItem("token"),
           },
         })
           .then((res) => {

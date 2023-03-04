@@ -1,22 +1,23 @@
-import React from "react";
+import React, {useState} from "react";
 import Chargement from "./Chargement";
 import {
   AccountCircleRounded,
-  CalendarMonthRounded,
   CheckBoxRounded,
   DeleteRounded,
   EditRounded,
-  FemaleRounded,
-  MaleRounded,
-  PhoneIphoneRounded,
-  TransgenderRounded,
+  LanguageRounded,
   TuneRounded,
   VisibilityRounded,
   WorkRounded,
 } from "@mui/icons-material";
 import { Chip, IconButton, Tooltip } from "@mui/material";
+import UserInfo from "./UserInfo";
 
 export default function User({ data, wait, server }) {
+  const [dialog, setDialog] = useState(null);
+  const close = ()=>{
+    setDialog(null);
+  }
   return wait ? (
     <Chargement />
   ) : (
@@ -31,12 +32,7 @@ export default function User({ data, wait, server }) {
             </th>
             <th>
               <div className="row-div">
-                <CalendarMonthRounded sx={{ fontSize: "30px" }} /> Naissance
-              </div>
-            </th>
-            <th style={{ maxWidth: "20px" }}>
-              <div className="row-div">
-                <TransgenderRounded sx={{ fontSize: "30px" }} /> Genre
+                <LanguageRounded sx={{ fontSize: "30px" }} /> Langue
               </div>
             </th>
             <th>
@@ -44,14 +40,9 @@ export default function User({ data, wait, server }) {
                 <WorkRounded sx={{ fontSize: "30px" }} /> Occupation
               </div>
             </th>
-            <th style={{ maxWidth: "20px" }}>
-              <div className="row-div">
-                <PhoneIphoneRounded sx={{ fontSize: "30px" }} /> Tel
-              </div>
-            </th>
             <th>
               <div className="row-div">
-                <CheckBoxRounded sx={{ fontSize: "30px" }} /> Formation
+                <CheckBoxRounded sx={{ fontSize: "30px" }} /> Email
               </div>
             </th>
             <th>
@@ -84,36 +75,28 @@ export default function User({ data, wait, server }) {
               </td>
               <td>
                 <div className="row-div" style={{ justifyContent: "center" }}>
-                  <p style={{ fontWeight: "bold" }}>{item.date_naissance}</p>
-                </div>
-              </td>
-              <td style={{ maxWidth: "20px" }}>
-                <div className="row-div" style={{ justifyContent: "center" }}>
-                  {item.genre === "M" ? <MaleRounded /> : <FemaleRounded />}
+                  <p style={{fontWeight: "bolder"}}>{item.ln.toUpperCase()}</p>
                 </div>
               </td>
               <td>
                 <div className="row-div" style={{ justifyContent: "center" }}>
-                  <p>{item.metier}</p>
-                </div>
-              </td>
-              <td>
-                <div className="row-div" style={{ justifyContent: "center" }}>
-                  <p style={{ fontWeight: "bold" }}>{item.phone}</p>
+                  <p>{item.role}</p>
                 </div>
               </td>
               <td>
                 <div className="row-div" style={{ justifyContent: "center" }}>
                   <Chip
-                    label={item.is_verified ? "Oui" : "Non"}
-                    color={item.is_verified ? "success" : "error"}
+                    label={item.email !== "" ? "Oui" : "Non"}
+                    color={item.email !== "" ? "success" : "error"}
                   />
                 </div>
               </td>
               <td>
                 <div className="row-div" style={{ justifyContent: "center" }}>
                   <Tooltip title="Voir">
-                    <IconButton color="warning">
+                    <IconButton color="warning" onClick={()=>{
+                      setDialog(<UserInfo user={item} close={close} />)
+                    }}>
                       <VisibilityRounded />
                     </IconButton>
                   </Tooltip>
@@ -133,6 +116,7 @@ export default function User({ data, wait, server }) {
           ))}
         </tbody>
       </table>
+      {dialog}
     </div>
   );
 }

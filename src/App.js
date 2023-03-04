@@ -11,7 +11,7 @@ function App() {
   const [user, setUser] = useState();
   const [loading, setLoading] = useState(true);
   const [alert, setAlert] = useState();
-  const server = "http://127.0.0.1:4422";
+  const server = "https://api.teraka.org";
   useEffect(() => {
     if (alert) {
       setTimeout(() => {
@@ -20,12 +20,12 @@ function App() {
     }
   }, [alert]);
   useEffect(() => {
-    if (localStorage.getItem("session")) {
+    if (localStorage.getItem("token")) {
       axios({
         url: server + "/getstaff",
         method: "get",
         headers: {
-          Authorization: "Bearer " + localStorage.getItem("session"),
+          Authorization: "Bearer " + localStorage.getItem("token"),
         },
       })
         .then((res) => {
