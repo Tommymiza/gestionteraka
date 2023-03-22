@@ -86,8 +86,8 @@ export default function User({ data, wait, server }) {
               <td>
                 <div className="row-div" style={{ justifyContent: "center" }}>
                   <Chip
-                    label={item.email !== "" ? "Oui" : "Non"}
-                    color={item.email !== "" ? "success" : "error"}
+                    label={item.is_verified ? "Oui" : "Non"}
+                    color={item.is_verified ? "success" : "error"}
                   />
                 </div>
               </td>

@@ -30,35 +30,31 @@ export default function UserInfo({ user, close }) {
         </div>
         <div className="attribut">
           <h3>Email:</h3>
-          <p>{user.email}</p>
+          <p>{user.email ? user.email : "###"}</p>
+        </div>
+        <div className="attribut">
+          <h3>Phone:</h3>
+          <p>{user.phone ? user.phone : "###"}</p>
         </div>
         <div className="attribut">
           <h3>Langage:</h3>
           <p>{user.ln}</p>
         </div>
         <div className="attribut">
-          <h3>Fuseau horaire:</h3>
-          <p>{user.time}</p>
-        </div>
-        <div className="attribut">
           <h3>Adresse:</h3>
+          <p>
+            <strong>Pays:</strong> {user.adresse.pays}
+          </p>
           <p>
             <strong>Région:</strong> {user.adresse.region}
           </p>
           <p>
             <strong>Commune:</strong> {user.adresse.commune}
           </p>
-          <p>
-            <strong>District:</strong> {user.adresse.district}
-          </p>
         </div>
         <div className="attribut">
           <h3>Rôle:</h3>
           <p>{user.role}</p>
-        </div>
-        <div className="attribut">
-          <h3>Est-il dans un petit groupe: </h3>
-          <p>{user.is_pg}</p>
         </div>
       </div>
     </Dialog>
