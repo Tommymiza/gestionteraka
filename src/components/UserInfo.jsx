@@ -46,10 +46,10 @@ export default function UserInfo({ user, close }) {
             <strong>Pays:</strong> {user.adresse.pays}
           </p>
           <p>
-            <strong>Région:</strong> {user.adresse.region}
+            <strong>Région:</strong> {user.adresse.region ? user.adresse.region : "####"}
           </p>
           <p>
-            <strong>Commune:</strong> {user.adresse.commune}
+            <strong>Commune:</strong> {user.adresse.commune ? user.adresse.commune : "####"}
           </p>
         </div>
         <div className="attribut">
