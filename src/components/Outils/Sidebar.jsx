@@ -9,31 +9,25 @@ import {
 } from "@mui/icons-material";
 import React, { useContext } from "react";
 import { ActContext } from "../../App";
-import axios from "axios";
 import "../../styles/sidebar.scss";
 import { Tooltip } from "@mui/material";
 import { useNavigate } from "react-router";
+import { GET } from "../../api/Request";
+import { routes } from "../../api/Route";
 
 export default function Sidebar() {
   const { setUser, setAlert } = useContext(ActContext);
   const navigate = useNavigate();
-  const logout = () => {
-    axios({
-      url: `${process.env.REACT_APP_API}/logout`,
-      method: "GET",
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        setUser(null);
-        localStorage.removeItem("token");
-        setAlert({ type: "success", message: "Au revoir!" });
-      })
-      .catch((err) => {
-        console.log(err);
-        setAlert({ type: "error", message: "Veuillez réessayer!" });
-      });
+  const logout = async () => {
+    try {
+      const response = await GET(routes.LOGOUT);
+      setUser(null);
+      localStorage.removeItem("token");
+      setAlert({ type: "success", message: response.message });
+    } catch (error) {
+      console.log(error);
+      setAlert({ type: "error", message: "Veuillez réessayer!" });
+    }
   };
 
   function goToRoute(url) {
@@ -57,13 +51,13 @@ export default function Sidebar() {
       </div>
       <div>
         <Tooltip arrow title="Accueil">
-          <div className="sidebar-el" onClick={()=>goToRoute("/")}>
+          <div className="sidebar-el" onClick={() => goToRoute("/")}>
             <CottageRounded sx={{ width: 40, height: 30 }} />
             <p>Accueil</p>
           </div>
         </Tooltip>
         <Tooltip arrow title="Employé">
-          <div className="sidebar-el" onClick={()=>goToRoute("/employe")}>
+          <div className="sidebar-el" onClick={() => goToRoute("/employe")}>
             <AdminPanelSettingsRounded sx={{ width: 40, height: 30 }} />
             <p>Employé</p>
           </div>
@@ -71,14 +65,14 @@ export default function Sidebar() {
         <Tooltip
           arrow
           title="Quantificateur"
-          onClick={()=>goToRoute("/quantificateur")}
+          onClick={() => goToRoute("/quantificateur")}
         >
           <div className="sidebar-el">
             <DesignServicesRounded sx={{ width: 40, height: 30 }} />
             <p>Quantificateur</p>
           </div>
         </Tooltip>
-        <Tooltip arrow title="Champion" onClick={()=>goToRoute("/champion")}>
+        <Tooltip arrow title="Champion" onClick={() => goToRoute("/champion")}>
           <div className="sidebar-el">
             <EmojiEventsRounded sx={{ width: 40, height: 30 }} />
             <p>Champion</p>
@@ -87,7 +81,7 @@ export default function Sidebar() {
         <Tooltip
           arrow
           title="Petit groupe"
-          onClick={()=>goToRoute("/petit-groupe")}
+          onClick={() => goToRoute("/petit-groupe")}
         >
           <div className="sidebar-el">
             <Diversity3Rounded sx={{ width: 40, height: 30 }} />

@@ -1,7 +1,7 @@
 import {
-  AlternateEmailRounded,
   CopyAllRounded,
   DeleteRounded,
+  EditRounded,
   PersonAddAlt1Rounded,
   RefreshRounded,
   VisibilityRounded,
@@ -15,10 +15,13 @@ import {
 import { MRT_Localization_FR } from "material-react-table/locales/fr";
 import React, { useMemo, useState, useRef, useContext, useEffect } from "react";
 import { ActContext } from "../../App";
-import axios from "axios";
 import { iconButton } from "../../styled";
-import InfoPersonnel from "../Outils/InfoPersonnel";
-import AjoutPersonnel from "../Outils/AjoutPersonnel";
+import InfoPersonnel from "../Dialog/Personnel/InfoPersonnel";
+import AjoutPersonnel from "../Dialog/Personnel/AjoutPersonnel";
+import { GET } from "../../api/Request";
+import { routes } from "../../api/Route";
+import UpdatePersonnel from "../Dialog/Personnel/UpdatePersonnel";
+import DeletePersonnel from "../Dialog/Personnel/DeletePersonnel";
 
 export default function Employe() {
   const { user, setAlert } = useContext(ActContext);
@@ -39,8 +42,14 @@ export default function Employe() {
   const columns = useMemo(
     () => [
       {
+        accessorKey: "id",
+        header: "ID",
+        size: 5,
+      },
+      {
         accessorKey: "nom",
         header: "Nom du personnel",
+        size: 300,
       },
       {
         accessorKey: "email",
@@ -53,9 +62,11 @@ export default function Employe() {
         },
       },
       {
-        accessorKey: "tel",
+        accessorKey: "phone",
         header: "Téléphone",
         enableClickToCopy: true,
+        headerAlign: "center",
+        align: "center",
         muiTableBodyCellCopyButtonProps: {
           fullWidth: true,
           endIcon: <CopyAllRounded />,
@@ -83,41 +94,23 @@ export default function Employe() {
   );
   const refreshData = () => {
     setLoading(true);
-    axios({
-      url: `${process.env.REACT_APP_API}/personnel/list`,
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        setData(res.data.data.users);
-      })
-      .catch((err) => {
-        console.log(err);
-        setAlert({ type: "error", message: "Erreur de connexion" });
-      })
-      .finally(() => setLoading(false));
+    getListPersonnel();
+  };
+  const getListPersonnel = async () => {
+    try {
+      const response = await GET(routes.GETPERSONNEL);
+      setData(response.data.users);
+    } catch (error) {
+      console.log(error);
+      setAlert({
+        type: "error",
+        message: error.response.data.message ?? "Erreur de connexion!",
+      });
+    }
+    setLoading(false);
   };
   useEffect(() => {
-    const controller = new AbortController();
-    axios({
-      signal: controller.signal,
-      url: `${process.env.REACT_APP_API}/personnel/list`,
-      headers: {
-        Authorization: "Bearer " + localStorage.getItem("token"),
-      },
-    })
-      .then((res) => {
-        setData(res.data.data.users);
-      })
-      .catch((err) => {
-        console.log(err);
-        setAlert({ type: "error", message: "Erreur de connexion" });
-      })
-      .finally(() => setLoading(false));
-    return () => {
-      controller.abort();
-    };
+    getListPersonnel();
     // eslint-disable-next-line
   }, []);
   return (
@@ -140,7 +133,8 @@ export default function Employe() {
           sx: { display: "none" },
         }}
         muiTableHeadCellProps={{
-          sx: { color: "var(--primary)" },
+          sx: { color: "var(--primary)", flex: 1 },
+          align: "center",
         }}
         state={{
           isLoading,
@@ -163,28 +157,63 @@ export default function Employe() {
           elevation: 0,
         }}
         muiTableBodyCellProps={{
-          sx: { fontSize: "17px" },
+          sx: {
+            fontSize: "15px",
+          },
+          align: "center",
         }}
         enableRowActions
         positionActionsColumn="last"
         renderRowActions={({ row, table }) => (
-          <Box sx={{ display: "flex", flexWrap: "nowrap", gap: "20px" }}>
+          <Box sx={{ display: "flex", flexWrap: "nowrap", gap: "10px" }}>
             <Tooltip arrow title={"Afficher"}>
               <IconButton
                 sx={iconButton}
-                onClick={() => setDialog(<InfoPersonnel close={setDialog} user={row.original} />)}
+                onClick={() =>
+                  setDialog(
+                    <InfoPersonnel close={setDialog} user={row.original} />
+                  )
+                }
               >
                 <VisibilityRounded />
               </IconButton>
             </Tooltip>
-            <Tooltip arrow title={"Envoyer un mail"}>
-              <IconButton
-                sx={iconButton}
-                onClick={() => window.location.href = `mailto:${row.original.email}` }
-              >
-                <AlternateEmailRounded />
-              </IconButton>
-            </Tooltip>
+            {user.role === "Admin" && (
+              <>
+                <Tooltip arrow title={"Modifier"}>
+                  <IconButton
+                    sx={iconButton}
+                    onClick={() =>
+                      setDialog(
+                        <UpdatePersonnel
+                          close={setDialog}
+                          user={row.original}
+                          refresh={refreshData}
+                        />
+                      )
+                    }
+                  >
+                    <EditRounded />
+                  </IconButton>
+                </Tooltip>
+                <Tooltip arrow title={"Supprimer"}>
+                  <IconButton
+                    sx={iconButton}
+                    onClick={() =>
+                      setDialog(
+                        <DeletePersonnel
+                          close={setDialog}
+                          id={row.original.id}
+                          refresh={refreshData}
+                        />
+                      )
+                    }
+                  >
+                    <DeleteRounded />
+                  </IconButton>
+                </Tooltip>
+              </>
+            )}
           </Box>
         )}
         renderTopToolbar={({ table }) => (
@@ -222,24 +251,25 @@ export default function Employe() {
                 }}
               >
                 <Tooltip arrow title={"Actualiser les données"}>
-                  <IconButton onClick={refreshData} sx={iconButton} >
+                  <IconButton onClick={refreshData} sx={iconButton}>
                     <RefreshRounded />
                   </IconButton>
                 </Tooltip>
-                {user.role === "Admin" && (
-                  <Tooltip arrow title={"Supprimer les comptes seléctionnés"}>
-                    <span>
-                      <IconButton sx={iconButton}>
-                        <DeleteRounded />
-                      </IconButton>
-                    </span>
-                  </Tooltip>
-                )}
                 {/* eslint-disable-next-line */}
                 <MRT_FullScreenToggleButton table={table} sx={iconButton} />
                 {user.role === "Admin" && (
                   <Tooltip arrow title={"Ajouter un personnel"}>
-                    <IconButton sx={iconButton} onClick={()=>setDialog(<AjoutPersonnel close={setDialog} />)}>
+                    <IconButton
+                      sx={iconButton}
+                      onClick={() =>
+                        setDialog(
+                          <AjoutPersonnel
+                            refresh={refreshData}
+                            close={setDialog}
+                          />
+                        )
+                      }
+                    >
                       <PersonAddAlt1Rounded />
                     </IconButton>
                   </Tooltip>

@@ -7,9 +7,19 @@ import {
   Tooltip,
 } from "@mui/material";
 import React from "react";
-import { iconButton } from "../../styled";
+import { iconButton } from "../../../styled";
 
 export default function InfoPersonnel({ close, user }) {
+  function getChipColor(str) {
+    switch (str) {
+      case "Admin":
+        return "#ed7168";
+      case "Personnel":
+        return "#68e3a4";
+      default:
+        return "#e6ebe8";
+    }
+  }
   return (
     <Dialog
       open={true}
@@ -80,7 +90,7 @@ export default function InfoPersonnel({ close, user }) {
                 padding: "5px",
               }}
             >
-              {user.tel}
+              {user.phone}
             </p>
           </div>
           <div>
@@ -95,14 +105,14 @@ export default function InfoPersonnel({ close, user }) {
             </p>
           </div>
           <div>
-            <h3>CIN :</h3>
+            <h3>Rôle :</h3>
             <p
               style={{
                 borderBottom: "solid 1px var(--shadow)",
                 padding: "5px",
               }}
             >
-              {user.cin}
+              <span className="chip" style={{background: getChipColor(user.role)}}>{user.role}</span>
             </p>
           </div>
           <div>

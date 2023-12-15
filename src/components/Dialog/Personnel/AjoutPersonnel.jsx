@@ -8,15 +8,38 @@ import {
   Select,
   MenuItem,
 } from "@mui/material";
-import React, { useContext, useState } from "react";
-import { iconButton, loadingBtn } from "../../styled";
-import { ActContext } from "../../App";
-import LottieLoading from "./LottieLoading";
+import React, { useContext, useRef, useState } from "react";
+import { iconButton, loadingBtn } from "../../../styled";
+import { ActContext } from "../../../App";
+import LottieLoading from "../../Outils/LottieLoading";
 import { LoadingButton } from "@mui/lab";
+import { POST } from "../../../api/Request";
+import { routes } from "../../../api/Route";
 
-export default function AjoutPersonnel({ close }) {
-  const { user } = useContext(ActContext);
+export default function AjoutPersonnel({ close, refresh }) {
+  const { setAlert } = useContext(ActContext);
+  const form = useRef(null);
   const [loading, setLoading] = useState(false);
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    const data = new FormData(form.current);
+    setLoading(true);
+    try {
+      const response = await POST(routes.ADDPERSONNEL, data);
+      console.log(response);
+      setAlert({type: "success", message: response.message});
+      close();
+      refresh();
+    } catch (error) {
+      console.log(error);
+      if(error.response.data.message.includes("1062")){
+        setAlert({type: "error", message: "Email déjà utilisé"});
+      }else{
+        setAlert({type: "error", message: "L'email n'existe pas"});
+      }
+    }
+    setLoading(false);
+  }
   return (
     <Dialog
       open={true}
@@ -56,7 +79,7 @@ export default function AjoutPersonnel({ close }) {
         </div>
       </DialogTitle>
       <DialogContent>
-        <form>
+        <form onSubmit={handleSubmit} ref={form}>
           <div
             style={{
               display: "flex",
@@ -83,7 +106,7 @@ export default function AjoutPersonnel({ close }) {
             />
             <input
               type="text"
-              name="tel"
+              name="phone"
               required
               className="custom"
               style={{ width: "100%" }}
@@ -98,25 +121,20 @@ export default function AjoutPersonnel({ close }) {
               placeholder="Adresse :"
             />
             <input
-              type="number"
-              name="cin"
-              className="custom"
-              style={{ width: "100%" }}
-              placeholder="CIN : (Facultatif)"
-            />
-            <input
               type="text"
               name="lieu"
               className="custom"
+              required
               style={{ width: "100%" }}
-              placeholder="Lieu de travail : (Facultatif)"
+              placeholder="Lieu de travail :"
             />
-            <div style={{width: "100%"}}>
+            <div style={{ width: "100%" }}>
               <h4>Rôle</h4>
               <Select
                 variant="standard"
-                sx={{width: "100%"}}
-                defaultValue={"Champion"}
+                sx={{ width: "100%" }}
+                defaultValue={"Personnel"}
+                name="role"
                 inputProps={{
                   sx: {
                     outline: "none",
@@ -131,14 +149,8 @@ export default function AjoutPersonnel({ close }) {
                   },
                 }}
               >
-                {user.role === "Admin" && (
-                  <MenuItem value={"Admin"}>Administrateur</MenuItem>
-                )}
-                {user.role === "Admin" && (
-                  <MenuItem value={"Personnel"}>Employé TERAKA</MenuItem>
-                )}
-                <MenuItem value={"Agent"}>Agent de Cluster</MenuItem>
-                <MenuItem value={"Champion"}>Champion</MenuItem>
+                <MenuItem value={"Admin"}>Administrateur</MenuItem>
+                <MenuItem value={"Personnel"}>Employé TERAKA</MenuItem>
               </Select>
             </div>
             <div style={{ alignSelf: "center" }}>

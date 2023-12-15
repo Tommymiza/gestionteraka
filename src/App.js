@@ -3,9 +3,10 @@ import Inscription from "./components/Inscription";
 import { Alert, ThemeProvider } from "@mui/material";
 import Accueil from "./components/Accueil";
 import LottieLoading from "./components/Outils/LottieLoading";
-import axios from "axios";
 import { CheckRounded, ErrorRounded } from "@mui/icons-material";
 import { theme } from "./theme";
+import { routes } from "./api/Route";
+import { GET } from "./api/Request";
 
 export const ActContext = createContext();
 function App() {
@@ -13,33 +14,35 @@ function App() {
   const [loading, setLoading] = useState(true);
   const [alert, setAlert] = useState();
   useEffect(() => {
+    let t = null;
     if (alert) {
-      setTimeout(() => {
+      t = setTimeout(() => {
         setAlert();
       }, 3000);
     }
+    return () => {
+      if (t) {
+        clearTimeout(t);
+      }
+    };
   }, [alert]);
+  const getSession = async () => {
+    try {
+      const response = await GET(routes.CHECK);
+      setUser(response.data.user);
+      setAlert({ type: "success", message: response.message });
+    } catch (error) {
+      setAlert({
+        type: "error",
+        message: error.response.data.message ?? "Erreur de connexion !",
+      });
+      localStorage.removeItem('token');
+    }
+    setLoading(false);
+  };
   useEffect(() => {
     if (localStorage.getItem("token")) {
-      axios({
-        url: process.env.REACT_APP_API + "/getuser",
-        method: "get",
-        headers: {
-          Authorization: "Bearer " + localStorage.getItem("token"),
-        },
-      })
-        .then((res) => {
-          setUser(res.data.data.user);
-          setAlert({ type: "success", message: res.data.message });
-        })
-        .catch((err) => {
-          console.log(err);
-          localStorage.clear();
-          setAlert({ type: "error", message: err.response.data.message });
-        })
-        .finally(() => {
-          setLoading(false);
-        });
+      getSession();
     } else {
       setLoading(false);
     }
@@ -64,6 +67,7 @@ function App() {
               position: "absolute",
               top: 50,
               left: "50%",
+              zIndex: 150000,
               transform: "translateX(-50%)",
             }}
             icon={alert.type === "error" ? <ErrorRounded /> : <CheckRounded />}

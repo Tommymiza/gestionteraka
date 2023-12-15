@@ -1,4 +1,3 @@
-import axios from "axios";
 import React, { useState, useContext } from "react";
 import { ActContext } from "../App";
 import "../styles/login.scss";
@@ -6,6 +5,8 @@ import { LoadingButton } from "@mui/lab";
 import { LoginOutlined } from "@mui/icons-material";
 import LottieLoading from "./Outils/LottieLoading";
 import { loadingBtn } from "../styled";
+import { POST } from "../api/Request";
+import { routes } from "../api/Route";
 
 export default function Inscription() {
   const { setUser, setAlert } = useContext(ActContext);
@@ -29,27 +30,21 @@ export default function Inscription() {
     }
     return true;
   };
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
     if (!validation(form)) {
       return;
     }
     setLoading(true);
-    axios({
-      url: process.env.REACT_APP_API + "/loginadmin",
-      method: "POST",
-      data: form,
-    })
-      .then((res) => {
-        localStorage.setItem("token", res.data.data.token);
-        setUser(res.data.data.user);
-        setAlert({ type: "success", message: "Bienvenue à bord!" });
-      })
-      .catch((err) => {
-        console.log(err);
-        setAlert({ type: "error", message: err.response.data.message });
-      })
-      .finally(() => setLoading(false));
+    try {
+      const response = await POST(routes.LOGIN, form);
+      setUser(response.data.user);
+      localStorage.setItem("token", response.data.token);
+      setAlert({type: "success", message: response.message});
+    } catch (error) {
+      setAlert({type: "error", message: error.response.data.message ?? "Erreur de connexion !"});
+    }
+    setLoading(false);
   };
 
   return (
@@ -64,9 +59,6 @@ export default function Inscription() {
         ></lottie-player>
         <form onSubmit={handleSubmit}>
           <h1>Login</h1>
-          {/* <input type="text" name="nom" id="nom" onChange={handleChange} />
-      <input type="text" name="tel" id="tel" onChange={handleChange} />
-      <input type="text" name="adresse" id="adresse" onChange={handleChange} /> */}
           <input
             className="custom"
             type="email"

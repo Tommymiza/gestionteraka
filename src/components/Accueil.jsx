@@ -2,10 +2,10 @@ import React from "react";
 import Sidebar from "./Outils/Sidebar";
 import { Routes, Route } from "react-router";
 import News from "./News";
-import Agent from "./Personnel/Agent";
-import Champion from "./Personnel/Champion";
-import Employe from "./Personnel/Employe";
-import Quantificateur from "./Personnel/Quantificateur";
+import Agent from "./pages/Agent";
+import Champion from "./pages/Champion";
+import Employe from "./pages/Employe";
+import Quantificateur from "./pages/Quantificateur";
 import PetitGroupe from "./PetitGroupe/PetitGroupe";
 
 export default function Accueil() {
