@@ -1,19 +1,20 @@
 import {
-  AdminPanelSettingsRounded,
+  CalendarMonthRounded,
   CottageRounded,
   DesignServicesRounded,
   Diversity3Rounded,
   EmojiEventsRounded,
   MenuRounded,
+  Person2Rounded,
   PowerSettingsNewRounded,
 } from "@mui/icons-material";
-import React, { useContext } from "react";
-import { ActContext } from "../../App";
-import "../../styles/sidebar.scss";
 import { Tooltip } from "@mui/material";
+import React, { useContext } from "react";
 import { useNavigate } from "react-router";
+import { ActContext } from "../../App";
 import { GET } from "../../api/Request";
 import { routes } from "../../api/Route";
+import "../../styles/sidebar.scss";
 
 export default function Sidebar() {
   const { setUser, setAlert } = useContext(ActContext);
@@ -58,7 +59,7 @@ export default function Sidebar() {
         </Tooltip>
         <Tooltip arrow title="Employé">
           <div className="sidebar-el" onClick={() => goToRoute("/employe")}>
-            <AdminPanelSettingsRounded sx={{ width: 40, height: 30 }} />
+            <Person2Rounded sx={{ width: 40, height: 30 }} />
             <p>Employé</p>
           </div>
         </Tooltip>
@@ -86,6 +87,16 @@ export default function Sidebar() {
           <div className="sidebar-el">
             <Diversity3Rounded sx={{ width: 40, height: 30 }} />
             <p>Petit&nbsp;Groupe</p>
+          </div>
+        </Tooltip>
+        <Tooltip
+          arrow
+          title="Visite Quantification"
+          onClick={() => goToRoute("/visite-quantification")}
+        >
+          <div className="sidebar-el">
+            <CalendarMonthRounded sx={{ width: 40, height: 30 }} />
+            <p>Visite&nbsp;Quantification</p>
           </div>
         </Tooltip>
       </div>

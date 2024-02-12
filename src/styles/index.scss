@@ -14,7 +14,7 @@
   font-family: "Gumela";
   src: url("../fonts/Gumela.ttf");
 }
-*{
+* {
   padding: 0;
   margin: 0;
   box-sizing: border-box;
@@ -36,42 +36,50 @@
     }
   }
 }
-:root{
+:root {
   --active: #728b6b;
   --theme: #313d2f;
-  --shadow: rgba(0,0,0,0.3);
+  --shadow: rgba(0, 0, 0, 0.3);
+  --error: #ed7168;
+  --success: #68e3a4;
 }
-#loading{
+#loading {
   position: fixed;
   top: 50%;
   left: 50%;
   transform: translate(-50%, -50%);
 }
-#container{
+#container {
   margin-left: 70px;
   padding: 20px;
   display: flex;
   flex-direction: column;
   justify-content: center;
 }
-#container-login{
+#container-login {
   width: 100%;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
 }
-.chip{
+.chip {
   padding: 5px 10px;
   border-radius: 20px;
   font-size: 15px;
   font-weight: bold;
 }
-input{
+.success {
+  background: #68e3a4;
+}
+.error {
+  background: #ed7168;
+}
+input {
   outline: none;
   border: none;
 }
-input.custom{
+input.custom {
   outline: none;
   border: none;
   box-shadow: 0 0 10px 1px rgba($color: #000000, $alpha: 0.1);
@@ -80,9 +88,9 @@ input.custom{
   font-weight: bold;
   border-radius: 7px;
   width: 240px;
-  transition: .4s;
+  transition: 0.4s;
   font-family: "Averta";
 }
-input.custom:focus{
+input.custom:focus {
   box-shadow: 0 0 10px 1px rgba($color: #000000, $alpha: 0.3);
 }

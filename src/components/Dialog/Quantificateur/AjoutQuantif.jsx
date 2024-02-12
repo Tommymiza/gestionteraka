@@ -1,4 +1,4 @@
-import { Close, EditRounded } from "@mui/icons-material";
+import { Close, PersonAddAlt1Rounded } from "@mui/icons-material";
 import { LoadingButton } from "@mui/lab";
 import {
   Dialog,
@@ -9,32 +9,31 @@ import {
 } from "@mui/material";
 import React, { useContext, useRef, useState } from "react";
 import { ActContext } from "../../../App";
-import { PUT } from "../../../api/Request";
+import { POST } from "../../../api/Request";
 import { routes } from "../../../api/Route";
 import { iconButton, loadingBtn } from "../../../styled";
 import LottieLoading from "../../Outils/LottieLoading";
 
-export default function UpdateChampion({ close, refresh, user }) {
+export default function AjoutQuantif({ close, refresh }) {
   const { setAlert } = useContext(ActContext);
   const form = useRef(null);
   const [loading, setLoading] = useState(false);
   const handleSubmit = async (e) => {
     e.preventDefault();
     const data = new FormData(form.current);
-    const obj = {};
-    const keys = data.keys();
-    for (let key of keys) {
-      obj[key] = data.get(key);
-    }
     setLoading(true);
     try {
-      const response = await PUT(routes.UPDATECHAMPION, user.id_champion, obj);
+      const response = await POST(routes.ADDQUANTIF, data);
       setAlert({ type: "success", message: response.message });
       close();
       refresh();
     } catch (error) {
       console.log(error);
-      setAlert({ type: "error", message: error.response.data.message });
+      if (error.response.data.message.includes("1062")) {
+        setAlert({ type: "error", message: "Email déjà utilisé" });
+      } else {
+        setAlert({ type: "error", message: "L'email n'existe pas" });
+      }
     }
     setLoading(false);
   };
@@ -67,7 +66,7 @@ export default function UpdateChampion({ close, refresh, user }) {
               textTransform: "uppercase",
             }}
           >
-            Modifier un champion:
+            Ajout d'un Quantificateur:
           </h3>
           <Tooltip arrow title={"Fermer"}>
             <IconButton onClick={() => close()} sx={{ ...iconButton }}>
@@ -93,7 +92,14 @@ export default function UpdateChampion({ close, refresh, user }) {
               className="custom"
               style={{ width: "100%" }}
               placeholder="Nom et prénoms :"
-              defaultValue={user.nom}
+            />
+            <input
+              type="email"
+              name="email"
+              required
+              className="custom"
+              style={{ width: "100%" }}
+              placeholder="Email :"
             />
             <input
               type="text"
@@ -102,7 +108,6 @@ export default function UpdateChampion({ close, refresh, user }) {
               className="custom"
               style={{ width: "100%" }}
               placeholder="Téléphone :"
-              defaultValue={user.phone}
             />
             <input
               type="text"
@@ -111,26 +116,16 @@ export default function UpdateChampion({ close, refresh, user }) {
               className="custom"
               style={{ width: "100%" }}
               placeholder="Adresse :"
-              defaultValue={user.adresse}
-            />
-            <input
-              type="text"
-              name="lieu"
-              className="custom"
-              required
-              style={{ width: "100%" }}
-              placeholder="Lieu de travail :"
-              defaultValue={user.lieu}
             />
             <div style={{ alignSelf: "center" }}>
               <LoadingButton
-                startIcon={<EditRounded />}
+                startIcon={<PersonAddAlt1Rounded />}
                 sx={loadingBtn}
                 type="submit"
                 loading={loading}
                 loadingIndicator={<LottieLoading size={50} speed={1} />}
               >
-                Modifier
+                Ajout
               </LoadingButton>
             </div>
           </div>

@@ -1,8 +1,6 @@
 import {
-  CopyAllRounded,
+  CheckRounded,
   DeleteRounded,
-  EditRounded,
-  PersonAddAlt1Rounded,
   RefreshRounded,
   VisibilityRounded,
 } from "@mui/icons-material";
@@ -14,69 +12,131 @@ import {
 } from "material-react-table";
 import { MRT_Localization_FR } from "material-react-table/locales/fr";
 import React, { useContext, useEffect, useMemo, useRef, useState } from "react";
+import { useNavigate } from "react-router-dom";
 import { ActContext } from "../../App";
-import { GET } from "../../api/Request";
+import { GET, PUT } from "../../api/Request";
 import { routes } from "../../api/Route";
 import { iconButton } from "../../styled";
-import AjoutQuantif from "../Dialog/Quantificateur/AjoutQuantif";
-import DeleteQuantif from "../Dialog/Quantificateur/DeleteQuantif";
-import InfoQuantif from "../Dialog/Quantificateur/InfoQuantif";
-import UpdateQuantif from "../Dialog/Quantificateur/UpdateQuantif";
+import DeletePg from "../Dialog/Pg/DeletePg";
 
-export default function Quatificateur() {
-  const { setAlert } = useContext(ActContext);
+export default function PetitGroupe() {
+  const { setAlert, user } = useContext(ActContext);
   const [data, setData] = useState([]);
   const [dialog, setDialog] = useState();
   const tableInstance = useRef(null);
   const [isLoading, setLoading] = useState(true);
+
+  const navigate = useNavigate();
+
   const columns = useMemo(
     () => [
       {
-        accessorKey: "id_quantificateur",
+        accessorKey: "id_pg",
         header: "ID",
         size: 5,
       },
       {
-        accessorKey: "nom",
-        header: "Nom du quantificateur",
+        accessorKey: "nom_pg",
+        header: "Nom du PG",
         size: 300,
       },
       {
-        accessorKey: "email",
-        header: "Email",
-        enableClickToCopy: true,
-        muiTableBodyCellCopyButtonProps: {
-          fullWidth: true,
-          endIcon: <CopyAllRounded />,
-          sx: { justifyContent: "flex-start", width: "fit-content" },
-        },
+        accessorKey: "region",
+        header: "Région",
       },
       {
-        accessorKey: "phone",
-        header: "Téléphone",
-        enableClickToCopy: true,
+        accessorKey: "district",
+        header: "District",
         headerAlign: "center",
         align: "center",
-        muiTableBodyCellCopyButtonProps: {
-          fullWidth: true,
-          endIcon: <CopyAllRounded />,
-          sx: { justifyContent: "flex-start", width: "fit-content" },
-        },
       },
       {
-        accessorKey: "adresse",
-        header: "Adresse",
+        accessorKey: "commune",
+        header: "Commune",
+      },
+      {
+        accessorKey: "fokontany",
+        header: "Fokontany",
+      },
+      {
+        accessorKey: "issue_famille_different",
+        header: "Trois familles",
+        Cell: ({ cell }) => (
+          <span className={cell.getValue() ? "chip success" : "chip error"}>
+            {cell.getValue() ? "Oui" : "Non"}
+          </span>
+        ),
+      },
+      {
+        accessorKey: "suivi_formation",
+        header: "Formation",
+        Cell: ({ cell }) => (
+          <span className={cell.getValue() ? "chip success" : "chip error"}>
+            {cell.getValue() ? "Oui" : "Non"}
+          </span>
+        ),
+      },
+      {
+        accessorKey: "avoir_terrain_pepiniere",
+        header: "Pépinière",
+        Cell: ({ cell }) => (
+          <span className={cell.getValue() ? "chip success" : "chip error"}>
+            {cell.getValue() ? "Oui" : "Non"}
+          </span>
+        ),
+      },
+      {
+        accessorKey: "nb_semis",
+        header: "Nombres semis",
+      },
+      {
+        accessorKey: "created_at",
+        header: "Ajouté le",
+        Cell: ({ cell }) => (
+          <p>{new Date(cell.getValue()).toLocaleString("fr")}</p>
+        ),
+      },
+      {
+        accessorKey: "id_staff_verificateur",
+        header: "Vérifié",
+        Cell: ({ cell }) => (
+          <span className={cell.getValue() ? "chip success" : "chip error"}>
+            {cell.getValue() ? "Oui" : "Non"}
+          </span>
+        ),
       },
     ],
     []
   );
-  const refreshData = () => {
-    setLoading(true);
-    getListPersonnel();
-  };
-  const getListPersonnel = async () => {
+  const validerPg = async (pg) => {
     try {
-      const response = await GET(routes.GETQUANTIF);
+      const res = await PUT(
+        `${process.env.REACT_APP_API}/petit-groupe/check`,
+        pg,
+        {
+          id_staff_verificateur: user.id,
+        }
+      );
+      if (!res.success) throw new Error(res.message);
+      if (res.success) {
+        setAlert({
+          message: "Petit groupe validé avec succès",
+          type: "success",
+        });
+        getListPg();
+      }
+    } catch (error) {
+      console.log(error);
+      setAlert({
+        message: "Erreur lors de la validation du petit groupe",
+        type: "error",
+      });
+    }
+  };
+
+  const getListPg = async () => {
+    try {
+      const response = await GET(routes.GETPG);
       setData(response.data.all);
     } catch (error) {
       console.log(error);
@@ -87,8 +147,12 @@ export default function Quatificateur() {
     }
     setLoading(false);
   };
+  const refreshData = () => {
+    setLoading(true);
+    getListPg();
+  };
   useEffect(() => {
-    getListPersonnel();
+    getListPg();
     // eslint-disable-next-line
   }, []);
   return (
@@ -105,7 +169,7 @@ export default function Quatificateur() {
         initialState={{
           showGlobalFilter: true,
           pagination: { pageSize: 10 },
-          sorting: [{ id: "nom", asc: true }],
+          sorting: [{ id: "nom_pg", asc: true }],
         }}
         muiToolbarAlertBannerProps={{
           sx: { display: "none" },
@@ -148,38 +212,34 @@ export default function Quatificateur() {
               <IconButton
                 sx={iconButton}
                 onClick={() =>
-                  setDialog(
-                    <InfoQuantif close={setDialog} user={row.original} />
-                  )
+                  navigate(`/petit-groupe/${row.getValue("id_pg")}`)
                 }
               >
                 <VisibilityRounded />
               </IconButton>
             </Tooltip>
-            <Tooltip arrow title={"Modifier"}>
-              <IconButton
-                sx={iconButton}
-                onClick={() =>
-                  setDialog(
-                    <UpdateQuantif
-                      close={setDialog}
-                      user={row.original}
-                      refresh={refreshData}
-                    />
-                  )
-                }
-              >
-                <EditRounded />
-              </IconButton>
+            <Tooltip arrow title={"Valider"}>
+              <span>
+                <IconButton
+                  sx={{ ...iconButton }}
+                  onClick={() => {
+                    if (row.getValue("id_staff_verificateur") !== null) return;
+                    validerPg(row.getValue("id_pg"));
+                  }}
+                  disabled={row.getValue("id_staff_verificateur") !== null}
+                >
+                  <CheckRounded />
+                </IconButton>
+              </span>
             </Tooltip>
             <Tooltip arrow title={"Supprimer"}>
               <IconButton
                 sx={iconButton}
                 onClick={() =>
                   setDialog(
-                    <DeleteQuantif
+                    <DeletePg
                       close={setDialog}
-                      id={row.original.id_quantificateur}
+                      id={row.original.id_pg}
                       refresh={refreshData}
                     />
                   )
@@ -202,7 +262,7 @@ export default function Quatificateur() {
             }}
           >
             <h2 style={{ fontFamily: "Averta", textTransform: "uppercase" }}>
-              Liste des quantificateurs :
+              Liste des petits groupes :
             </h2>
             {/* eslint-disable-next-line */}
             <Box
@@ -231,18 +291,6 @@ export default function Quatificateur() {
                 </Tooltip>
                 {/* eslint-disable-next-line */}
                 <MRT_FullScreenToggleButton table={table} sx={iconButton} />
-                <Tooltip arrow title={"Ajouter un quantificateur"}>
-                  <IconButton
-                    sx={iconButton}
-                    onClick={() =>
-                      setDialog(
-                        <AjoutQuantif refresh={refreshData} close={setDialog} />
-                      )
-                    }
-                  >
-                    <PersonAddAlt1Rounded />
-                  </IconButton>
-                </Tooltip>
               </Box>
             </Box>
           </Box>

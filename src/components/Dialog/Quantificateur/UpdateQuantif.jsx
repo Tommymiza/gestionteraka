@@ -14,7 +14,7 @@ import { routes } from "../../../api/Route";
 import { iconButton, loadingBtn } from "../../../styled";
 import LottieLoading from "../../Outils/LottieLoading";
 
-export default function UpdateChampion({ close, refresh, user }) {
+export default function UpdateQuantif({ close, refresh, user }) {
   const { setAlert } = useContext(ActContext);
   const form = useRef(null);
   const [loading, setLoading] = useState(false);
@@ -28,7 +28,11 @@ export default function UpdateChampion({ close, refresh, user }) {
     }
     setLoading(true);
     try {
-      const response = await PUT(routes.UPDATECHAMPION, user.id_champion, obj);
+      const response = await PUT(
+        routes.UPDATEQUANTIF,
+        user.id_quantificateur,
+        obj
+      );
       setAlert({ type: "success", message: response.message });
       close();
       refresh();
@@ -67,7 +71,7 @@ export default function UpdateChampion({ close, refresh, user }) {
               textTransform: "uppercase",
             }}
           >
-            Modifier un champion:
+            Modifier un quantificateur:
           </h3>
           <Tooltip arrow title={"Fermer"}>
             <IconButton onClick={() => close()} sx={{ ...iconButton }}>
@@ -112,15 +116,6 @@ export default function UpdateChampion({ close, refresh, user }) {
               style={{ width: "100%" }}
               placeholder="Adresse :"
               defaultValue={user.adresse}
-            />
-            <input
-              type="text"
-              name="lieu"
-              className="custom"
-              required
-              style={{ width: "100%" }}
-              placeholder="Lieu de travail :"
-              defaultValue={user.lieu}
             />
             <div style={{ alignSelf: "center" }}>
               <LoadingButton
