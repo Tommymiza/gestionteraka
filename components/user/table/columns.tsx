@@ -3,7 +3,7 @@ import { Chip } from "@mui/material";
 import { type MRT_ColumnDef } from "material-react-table";
 import { useMemo } from "react";
 
-export default function columns() {
+export default function Columns() {
   const col = useMemo<MRT_ColumnDef<UserItem, any>[]>(
     () => [
       {

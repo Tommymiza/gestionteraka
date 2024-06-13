@@ -4,7 +4,7 @@ import Link from "next/link";
 import { useEffect } from "react";
 import MaterialTable from "../table/MaterialTable";
 import Icons from "../utils/Icons";
-import columns from "./table/columns";
+import Columns from "./table/columns";
 
 export default function ListUser() {
   const { userList, getUsers } = userStore();
@@ -13,7 +13,7 @@ export default function ListUser() {
   }, []);
   return (
     <MaterialTable
-      columns={columns()}
+      columns={Columns()}
       data={userList}
       title="Liste des utilisateurs"
       topToolbar={<TopToolbar />}
