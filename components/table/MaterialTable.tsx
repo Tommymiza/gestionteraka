@@ -36,6 +36,11 @@ export default function MaterialTable({
         borderBottom: "none",
       },
     },
+    muiCircularProgressProps: {
+      sx: {
+        display: "none",
+      },
+    },
     muiTablePaperProps: {
       sx: {
         background: "white",

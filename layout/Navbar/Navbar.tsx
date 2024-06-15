@@ -162,9 +162,15 @@ function LinkItem({
         dense
         sx={{
           color: grey[600],
-          backgroundColor: path === menu.path ? "white" : grey[100],
+          backgroundColor:
+            menu.path === "/"
+              ? path === menu.path
+                ? "white"
+                : "transparent"
+              : path.includes(menu.path)
+              ? "white"
+              : "transparent",
           padding: "5px 15px",
-          boxShadow: "0 0 15px 0 rgba(0, 0, 0, 0.05)",
           borderRadius: 1,
           display: "flex",
           gap: 1,
@@ -173,9 +179,11 @@ function LinkItem({
         <Icons
           name={menu.icon as keyof typeof icons}
           size={20}
-          strokeWidth={1.5}
+          strokeWidth={2}
         />
-        <Typography variant="body1">{menu.name}</Typography>
+        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+          {menu.name}
+        </Typography>
       </MenuItem>
     </Link>
   );

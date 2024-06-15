@@ -6,7 +6,7 @@ export default function Dashboard({ children }: { children: React.ReactNode }) {
   return (
     <Stack>
       <Navbar />
-      <Container maxWidth="lg">{children}</Container>
+      <Container maxWidth={false}>{children}</Container>
     </Stack>
   );
 }

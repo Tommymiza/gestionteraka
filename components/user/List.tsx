@@ -7,7 +7,7 @@ import Icons from "../utils/Icons";
 import Columns from "./table/columns";
 
 export default function ListUser() {
-  const { userList, getUsers } = userStore();
+  const { userList, getUsers, loading } = userStore();
   useEffect(() => {
     getUsers();
   }, []);
@@ -17,6 +17,9 @@ export default function ListUser() {
       data={userList}
       title="Liste des utilisateurs"
       topToolbar={<TopToolbar />}
+      state={{
+        isLoading: loading,
+      }}
     />
   );
 }
@@ -24,7 +27,7 @@ export default function ListUser() {
 function TopToolbar() {
   return (
     <Stack direction={"row"} alignItems={"center"} gap={1}>
-      <Link href="/user/create">
+      <Link href="/user/add">
         <Button
           variant="contained"
           color="primary"

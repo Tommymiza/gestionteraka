@@ -2,7 +2,7 @@ export type UserItem = {
   id: number;
   name: string;
   email: string;
-  photo?: string;
+  photo?: string | null;
   cin: string;
   phone: string;
   address: string;
