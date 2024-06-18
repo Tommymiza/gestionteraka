@@ -51,7 +51,6 @@ export default function Columns() {
           return (
             <Typography
               variant="body2"
-              color={row.original.sexe === "M" ? "primary" : "secondary"}
             >
               {row.original.sexe === "M" ? "Masculin" : "Féminin"}
             </Typography>

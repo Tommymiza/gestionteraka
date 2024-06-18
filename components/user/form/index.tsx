@@ -30,7 +30,7 @@ const validationSchema = Yup.object({
   role: Yup.string().required(),
 });
 
-const Role = [
+export const Role = [
   { value: "PERSONAL", label: "Personnel" },
   { value: "ADMIN", label: "Administrateur" },
   { value: "CHAMPION", label: "Champion" },

@@ -39,7 +39,7 @@ export default function AvatarUpload({
                 : `${process.env.NEXT_PUBLIC_API}/file/${field.value}`
               : undefined
           }
-        ></Avatar>
+        />
       </FormLabel>
       <Input
         type="file"
