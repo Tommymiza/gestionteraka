@@ -1,6 +1,7 @@
 "use client";
 import AvatarUpload from "@/components/shared/AvatarUpload";
 import Input from "@/components/shared/Input";
+import RadioGroupCustom from "@/components/shared/RadioGroupCustom";
 import Select from "@/components/shared/Select";
 import Icons from "@/components/utils/Icons";
 import fileStore from "@/store/file";
@@ -11,6 +12,7 @@ import {
   Button,
   Container,
   Divider,
+  Grid,
   Stack,
   styled,
   Typography,
@@ -43,13 +45,14 @@ export default function AddFormUser() {
   const { idUser } = useParams();
   const initialValues: Partial<UserItem> = useMemo(
     () => ({
-      name: user?.name || "",
-      email: user?.email || "",
-      role: user?.role || "PERSONAL",
-      phone: user?.phone || "",
-      cin: user?.cin || "",
-      address: user?.address || "",
-      photo: user?.photo || null,
+      name: user?.name ?? "",
+      email: user?.email ?? "",
+      role: user?.role ?? "PERSONAL",
+      phone: user?.phone ?? "",
+      cin: user?.cin ?? "",
+      address: user?.address ?? "",
+      photo: user?.photo ?? null,
+      sexe: user?.sexe ?? "M",
     }),
     [user]
   );
@@ -78,19 +81,23 @@ export default function AddFormUser() {
   return (
     <Stack>
       <Formik
+        enableReinitialize
         initialValues={initialValues}
         onSubmit={handleSubmit}
         validationSchema={validationSchema}
       >
         <Form>
           <FormTitle>
-            <Typography variant="h5">Ajouter un utilisateur</Typography>
+            <Typography variant="h5">
+              {user ? "Modifier" : "Ajouter"} un utilisateur
+            </Typography>
             <ActionContainer>
               <Button
                 variant="text"
                 color="primary"
                 startIcon={<Icons name="ArrowLeft" />}
                 type="button"
+                onClick={() => router.push("/user")}
               >
                 Retour
               </Button>
@@ -106,38 +113,41 @@ export default function AddFormUser() {
           </FormTitle>
           <Divider />
           <FormContainer maxWidth="lg">
-            <CustomStack
-              direction={{ xs: "column", sm: "column", md: "row" }}
-              gap={2}
-            >
-              <Input fullWidth name="name" label="Nom d'utilisateur" />
-              <Input fullWidth name="email" label="Email" />
-            </CustomStack>
-            <CustomStack
-              direction={{ xs: "column", sm: "column", md: "row" }}
-              gap={2}
-            >
-              <Input fullWidth name="address" label="Adresse" />
-              <Select
-                valueKey="value"
-                getOptionLabel={(option) => option.label ?? ""}
-                name="role"
-                options={Role}
-                label="Rôle"
-              />
-            </CustomStack>
-            <CustomStack
-              direction={{ xs: "column", sm: "column", md: "row" }}
-              gap={2}
-            >
-              <Input
-                fullWidth
-                name="cin"
-                label="N° Carte d'identité nationale"
-              />
-              <Input fullWidth name="phone" label="Téléphone" />
-            </CustomStack>
-            <AvatarUpload name="photo" sx={{ display: "none" }} />
+            <Grid container spacing={2}>
+              <Grid item xs={12} md={6}>
+                <Stack gap={2} alignItems={"center"}>
+                  <AvatarUpload name="photo" sx={{ display: "none" }} />
+                  <RadioGroupCustom
+                    name="sexe"
+                    label="Genre"
+                    options={[
+                      { value: "M", label: "Homme" },
+                      { value: "F", label: "Femme" },
+                    ]}
+                  />
+                </Stack>
+              </Grid>
+              <Grid item xs={12} md={6}>
+                <Stack gap={2}>
+                  <Input fullWidth name="name" label="Nom d'utilisateur" />
+                  <Input fullWidth name="email" label="Email" />
+                  <Input fullWidth name="address" label="Adresse" />
+                  <Select
+                    valueKey="value"
+                    getOptionLabel={(option) => option.label ?? ""}
+                    name="role"
+                    options={Role}
+                    label="Rôle"
+                  />
+                  <Input
+                    fullWidth
+                    name="cin"
+                    label="N° Carte d'identité nationale"
+                  />
+                  <Input fullWidth name="phone" label="Téléphone" />
+                </Stack>
+              </Grid>
+            </Grid>
           </FormContainer>
         </Form>
       </Formik>
@@ -167,7 +177,7 @@ const FormTitle = styled(Stack)({
 const ActionContainer = styled(Stack)({
   display: "flex",
   flexDirection: "row",
-  gap: 1,
+  gap: 10,
 });
 
 const CustomStack = styled(Stack)(({ theme }) => ({

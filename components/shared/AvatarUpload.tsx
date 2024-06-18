@@ -23,9 +23,23 @@ export default function AvatarUpload({
     reader.readAsDataURL(file);
   };
   return (
-    <Stack>
+    <Stack direction={"column"} alignItems={"center"}>
       <FormLabel htmlFor={name}>
-        <Avatar sx={{ width: 150, height: 150 }} src={field.value}></Avatar>
+        <Avatar
+          sx={{
+            width: 200,
+            height: 200,
+            borderWidth: 2,
+            borderStyle: "solid",
+          }}
+          src={
+            field.value
+              ? field.value.startsWith("data:image")
+                ? field.value
+                : `${process.env.NEXT_PUBLIC_API}/file/${field.value}`
+              : undefined
+          }
+        ></Avatar>
       </FormLabel>
       <Input
         type="file"

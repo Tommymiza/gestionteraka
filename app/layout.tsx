@@ -1,8 +1,9 @@
 "use client";
 import RequireAuth from "@/layout/AuthProvider/RequireAuth";
-import { theme } from "@/lib/theme";
+import { confirmOptions, theme } from "@/lib/theme";
 import { ThemeProvider } from "@mui/material";
 import { AppRouterCacheProvider } from "@mui/material-nextjs/v14-appRouter";
+import { ConfirmProvider } from "material-ui-confirm";
 import { Toaster } from "react-hot-toast";
 import "./globals.css";
 
@@ -17,7 +18,9 @@ export default function RootLayout({
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <Toaster position="top-right" />
-            <RequireAuth>{children}</RequireAuth>
+            <ConfirmProvider defaultOptions={confirmOptions}>
+              <RequireAuth>{children}</RequireAuth>
+            </ConfirmProvider>
           </ThemeProvider>
         </AppRouterCacheProvider>
       </body>

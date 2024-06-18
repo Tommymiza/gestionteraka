@@ -41,6 +41,7 @@ export default function MaterialTable({
         display: "none",
       },
     },
+    positionActionsColumn: "last",
     muiTablePaperProps: {
       sx: {
         background: "white",

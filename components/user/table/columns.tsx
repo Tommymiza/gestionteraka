@@ -1,5 +1,5 @@
 import { UserItem } from "@/store/user/type";
-import { Chip } from "@mui/material";
+import { Chip, Typography } from "@mui/material";
 import { type MRT_ColumnDef } from "material-react-table";
 import { useMemo } from "react";
 
@@ -14,6 +14,49 @@ export default function Columns() {
         accessorKey: "email",
         header: "Email",
         enableClickToCopy: true,
+      },
+      {
+        accessorKey: "role",
+        header: "Rôle",
+        Cell: ({ row }) => {
+          return (
+            <Chip
+              variant="filled"
+              color={
+                row.original.role === "ADMIN"
+                  ? "error"
+                  : row.original.role === "PERSONAL"
+                  ? "warning"
+                  : row.original.role === "CHAMPION"
+                  ? "success"
+                  : "info"
+              }
+              label={
+                row.original.role === "ADMIN"
+                  ? "Administrateur"
+                  : row.original.role === "PERSONAL"
+                  ? "Personnel"
+                  : row.original.role === "CHAMPION"
+                  ? "Champion"
+                  : "Quantificateur"
+              }
+            />
+          );
+        },
+      },
+      {
+        accessorKey: "sexe",
+        header: "Sexe",
+        Cell: ({ row }) => {
+          return (
+            <Typography
+              variant="body2"
+              color={row.original.sexe === "M" ? "primary" : "secondary"}
+            >
+              {row.original.sexe === "M" ? "Masculin" : "Féminin"}
+            </Typography>
+          );
+        },
       },
       {
         accessorKey: "address",

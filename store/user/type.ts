@@ -6,6 +6,7 @@ export type UserItem = {
   cin: string;
   phone: string;
   address: string;
+  sexe: "M" | "F";
   role: "ADMIN" | "PERSONAL" | "CHAMPION" | "QUANTIFIER";
   is_active: boolean;
 };
@@ -14,7 +15,6 @@ export type UserStore = {
   user: UserItem | null;
   userList: UserItem[];
   loading: boolean;
-  isEditing: boolean;
   createUser: (user: Partial<UserItem>) => Promise<UserItem>;
   updateUser: ({
     id,
