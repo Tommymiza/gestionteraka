@@ -1,5 +1,5 @@
 import { Checkbox, FormControlLabel, Typography } from "@mui/material";
-import { useFormikContext } from "formik";
+import { useField } from "formik";
 
 export default function OSCheckbox({
   name,
@@ -8,7 +8,7 @@ export default function OSCheckbox({
   name: string;
   label: string;
 }) {
-  const { setFieldValue, values } = useFormikContext();
+  const [field] = useField(name);
 
   return (
     <FormControlLabel
@@ -18,12 +18,9 @@ export default function OSCheckbox({
         </Typography>
       }
       labelPlacement="end"
-      control={
-        <Checkbox
-          value={(values as any)[name]}
-          onChange={(e, c) => setFieldValue(name, c)}
-        />
-      }
+      onChange={field.onChange}
+      name={name}
+      control={<Checkbox checked={field.value} />}
     />
   );
 }

@@ -6,7 +6,9 @@ import Icons from "@/components/utils/Icons";
 import { COMMUNES, DISTRICTS, REGIONS } from "@/lib/location";
 import fileStore from "@/store/file";
 import smallGroupStore from "@/store/small-group";
-import { UserItem } from "@/store/user/type";
+import smallGroupImageStore from "@/store/small-group-image";
+import { SmallGroupItem } from "@/store/small-group/type";
+import userStore from "@/store/user";
 import { LoadingButton } from "@mui/lab";
 import {
   Button,
@@ -18,9 +20,9 @@ import {
 } from "@mui/material";
 import { Form, Formik } from "formik";
 import { useParams, useRouter } from "next/navigation";
-import { useMemo } from "react";
+import { useEffect, useMemo } from "react";
 import * as Yup from "yup";
-import UploadFiles from "./UploadFiles";
+import UploadImages from "./UploadImages";
 
 const validationSchema = Yup.object({
   name: Yup.string().required(),
@@ -28,9 +30,10 @@ const validationSchema = Yup.object({
   district: Yup.string().required(),
   commune: Yup.string().required(),
   fokontany: Yup.string().required(),
-  phone_1: Yup.string().min(10).max(10).required(),
-  phone_2: Yup.string().min(10).max(10),
-  phone_3: Yup.string().min(10).max(10),
+  phone1: Yup.string().min(10).max(10).required(),
+  champion_id: Yup.number().required(),
+  phone2: Yup.string().min(10).max(10),
+  phone3: Yup.string().min(10).max(10),
 });
 
 export const Role = [
@@ -50,9 +53,14 @@ export default function AddFormSmallGroup() {
     loading,
   } = smallGroupStore();
   const { createFile } = fileStore();
+  const { createSmallGroupImage, deleteSmallGroupImage } =
+    smallGroupImageStore();
   const router = useRouter();
   const { idSmallGroup } = useParams();
-  const initialValues: Partial<UserItem> = useMemo(
+  const { getUsers, userList } = userStore();
+  const initialValues: Partial<SmallGroupItem> & {
+    images: string[];
+  } = useMemo(
     () => ({
       name: smallGroup?.name ?? "",
       slogan: smallGroup?.slogan ?? "",
@@ -60,22 +68,72 @@ export default function AddFormSmallGroup() {
       district: smallGroup?.district ?? "",
       commune: smallGroup?.commune ?? "",
       fokontany: smallGroup?.fokontany ?? "",
-      phone_1: smallGroup?.phone_1 ?? "",
-      phone_2: smallGroup?.phone_2 ?? "",
-      phone_3: smallGroup?.phone_3 ?? "",
+      phone1: smallGroup?.phone1 ?? "",
+      phone2: smallGroup?.phone2 ?? "",
+      phone3: smallGroup?.phone3 ?? "",
       families: smallGroup?.families ?? false,
       trainings: smallGroup?.trainings ?? false,
       nursery: smallGroup?.nursery ?? false,
+      champion_id: smallGroup?.champion_id ?? undefined,
+      images: smallGroup?.smallGroupImages.map((s) => s.path) ?? [],
     }),
     [smallGroup]
   );
 
-  const handleSubmit = async (values: Partial<UserItem>) => {
+  const handleSubmit = async (
+    values: Partial<SmallGroupItem> & { images?: string[] }
+  ) => {
     try {
+      if (smallGroup) {
+        let oldImages = smallGroup.smallGroupImages.filter(
+          (i) => !values.images?.includes(i.path)
+        );
+        let newImages = values.images!.filter(
+          (i) => !smallGroup.smallGroupImages.map((i) => i.path).includes(i)
+        );
+        let paths = await Promise.all(
+          newImages.map((image) => createFile(image))
+        );
+        await Promise.all(
+          oldImages.map((image) => deleteSmallGroupImage(image?.id))
+        );
+        await Promise.all(
+          paths.map(
+            (path) =>
+              path &&
+              createSmallGroupImage({ path, small_group_id: smallGroup.id })
+          )
+        );
+        await updateSmallGroup({ id: smallGroup.id, smallGroup: values });
+      } else {
+        let paths = await Promise.all(
+          values.images!.map((image) => createFile(image))
+        );
+        const newSmallgroup = await createSmallGroup({ ...values });
+        await Promise.all(
+          paths.map(
+            (path) =>
+              path &&
+              createSmallGroupImage({ path, small_group_id: newSmallgroup.id })
+          )
+        );
+      }
+      router.push("/small-group");
     } catch (error) {
       console.log(error);
     }
   };
+  useEffect(() => {
+    getUsers();
+    if (typeof idSmallGroup === "string") {
+      editSmallgroup(+idSmallGroup);
+    } else {
+      cancelEdit();
+    }
+    return () => {
+      cancelEdit();
+    };
+  }, [idSmallGroup]);
   return (
     <Stack>
       <Formik
@@ -95,7 +153,7 @@ export default function AddFormSmallGroup() {
                 color="primary"
                 startIcon={<Icons name="ArrowLeft" />}
                 type="button"
-                onClick={() => router.push("/user")}
+                onClick={() => router.push("/small-group")}
               >
                 Retour
               </Button>
@@ -135,9 +193,16 @@ export default function AddFormSmallGroup() {
               getOptionLabel={(o) => o.commune ?? ""}
             />
             <Input name="fokontany" label="Fokontany" />
-            <Input name="phone_1" label="Téléphone 1" />
-            <Input name="phone_2" label="Téléphone 2" />
-            <Input name="phone_3" label="Téléphone 3" />
+            <Select
+              name="champion_id"
+              label="Champion"
+              options={userList.filter((u) => u.role === "CHAMPION")}
+              valueKey="id"
+              getOptionLabel={(o) => o?.name ?? ""}
+            />
+            <Input name="phone1" label="Téléphone 1" />
+            <Input name="phone2" label="Téléphone 2" />
+            <Input name="phone3" label="Téléphone 3" />
             <CustomStack direction={{ md: "row", xs: "column" }}>
               <OSCheckbox
                 name="families"
@@ -146,7 +211,7 @@ export default function AddFormSmallGroup() {
               <OSCheckbox name="trainings" label="Avoir suivi les formations" />
               <OSCheckbox name="nursery" label="Avoir un pépinière" />
             </CustomStack>
-            <UploadFiles />
+            <UploadImages name="images" />
           </FormContainer>
         </Form>
       </Formik>

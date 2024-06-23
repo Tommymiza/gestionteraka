@@ -1,3 +1,6 @@
+import { SmallGroupImageItem } from "../small-group-image/type";
+import { UserItem } from "../user/type";
+
 export type SmallGroupItem = {
   id: number;
   champion_id: number;
@@ -8,13 +11,15 @@ export type SmallGroupItem = {
   district: string;
   commune: string;
   fokontany: string;
-  phone_1: string;
-  phone_2?: string;
-  phone_3?: string;
+  phone1: string;
+  phone2?: string;
+  phone3?: string;
   photo: string;
   families: boolean;
   trainings: boolean;
   nursery: boolean;
+  champion: UserItem;
+  smallGroupImages: SmallGroupImageItem[];
 };
 
 export type SmallGroupStore = {
@@ -23,17 +28,14 @@ export type SmallGroupStore = {
   loading: boolean;
   isEditing: boolean;
   createSmallGroup: (
-    smallGroup: Partial<SmallGroupItem>,
-    images: string[]
+    smallGroup: Partial<SmallGroupItem> & { images?: string[] }
   ) => Promise<SmallGroupItem>;
   updateSmallGroup: ({
     id,
     smallGroup,
-    images,
   }: {
     id: number;
-    smallGroup: Partial<SmallGroupItem>;
-    images: string[];
+    smallGroup: Partial<SmallGroupItem> & { images?: string[] };
   }) => Promise<SmallGroupItem>;
   deleteSmallGroup: (id: number) => Promise<SmallGroupItem>;
   getSmallGroup: ({

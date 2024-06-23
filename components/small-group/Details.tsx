@@ -1,84 +1,91 @@
 "use client";
-import userStore from "@/store/user";
-import {
-  Avatar,
-  Button,
-  Divider,
-  Grid,
-  Stack,
-  styled,
-  Typography,
-} from "@mui/material";
+import smallGroupStore from "@/store/small-group";
+import { Button, Divider, Stack, styled, Typography } from "@mui/material";
 import { Image } from "antd";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Icons from "../utils/Icons";
-import { Role } from "./form";
 
 export default function SmallGroupDetail() {
-  const { user, getUser } = userStore();
-  const { idUser } = useParams();
+  const { smallGroup, getSmallGroup } = smallGroupStore();
+  const { idSmallGroup } = useParams();
   const router = useRouter();
   useEffect(() => {
-    if (typeof idUser === "string") {
-      getUser({ id: +idUser });
+    if (typeof idSmallGroup === "string") {
+      getSmallGroup({
+        id: +idSmallGroup,
+        args: {
+          include: {
+            smallGroupImages: true,
+            champion: true,
+          },
+        },
+      });
     }
-  }, [idUser]);
+  }, [idSmallGroup]);
   return (
     <Stack marginBottom={2}>
       <FormTitle>
-        <Typography variant="h5">Détail utilisateur</Typography>
+        <Typography variant="h5">Détail petit groupe</Typography>
         <ActionContainer>
           <Button
             variant="text"
             color="primary"
             startIcon={<Icons name="ArrowLeft" />}
             type="button"
-            onClick={() => router.push("/user")}
+            onClick={() => router.push("/small-group")}
           >
             Retour
           </Button>
         </ActionContainer>
       </FormTitle>
       <Divider />
-      <Grid container marginTop={2} spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Stack direction={"row"} justifyContent={"center"} width={"100%"}>
-            <Stack
-              width={"40%"}
-              sx={{
-                borderRadius: "100%",
-                aspectRatio: 1,
-                minWidth: 250,
-                overflow: "hidden",
-              }}
-            >
-              {user?.photo ? (
+      <Stack direction={"column"} gap={2} padding={2}>
+        <ItemDetail label={"Nom"} value={smallGroup?.name} />
+        <ItemDetail label={"Slogan"} value={smallGroup?.slogan} />
+        <ItemDetail label={"Région"} value={smallGroup?.region} />
+        <ItemDetail label={"District"} value={smallGroup?.district} />
+        <ItemDetail label={"Commune"} value={smallGroup?.commune} />
+        <ItemDetail label={"Fokontany"} value={smallGroup?.fokontany} />
+        <ItemDetail
+          label={"Familles différentes"}
+          value={smallGroup?.families ? "Oui" : "Non"}
+        />
+        <ItemDetail
+          label={"Formations"}
+          value={smallGroup?.trainings ? "Oui" : "Non"}
+        />
+        <ItemDetail
+          label={"Avoir une pépinière"}
+          value={smallGroup?.nursery ? "Oui" : "Non"}
+        />
+        <ItemDetail label={"Champion"} value={smallGroup?.champion?.name} />
+        <ItemDetail label={"Téléphone 1"} value={smallGroup?.phone1} />
+        <ItemDetail label={"Téléphone 2"} value={smallGroup?.phone2} />
+        <ItemDetail label={"Téléphone 3"} value={smallGroup?.phone3} />
+        <Stack
+          padding={3}
+          borderRadius={5}
+          sx={{ background: "white", boxShadow: "0 0 25px rgba(0,0,0,0.01)" }}
+          direction={"column"}
+          gap={2}
+        >
+          <Typography variant="h6" fontWeight={"bold"}>
+            Photos :
+          </Typography>
+          <Stack direction={"row"} gap={2} flexWrap={"wrap"}>
+            <Image.PreviewGroup>
+              {smallGroup?.smallGroupImages.map((image) => (
                 <Image
-                  src={`${process.env.NEXT_PUBLIC_API}/file/${user.photo}`}
-                  style={{ objectFit: "cover" }}
-                  width={"100%"}
-                  height={"100%"}
+                  key={image.id}
+                  src={`${process.env.NEXT_PUBLIC_API}/file/${image.path}`}
+                  width={300}
                 />
-              ) : (
-                <Avatar sx={{ width: "100%", height: "100%" }} />
-              )}
-            </Stack>
+              ))}
+            </Image.PreviewGroup>
           </Stack>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Stack spacing={2}>
-            <ItemDetail label="Nom" value={user?.name} />
-            <ItemDetail label="Email" value={user?.email} />
-            <ItemDetail label="Téléphone" value={user?.phone} />
-            <ItemDetail label="CIN" value={user?.cin} />
-            <ItemDetail
-              label="Role"
-              value={Role.find((r) => r.value === user?.role)?.label}
-            />
-          </Stack>
-        </Grid>
-      </Grid>
+        </Stack>
+      </Stack>
     </Stack>
   );
 }

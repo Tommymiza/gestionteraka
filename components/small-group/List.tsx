@@ -42,7 +42,7 @@ export default function ListSmallGroup() {
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>
-          <Link href={`/user/${row.original.id}`}>
+          <Link href={`/small-group/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>

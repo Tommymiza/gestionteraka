@@ -1,8 +1,10 @@
-import UserDetail from "@/components/user/Details";
+import SmallGroupDetail from "@/components/small-group/Details";
 import Dashboard from "@/layout/Dashboard/Dashboard";
 
 export default function UserDetailPage() {
-  return <Dashboard>
-    <UserDetail />
-  </Dashboard>;
+  return (
+    <Dashboard>
+      <SmallGroupDetail />
+    </Dashboard>
+  );
 }

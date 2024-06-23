@@ -11,6 +11,7 @@ const smallGroupStore = create<SmallGroupStore>((set) => ({
   createSmallGroup: async (smallGroup) => {
     try {
       set({ loading: true });
+      delete smallGroup.images;
       const response = await axios.post(`/small-group`, smallGroup);
       toast.success("Small group created successfully");
       return response.data;
@@ -24,6 +25,7 @@ const smallGroupStore = create<SmallGroupStore>((set) => ({
   updateSmallGroup: async ({ id, smallGroup }) => {
     try {
       set({ loading: true });
+      delete smallGroup.images;
       const response = await axios.patch(`/small-group/${id}`, smallGroup);
       set({ isEditing: false, smallGroup: null });
       toast.success("Small group updated successfully");
@@ -81,7 +83,14 @@ const smallGroupStore = create<SmallGroupStore>((set) => ({
   editSmallgroup: async (id) => {
     try {
       set({ loading: true });
-      const response = await axios.get(`/small-group/${id}`);
+      const params = {
+        args: JSON.stringify({
+          include: {
+            smallGroupImages: true,
+          },
+        }),
+      };
+      const response = await axios.get(`/small-group/${id}`, { params });
       set({ smallGroup: response.data, isEditing: true });
       return response.data;
     } catch (error) {

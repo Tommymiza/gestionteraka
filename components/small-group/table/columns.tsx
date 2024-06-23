@@ -35,9 +35,9 @@ export default function Columns() {
         header: "Familles différentes",
         Cell: ({ row }) => {
           return row.original.families ? (
-            <Chip label="Oui" color="primary" />
+            <Chip label="Oui" color="success" />
           ) : (
-            <Chip label="Non" color="secondary" />
+            <Chip label="Non" color="error" />
           );
         },
       },
@@ -46,9 +46,9 @@ export default function Columns() {
         header: "Formations",
         Cell: ({ row }) => {
           return row.original.trainings ? (
-            <Chip label="Oui" color="primary" />
+            <Chip label="Oui" color="success" />
           ) : (
-            <Chip label="Non" color="secondary" />
+            <Chip label="Non" color="error" />
           );
         },
       },
@@ -57,9 +57,9 @@ export default function Columns() {
         header: "Avoir une pépinière",
         Cell: ({ row }) => {
           return row.original.nursery ? (
-            <Chip label="Oui" color="primary" />
+            <Chip label="Oui" color="success" />
           ) : (
-            <Chip label="Non" color="secondary" />
+            <Chip label="Non" color="error" />
           );
         },
       },
@@ -68,9 +68,9 @@ export default function Columns() {
         header: "Vérifié",
         Cell: ({ row }) => {
           return row.original.personal_id ? (
-            <Chip label="Oui" color="primary" />
+            <Chip label="Oui" color="success" />
           ) : (
-            <Chip label="Non" color="secondary" />
+            <Chip label="Non" color="error" />
           );
         },
       },
