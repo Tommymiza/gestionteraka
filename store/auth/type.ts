@@ -12,4 +12,6 @@ export type AuthStore = {
   }) => Promise<any>;
   logout: () => Promise<any>;
   check: () => Promise<any>;
+  updatePassword: (data: { new: string }) => Promise<any>;
+  getMe: () => Promise<any>;
 };

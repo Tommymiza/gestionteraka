@@ -15,7 +15,7 @@ import { useEffect } from "react";
 import Icons from "../utils/Icons";
 import { Role } from "./form";
 
-export default function UserDetail() {
+export default function SmallGroupDetail() {
   const { user, getUser } = userStore();
   const { idUser } = useParams();
   const router = useRouter();

@@ -51,9 +51,9 @@ const smallGroupStore = create<SmallGroupStore>((set) => ({
   getSmallGroup: async ({ id, args = {} }) => {
     try {
       set({ loading: true });
-      const params = JSON.stringify({
-        args: args,
-      });
+      const params = {
+        args: JSON.stringify(args),
+      };
       const response = await axios.get(`/small-group/${id}`, { params });
       set({ smallGroup: response.data });
       return response.data;
@@ -66,9 +66,9 @@ const smallGroupStore = create<SmallGroupStore>((set) => ({
   getSmallGroups: async (args = {}) => {
     try {
       set({ loading: true });
-      const params = JSON.stringify({
-        args: args,
-      });
+      const params = {
+        args: JSON.stringify(args),
+      };
       const response = await axios.get(`/small-group`, { params });
       set({ smallGroupList: response.data });
       return response.data;

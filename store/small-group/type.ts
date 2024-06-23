@@ -23,14 +23,17 @@ export type SmallGroupStore = {
   loading: boolean;
   isEditing: boolean;
   createSmallGroup: (
-    smallGroup: Partial<SmallGroupItem>
+    smallGroup: Partial<SmallGroupItem>,
+    images: string[]
   ) => Promise<SmallGroupItem>;
   updateSmallGroup: ({
     id,
     smallGroup,
+    images,
   }: {
     id: number;
     smallGroup: Partial<SmallGroupItem>;
+    images: string[];
   }) => Promise<SmallGroupItem>;
   deleteSmallGroup: (id: number) => Promise<SmallGroupItem>;
   getSmallGroup: ({

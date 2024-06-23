@@ -11,6 +11,7 @@ const authStore = create<AuthStore>((set) => ({
       const response = await axios.post(`/auth/login`, data);
       const token = response.data.token;
       localStorage.setItem("auth", token);
+      toast.success("Logged in successfully!");
     } catch (error: any) {
       toast.error(error.response.data.error);
       throw error;
@@ -26,9 +27,27 @@ const authStore = create<AuthStore>((set) => ({
       const user = response.data;
       set({ auth: user });
     } catch (error) {
+      localStorage.removeItem("auth");
       throw error;
     } finally {
       set({ loading: false });
+    }
+  },
+  getMe: async () => {
+    try {
+      const response = await axios.get(`/auth/me`);
+      const user = response.data;
+      set({ auth: user });
+    } catch (error) {
+      throw error;
+    }
+  },
+  updatePassword: async (data) => {
+    try {
+      await axios.post(`/auth/reset`, data);
+      toast.success("Password changed successfully!");
+    } catch (error) {
+      throw error;
     }
   },
   logout: async () => {

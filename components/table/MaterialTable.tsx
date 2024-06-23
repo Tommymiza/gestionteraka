@@ -31,6 +31,13 @@ export default function MaterialTable({
         boxShadow: "none",
       },
     },
+    muiTableHeadCellProps: {
+      sx: {
+        "& .Mui-TableHeadCell-Content-Wrapper": {
+          whiteSpace: "nowrap",
+        },
+      },
+    },
     muiTableBodyCellProps: {
       sx: {
         borderBottom: "none",

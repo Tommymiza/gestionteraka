@@ -13,9 +13,12 @@ async function base64toFile(dataurl: string) {
 const fileStore = create<FileStore>((set) => ({
   createFile: async (file) => {
     try {
-      let path = file;
-      if (path && path.startsWith("data:image")) {
-        let upload = await base64toFile(path);
+      let path = null;
+      if (file) {
+        let upload = file;
+        if (typeof upload === "string" && upload.startsWith("data:image")) {
+          upload = await base64toFile(upload);
+        }
         const formData = new FormData();
         formData.append("file", upload);
         const response = await axios.post(`/file`, formData);
