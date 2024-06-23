@@ -1,3 +1,3 @@
 export type FileStore = {
-  createFile: (file: string | File | null) => Promise<string | null>;
+  createFile: (file: string | null) => Promise<string | null>;
 };
