@@ -7,7 +7,7 @@ export type UserItem = {
   phone: string;
   address: string;
   sexe: "M" | "F";
-  role: "ADMIN" | "PERSONAL" | "CHAMPION" | "QUANTIFIER";
+  role: "ADMIN" | "PERSONAL" | "RELAIS" | "QUANTIFIER";
   is_active: boolean;
 };
 

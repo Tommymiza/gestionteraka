@@ -10,6 +10,16 @@ export const menus = [
     icon: "UserRoundCog",
   },
   {
+    name: "Relais",
+    path: "/relais",
+    icon: "UserRoundCog",
+  },
+  {
+    name: "Quantificateur",
+    path: "/quantifier",
+    icon: "UserRoundCog",
+  },
+  {
     name: "Petit groupe",
     path: "/small-group",
     icon: "Boxes",

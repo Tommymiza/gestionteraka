@@ -16,21 +16,6 @@ export default function Columns() {
         enableClickToCopy: true,
       },
       {
-        accessorKey: "role",
-        header: "Rôle",
-        Cell: ({ row }) => {
-          return (
-            <Chip
-              variant="filled"
-              color={row.original.role === "ADMIN" ? "error" : "warning"}
-              label={
-                row.original.role === "ADMIN" ? "Administrateur" : "Personnel"
-              }
-            />
-          );
-        },
-      },
-      {
         accessorKey: "sexe",
         header: "Sexe",
         Cell: ({ row }) => {

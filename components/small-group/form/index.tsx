@@ -74,7 +74,7 @@ export default function AddFormSmallGroup() {
       families: smallGroup?.families ?? false,
       trainings: smallGroup?.trainings ?? false,
       nursery: smallGroup?.nursery ?? false,
-      champion_id: smallGroup?.champion_id ?? undefined,
+      relais_id: smallGroup?.relais_id ?? undefined,
       images: smallGroup?.smallGroupImages.map((s) => s.path) ?? [],
     }),
     [smallGroup]
@@ -194,9 +194,9 @@ export default function AddFormSmallGroup() {
             />
             <Input name="fokontany" label="Fokontany" />
             <Select
-              name="champion_id"
-              label="Champion"
-              options={userList.filter((u) => u.role === "CHAMPION")}
+              name="relais_id"
+              label="Relais local"
+              options={userList.filter((u) => u.role === "RELAIS")}
               valueKey="id"
               getOptionLabel={(o) => o?.name ?? ""}
             />

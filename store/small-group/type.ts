@@ -3,7 +3,7 @@ import { UserItem } from "../user/type";
 
 export type SmallGroupItem = {
   id: number;
-  champion_id: number;
+  relais_id: number;
   personal_id?: number;
   name: string;
   slogan: string;
@@ -11,14 +11,14 @@ export type SmallGroupItem = {
   district: string;
   commune: string;
   fokontany: string;
-  phone1: string;
+  phone1?: string;
   phone2?: string;
   phone3?: string;
   photo: string;
   families: boolean;
   trainings: boolean;
   nursery: boolean;
-  champion: UserItem;
+  relais: UserItem;
   smallGroupImages: SmallGroupImageItem[];
 };
 

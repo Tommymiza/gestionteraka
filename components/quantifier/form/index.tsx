@@ -2,7 +2,6 @@
 import AvatarUpload from "@/components/shared/AvatarUpload";
 import Input from "@/components/shared/Input";
 import RadioGroupCustom from "@/components/shared/RadioGroupCustom";
-import Select from "@/components/shared/Select";
 import Icons from "@/components/utils/Icons";
 import fileStore from "@/store/file";
 import userStore from "@/store/user";
@@ -30,12 +29,7 @@ const validationSchema = Yup.object({
   role: Yup.string().required(),
 });
 
-export const Role = [
-  { value: "PERSONAL", label: "Personnel" },
-  { value: "ADMIN", label: "Administrateur" },
-];
-
-export default function AddFormUser() {
+export default function AddFormRelais() {
   const { user, createUser, editUser, cancelEdit, updateUser, loading } =
     userStore();
   const { createFile } = fileStore();
@@ -45,7 +39,7 @@ export default function AddFormUser() {
     () => ({
       name: user?.name ?? "",
       email: user?.email ?? "",
-      role: user?.role ?? "PERSONAL",
+      role: user?.role ?? "QUANTIFIER",
       phone: user?.phone ?? "",
       cin: user?.cin ?? "",
       address: user?.address ?? "",
@@ -130,13 +124,6 @@ export default function AddFormUser() {
                   <Input fullWidth name="name" label="Nom d'utilisateur" />
                   <Input fullWidth name="email" label="Email" />
                   <Input fullWidth name="address" label="Adresse" />
-                  <Select
-                    valueKey="value"
-                    getOptionLabel={(option) => option.label ?? ""}
-                    name="role"
-                    options={Role}
-                    label="Rôle"
-                  />
                   <Input
                     fullWidth
                     name="cin"

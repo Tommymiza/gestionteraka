@@ -11,12 +11,8 @@ export default function Columns() {
         header: "Nom du groupe",
       },
       {
-        accessorKey: "slogan",
-        header: "Slogan",
-      },
-      {
         accessorKey: "region",
-        header: "District",
+        header: "Région",
       },
       {
         accessorKey: "district",
