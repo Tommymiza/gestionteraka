@@ -1,14 +1,19 @@
 import { Search } from "@mui/icons-material";
-import { Stack, Typography } from "@mui/material";
+import { Button, Stack, Typography } from "@mui/material";
 import {
   MaterialReactTable,
   type MRT_ColumnDef,
   MRT_GlobalFilterTextField,
+  MRT_TableInstance,
   type MRT_TableOptions,
   useMaterialReactTable,
 } from "material-react-table";
 
+import smallGroupStore from "@/store/small-group";
+import { SmallGroupItem } from "@/store/small-group/type";
 import { MRT_Localization_FR } from "material-react-table/locales/fr";
+import * as XLSX from "xlsx";
+import Icons from "../utils/Icons";
 
 export default function MaterialTable({
   title,
@@ -21,6 +26,45 @@ export default function MaterialTable({
   title: string;
   topToolbar?: React.ReactNode;
 }) {
+  const { smallGroupList } = smallGroupStore();
+  function evaluateValue(value: SmallGroupItem, key: string) {
+    let parties = key.split(".");
+    let valeur: any = value;
+    for (var i = 0; i < parties.length; i++) {
+      valeur = valeur[parties[i] as keyof SmallGroupItem];
+    }
+    return valeur;
+  }
+
+  const handleExportToExcel = (table: MRT_TableInstance<any>) => {
+    const allRows = smallGroupList.map((r) => {
+      const currentRow: any = {};
+      table.getAllColumns().forEach((c) => {
+        if (c.columnDef.accessorFn) {
+          currentRow[c.columnDef.header] = c.columnDef.accessorFn(r);
+        } else {
+          currentRow[c.columnDef.header] = evaluateValue(r, c.columnDef.id);
+        }
+      });
+      delete currentRow["Actions"];
+      return currentRow;
+    });
+    let footer: any = {};
+    table.getAllColumns().forEach((c) => {
+      const params = { table: table };
+      if (c.columnDef.Footer) {
+        const getValue: any = c.columnDef.Footer;
+        footer[c.columnDef.header] = getValue(params);
+      }
+    });
+    delete footer["Actions"];
+    allRows.push(footer);
+    console.log(allRows);
+    const ws = XLSX.utils.json_to_sheet(allRows);
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "PG complet");
+    XLSX.writeFile(wb, "Petit groupe.xlsx");
+  };
   const table = useMaterialReactTable({
     ...props,
     columns,
@@ -81,6 +125,14 @@ export default function MaterialTable({
             table={table}
           />
           {props.topToolbar}
+          <Button
+            variant="contained"
+            color="primary"
+            startIcon={<Icons name="Download" />}
+            onClick={() => handleExportToExcel(table)}
+          >
+            Excel
+          </Button>
         </Stack>
       </Stack>
     ),

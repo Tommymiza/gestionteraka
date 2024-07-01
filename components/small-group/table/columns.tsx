@@ -1,5 +1,4 @@
 import { SmallGroupItem } from "@/store/small-group/type";
-import { Chip } from "@mui/material";
 import { type MRT_ColumnDef } from "material-react-table";
 import { useMemo } from "react";
 
@@ -8,7 +7,7 @@ export default function Columns() {
     () => [
       {
         accessorKey: "name",
-        header: "Nom du groupe",
+        header: "Nom du petit groupe",
       },
       {
         accessorKey: "region",
@@ -27,48 +26,19 @@ export default function Columns() {
         header: "Fokontany",
       },
       {
-        accessorKey: "families",
-        header: "Familles différentes",
-        Cell: ({ row }) => {
-          return row.original.families ? (
-            <Chip label="Oui" color="success" />
-          ) : (
-            <Chip label="Non" color="error" />
-          );
-        },
+        accessorFn: (row) => row.members.length,
+        header: "Membres",
+        align: "center",
       },
       {
-        accessorKey: "trainings",
-        header: "Formations",
-        Cell: ({ row }) => {
-          return row.original.trainings ? (
-            <Chip label="Oui" color="success" />
-          ) : (
-            <Chip label="Non" color="error" />
-          );
-        },
+        accessorFn: (row) => row.members.filter((m) => m.sexe === "M").length,
+        header: "Homme",
+        align: "center",
       },
       {
-        accessorKey: "nursery",
-        header: "Avoir une pépinière",
-        Cell: ({ row }) => {
-          return row.original.nursery ? (
-            <Chip label="Oui" color="success" />
-          ) : (
-            <Chip label="Non" color="error" />
-          );
-        },
-      },
-      {
-        accessorKey: "personal_id",
-        header: "Vérifié",
-        Cell: ({ row }) => {
-          return row.original.personal_id ? (
-            <Chip label="Oui" color="success" />
-          ) : (
-            <Chip label="Non" color="error" />
-          );
-        },
+        accessorFn: (row) => row.members.filter((m) => m.sexe === "F").length,
+        header: "Femme",
+        align: "center",
       },
     ],
     []

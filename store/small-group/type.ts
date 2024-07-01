@@ -1,3 +1,4 @@
+import { MemberItem } from "../member/type";
 import { SmallGroupImageItem } from "../small-group-image/type";
 import { UserItem } from "../user/type";
 
@@ -19,6 +20,7 @@ export type SmallGroupItem = {
   trainings: boolean;
   nursery: boolean;
   relais: UserItem;
+  members: MemberItem[];
   smallGroupImages: SmallGroupImageItem[];
 };
 
