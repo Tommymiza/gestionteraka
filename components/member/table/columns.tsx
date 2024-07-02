@@ -1,50 +1,46 @@
-import { UserItem } from "@/store/user/type";
-import { Chip, Typography } from "@mui/material";
+import { MemberItem } from "@/store/member/type";
+import { format } from "date-fns";
 import { type MRT_ColumnDef } from "material-react-table";
 import { useMemo } from "react";
 
 export default function Columns() {
-  const col = useMemo<MRT_ColumnDef<UserItem, any>[]>(
+  const col = useMemo<MRT_ColumnDef<MemberItem, any>[]>(
     () => [
+      {
+        accessorFn: (row) => `PG${row.smallGroup.id}`,
+        header: "Code du petit groupe",
+      },
+      {
+        accessorKey: "smallGroup.name",
+        header: "Nom du petit groupe",
+      },
       {
         accessorKey: "name",
         header: "Nom et prénoms",
       },
       {
-        accessorKey: "email",
-        header: "Email",
-        enableClickToCopy: true,
+        accessorKey: "smallGroup.region",
+        header: "Région",
       },
       {
-        accessorKey: "role",
-        header: "Rôle",
-        Cell: ({ row }) => {
-          return (
-            <Chip
-              variant="filled"
-              color={row.original.role === "ADMIN" ? "error" : "warning"}
-              label={
-                row.original.role === "ADMIN" ? "Administrateur" : "Personnel"
-              }
-            />
-          );
-        },
+        accessorKey: "smallGroup.district",
+        header: "District",
+      },
+      {
+        accessorKey: "smallGroup.commune",
+        header: "Commune",
+      },
+      {
+        accessorKey: "smallGroup.fokontany",
+        header: "Fokontany",
+      },
+      {
+        accessorKey: "village",
+        header: "Village",
       },
       {
         accessorKey: "sexe",
         header: "Sexe",
-        Cell: ({ row }) => {
-          return (
-            <Typography variant="body2">
-              {row.original.sexe === "M" ? "Masculin" : "Féminin"}
-            </Typography>
-          );
-        },
-      },
-      {
-        accessorKey: "address",
-        header: "Adresse",
-        enableSorting: false,
       },
       {
         accessorKey: "phone",
@@ -58,17 +54,31 @@ export default function Columns() {
         enableSorting: false,
       },
       {
-        accessorKey: "is_active",
-        header: "Active",
-        Cell: ({ row }) => {
-          return (
-            <Chip
-              variant="filled"
-              color={row.original.is_active ? "success" : "error"}
-              label={row.original.is_active ? "Oui" : "Non"}
-            />
-          );
-        },
+        accessorKey: "job",
+        header: "Profession",
+      },
+      {
+        accessorKey: "school",
+        header: "Niveau d'éducation",
+      },
+      {
+        accessorKey: "known_by",
+        header: "Connaissance du Teraka",
+      },
+      {
+        accessorKey: "motivation",
+        header: "Motivation",
+      },
+      {
+        accessorFn: (row) =>
+          row.date_inscription
+            ? format(new Date(row.date_inscription), "dd/MM/yyyy")
+            : "",
+        header: "Date d'inscription",
+      },
+      {
+        accessorKey: "lieu_inscription",
+        header: "Lieu d'inscription",
       },
     ],
     []

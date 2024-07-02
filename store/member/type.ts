@@ -1,14 +1,22 @@
+import { SmallGroupItem } from "../small-group/type";
+
 export type MemberItem = {
   id: number;
   name: string;
-  email: string;
   photo?: string | null;
-  cin: string;
-  phone: string;
-  address: string;
+  cin?: string;
+  phone?: string;
+  village?: string;
+  age: number;
+  job?: string;
+  school?: string;
+  known_by?: string;
+  motivation?: string;
+  date_inscription?: string;
+  lieu_inscription?: string;
   sexe: "M" | "F";
-  role: "ADMIN" | "PERSONAL" | "RELAIS" | "QUANTIFIER";
-  is_active: boolean;
+  smallGroup_id: number;
+  smallGroup: SmallGroupItem;
 };
 
 export type MemberStore = {

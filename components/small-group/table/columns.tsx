@@ -6,6 +6,10 @@ export default function Columns() {
   const col = useMemo<MRT_ColumnDef<SmallGroupItem, any>[]>(
     () => [
       {
+        accessorFn: (row) => `PG${row.id}`,
+        header: "Code du petit groupe",
+      },
+      {
         accessorKey: "name",
         header: "Nom du petit groupe",
       },

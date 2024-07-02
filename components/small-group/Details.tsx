@@ -17,7 +17,7 @@ export default function SmallGroupDetail() {
         args: {
           include: {
             smallGroupImages: true,
-            champion: true,
+            relais: true,
           },
         },
       });
@@ -59,7 +59,7 @@ export default function SmallGroupDetail() {
           label={"Avoir une pépinière"}
           value={smallGroup?.nursery ? "Oui" : "Non"}
         />
-        <ItemDetail label={"Champion"} value={smallGroup?.champion?.name} />
+        <ItemDetail label={"Champion"} value={smallGroup?.relais?.name} />
         <ItemDetail label={"Téléphone 1"} value={smallGroup?.phone1} />
         <ItemDetail label={"Téléphone 2"} value={smallGroup?.phone2} />
         <ItemDetail label={"Téléphone 3"} value={smallGroup?.phone3} />

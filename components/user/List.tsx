@@ -5,6 +5,7 @@ import {
   VisibilityRounded,
 } from "@mui/icons-material";
 import { Button, IconButton, Stack, styled } from "@mui/material";
+import { MRT_TableInstance } from "material-react-table";
 import { useConfirm } from "material-ui-confirm";
 import Link from "next/link";
 import { useEffect } from "react";
@@ -23,18 +24,26 @@ export default function ListUser() {
       cancellationText: "Annuler",
     }).then(async () => {
       await deleteUser(id);
-      getUsers();
+      getUsers({
+        where: {
+          OR: [{ role: "ADMIN" }, { role: "PERSONAL" }],
+        },
+      });
     });
   };
   useEffect(() => {
-    getUsers();
+    getUsers({
+      where: {
+        OR: [{ role: "ADMIN" }, { role: "PERSONAL" }],
+      },
+    });
   }, []);
   return (
     <MaterialTable
       columns={Columns()}
       data={userList}
       title="Liste des utilisateurs"
-      topToolbar={<TopToolbar />}
+      topToolbar={TopToolbar}
       state={{
         isLoading: loading,
       }}
@@ -63,7 +72,7 @@ export default function ListUser() {
   );
 }
 
-function TopToolbar() {
+function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
   return (
     <Stack direction={"row"} alignItems={"center"} gap={1}>
       <Link href="/user/add">
