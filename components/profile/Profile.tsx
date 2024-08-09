@@ -71,9 +71,9 @@ export default function Profile() {
           <Stack spacing={2}>
             <ItemDetail
               label="Nom"
-              valueKey={"name"}
+              valueKey={"nom"}
               validation={Yup.object({
-                name: Yup.string().required(),
+                nom: Yup.string().required(),
               })}
             />
             <ItemDetail
@@ -84,18 +84,26 @@ export default function Profile() {
               })}
             />
             <ItemDetail
-              label="Téléphone"
-              valueKey={"phone"}
+              label="Adresse"
+              valueKey={"adresse"}
               validation={Yup.object({
-                phone: Yup.string().max(10).min(10).required(),
+                adresse: Yup.string(),
               })}
             />
             <ItemDetail
-              label="CIN"
-              valueKey={"cin"}
+              label="Téléphone"
+              valueKey={"num_tel"}
               validation={Yup.object({
-                cin: Yup.string().max(12).min(12).required(),
+                num_tel: Yup.string(),
               })}
+            />
+            <ItemDetail
+              label="Année de naissance"
+              valueKey={"annee_naissance"}
+              validation={Yup.object({
+                annee_naissance: Yup.number().required(),
+              })}
+              props={{ type: "number" }}
             />
           </Stack>
         </Grid>

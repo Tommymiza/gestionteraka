@@ -33,7 +33,7 @@ export default function RelaisDetail() {
             color="primary"
             startIcon={<Icons name="ArrowLeft" />}
             type="button"
-            onClick={() => router.push("/user")}
+            onClick={() => router.push("/relais")}
           >
             Retour
           </Button>
@@ -67,11 +67,19 @@ export default function RelaisDetail() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Stack spacing={2}>
-            <ItemDetail label="Nom" value={user?.name} />
+            <ItemDetail label="Nom" value={user?.nom} />
             <ItemDetail label="Email" value={user?.email} />
-            <ItemDetail label="Téléphone" value={user?.phone} />
-            <ItemDetail label="CIN" value={user?.cin} />
-            <ItemDetail label="Role" value={"Relais local"} />
+            <ItemDetail label="Téléphone" value={user?.num_tel} />
+            <ItemDetail label="Adresse" value={user?.adresse} />
+            <ItemDetail
+              label="Genre"
+              value={user?.genre === "H" ? "Homme" : "Femme"}
+            />
+            <ItemDetail
+              label="Année de naissance"
+              value={user?.annee_naissance}
+            />
+            <ItemDetail label="Rôle" value={"Relais local"} />
           </Stack>
         </Grid>
       </Grid>
@@ -84,7 +92,7 @@ function ItemDetail({
   value,
 }: {
   label: string;
-  value: string | undefined;
+  value: string | undefined | number;
 }) {
   return (
     <Stack

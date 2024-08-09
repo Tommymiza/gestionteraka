@@ -23,15 +23,14 @@ import { useEffect, useMemo } from "react";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required(),
+  nom: Yup.string().required(),
   email: Yup.string().email().required(),
-  cin: Yup.string().max(12).min(12).required(),
-  phone: Yup.string().max(10).min(10).required(),
+  annee_naissance: Yup.number().required(),
   role: Yup.string().required(),
 });
 
 export const Role = [
-  { value: "PERSONAL", label: "Personnel" },
+  { value: "PERSONNEL", label: "Personnel" },
   { value: "ADMIN", label: "Administrateur" },
 ];
 
@@ -43,14 +42,14 @@ export default function AddFormUser() {
   const { idUser } = useParams();
   const initialValues: Partial<UserItem> = useMemo(
     () => ({
-      name: user?.name ?? "",
+      nom: user?.nom ?? "",
       email: user?.email ?? "",
-      role: user?.role ?? "PERSONAL",
-      phone: user?.phone ?? "",
-      cin: user?.cin ?? "",
-      address: user?.address ?? "",
+      role: user?.role ?? "PERSONNEL",
+      num_tel: user?.num_tel ?? "",
+      adresse: user?.adresse ?? "",
+      annee_naissance: user?.annee_naissance ?? 1960,
       photo: user?.photo ?? null,
-      sexe: user?.sexe ?? "M",
+      genre: user?.genre ?? "H",
     }),
     [user]
   );
@@ -116,10 +115,10 @@ export default function AddFormUser() {
                 <Stack gap={2} alignItems={"center"}>
                   <AvatarUpload name="photo" sx={{ display: "none" }} />
                   <RadioGroupCustom
-                    name="sexe"
+                    name="genre"
                     label="Genre"
                     options={[
-                      { value: "M", label: "Homme" },
+                      { value: "H", label: "Homme" },
                       { value: "F", label: "Femme" },
                     ]}
                   />
@@ -127,9 +126,9 @@ export default function AddFormUser() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack gap={2}>
-                  <Input fullWidth name="name" label="Nom d'utilisateur" />
+                  <Input fullWidth name="nom" label="Nom d'utilisateur" />
                   <Input fullWidth name="email" label="Email" />
-                  <Input fullWidth name="address" label="Adresse" />
+                  <Input fullWidth name="adresse" label="Adresse" />
                   <Select
                     valueKey="value"
                     getOptionLabel={(option) => option.label ?? ""}
@@ -137,12 +136,13 @@ export default function AddFormUser() {
                     options={Role}
                     label="Rôle"
                   />
+                  <Input fullWidth name="num_tel" label="Téléphone" />
                   <Input
                     fullWidth
-                    name="cin"
-                    label="N° Carte d'identité nationale"
+                    name="annee_naissance"
+                    label="Année de naissance"
+                    type="number"
                   />
-                  <Input fullWidth name="phone" label="Téléphone" />
                 </Stack>
               </Grid>
             </Grid>

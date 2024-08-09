@@ -26,7 +26,7 @@ export default function ListUser() {
       await deleteUser(id);
       getUsers({
         where: {
-          OR: [{ role: "ADMIN" }, { role: "PERSONAL" }],
+          OR: [{ role: "ADMIN" }, { role: "PERSONNEL" }],
         },
       });
     });
@@ -34,7 +34,7 @@ export default function ListUser() {
   useEffect(() => {
     getUsers({
       where: {
-        OR: [{ role: "ADMIN" }, { role: "PERSONAL" }],
+        OR: [{ role: "ADMIN" }, { role: "PERSONNEL" }],
       },
     });
   }, []);
@@ -46,7 +46,11 @@ export default function ListUser() {
       topToolbar={TopToolbar}
       state={{
         isLoading: loading,
+        columnPinning: {
+          left: ["nom"],
+        },
       }}
+      enableColumnPinning={true}
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>

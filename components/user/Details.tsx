@@ -68,12 +68,20 @@ export default function UserDetail() {
         </Grid>
         <Grid item xs={12} sm={6}>
           <Stack spacing={2}>
-            <ItemDetail label="Nom" value={user?.name} />
+            <ItemDetail label="Nom" value={user?.nom} />
             <ItemDetail label="Email" value={user?.email} />
-            <ItemDetail label="Téléphone" value={user?.phone} />
-            <ItemDetail label="CIN" value={user?.cin} />
+            <ItemDetail label="Téléphone" value={user?.num_tel} />
+            <ItemDetail label="Adresse" value={user?.adresse} />
             <ItemDetail
-              label="Role"
+              label="Genre"
+              value={user?.genre === "H" ? "Homme" : "Femme"}
+            />
+            <ItemDetail
+              label="Année de naissance"
+              value={user?.annee_naissance}
+            />
+            <ItemDetail
+              label="Rôle"
               value={Role.find((r) => r.value === user?.role)?.label}
             />
           </Stack>
@@ -88,7 +96,7 @@ function ItemDetail({
   value,
 }: {
   label: string;
-  value: string | undefined;
+  value: string | undefined | number;
 }) {
   return (
     <Stack

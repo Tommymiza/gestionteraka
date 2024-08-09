@@ -46,16 +46,20 @@ export default function ListRelais() {
       topToolbar={TopToolbar}
       state={{
         isLoading: loading,
+        columnPinning: {
+          left: ["nom"],
+        },
       }}
+      enableColumnPinning={true}
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>
-          <Link href={`/user/${row.original.id}`}>
+          <Link href={`/relais/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/user/${row.original.id}/edit`}>
+          <Link href={`/relais/${row.original.id}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>

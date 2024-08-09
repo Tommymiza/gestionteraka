@@ -7,7 +7,7 @@ export default function Columns() {
   const col = useMemo<MRT_ColumnDef<UserItem, any>[]>(
     () => [
       {
-        accessorKey: "name",
+        accessorKey: "nom",
         header: "Nom et prénoms",
       },
       {
@@ -31,31 +31,31 @@ export default function Columns() {
         },
       },
       {
-        accessorKey: "sexe",
-        header: "Sexe",
+        accessorKey: "genre",
+        header: "Genre",
         Cell: ({ row }) => {
           return (
             <Typography variant="body2">
-              {row.original.sexe === "M" ? "Masculin" : "Féminin"}
+              {row.original.genre === "H" ? "Masculin" : "Féminin"}
             </Typography>
           );
         },
       },
       {
-        accessorKey: "address",
+        accessorKey: "adresse",
         header: "Adresse",
         enableSorting: false,
       },
       {
-        accessorKey: "phone",
+        accessorKey: "num_tel",
         header: "Téléphone",
         enableClickToCopy: true,
         enableSorting: false,
       },
       {
-        accessorKey: "cin",
-        header: "CIN",
-        enableSorting: false,
+        accessorKey: "annee_naissance",
+        header: "Année de naissance",
+        enableSorting: true,
       },
       {
         accessorKey: "is_active",

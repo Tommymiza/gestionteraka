@@ -1,13 +1,13 @@
 export type UserItem = {
   id: number;
-  name: string;
+  nom: string;
   email: string;
+  annee_naissance: number;
+  num_tel: string;
   photo?: string | null;
-  cin: string;
-  phone: string;
-  address: string;
-  sexe: "M" | "F";
-  role: "ADMIN" | "PERSONAL" | "RELAIS" | "QUANTIFIER";
+  adresse: string;
+  genre: "H" | "F";
+  role: "ADMIN" | "PERSONNEL" | "RELAIS" | "QUANTIFICATEUR";
   is_active: boolean;
 };
 

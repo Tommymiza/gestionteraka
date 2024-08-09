@@ -56,19 +56,24 @@ export default function MaterialTable({
         borderRadius: 2,
         boxShadow: "0 0 35px 0 rgba(0,0,0,0.01)",
         width: "100%",
+        padding: 4,
       },
       elevation: 0,
     },
     initialState: {
       showGlobalFilter: true,
       density: "compact",
+      pagination: {
+        pageSize: 5,
+        pageIndex: 0,
+      },
     },
     renderTopToolbar: ({ table }) => (
       <Stack
         direction={"row"}
         justifyContent={"space-between"}
         alignItems={"center"}
-        padding={2}
+        marginBottom={2}
       >
         <Typography variant="h5" sx={{ fontWeight: "bold" }}>
           {title}

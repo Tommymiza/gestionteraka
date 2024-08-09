@@ -1,10 +1,10 @@
-import RelaisDetail from "@/components/relais/Details";
+import QuantifierDetail from "@/components/quantifier/Details";
 import Dashboard from "@/layout/Dashboard/Dashboard";
 
 export default function UserDetailPage() {
   return (
     <Dashboard>
-      <RelaisDetail />
+      <QuantifierDetail />
     </Dashboard>
   );
 }

@@ -13,7 +13,7 @@ import MaterialTable from "../table/MaterialTable";
 import Icons from "../utils/Icons";
 import Columns from "./table/columns";
 
-export default function ListRelais() {
+export default function ListQuantifier() {
   const { userList, getUsers, loading, deleteUser } = userStore();
   const confirm = useConfirm();
   const handleDelete = (id: number) => {
@@ -26,7 +26,7 @@ export default function ListRelais() {
       await deleteUser(id);
       getUsers({
         where: {
-          role: "QUANTIFIER",
+          role: "QUANTIFICATEUR",
         },
       });
     });
@@ -34,7 +34,7 @@ export default function ListRelais() {
   useEffect(() => {
     getUsers({
       where: {
-        role: "QUANTIFIER",
+        role: "QUANTIFICATEUR",
       },
     });
   }, []);
@@ -46,16 +46,20 @@ export default function ListRelais() {
       topToolbar={TopToolbar}
       state={{
         isLoading: loading,
+        columnPinning: {
+          left: ["nom"],
+        },
       }}
+      enableColumnPinning={true}
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>
-          <Link href={`/user/${row.original.id}`}>
+          <Link href={`/quantifier/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/user/${row.original.id}/edit`}>
+          <Link href={`/quantifier/${row.original.id}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>

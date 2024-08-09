@@ -22,14 +22,13 @@ import { useEffect, useMemo } from "react";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required(),
+  nom: Yup.string().required(),
   email: Yup.string().email().required(),
-  cin: Yup.string().max(12).min(12).required(),
-  phone: Yup.string().max(10).min(10).required(),
+  annee_naissance: Yup.number().required(),
   role: Yup.string().required(),
 });
 
-export default function AddFormRelais() {
+export default function AddFormQuantifier() {
   const { user, createUser, editUser, cancelEdit, updateUser, loading } =
     userStore();
   const { createFile } = fileStore();
@@ -37,14 +36,14 @@ export default function AddFormRelais() {
   const { idUser } = useParams();
   const initialValues: Partial<UserItem> = useMemo(
     () => ({
-      name: user?.name ?? "",
+      nom: user?.nom ?? "",
       email: user?.email ?? "",
-      role: user?.role ?? "QUANTIFIER",
-      phone: user?.phone ?? "",
-      cin: user?.cin ?? "",
-      address: user?.address ?? "",
+      role: user?.role ?? "QUANTIFICATEUR",
+      num_tel: user?.num_tel ?? "",
+      adresse: user?.adresse ?? "",
       photo: user?.photo ?? null,
-      sexe: user?.sexe ?? "M",
+      annee_naissance: user?.annee_naissance ?? 1960,
+      genre: user?.genre ?? "H",
     }),
     [user]
   );
@@ -57,7 +56,7 @@ export default function AddFormRelais() {
       } else {
         await createUser({ ...values, photo: path });
       }
-      router.push("/user");
+      router.push("/quantifier");
     } catch (error) {
       console.log(error);
     }
@@ -110,10 +109,10 @@ export default function AddFormRelais() {
                 <Stack gap={2} alignItems={"center"}>
                   <AvatarUpload name="photo" sx={{ display: "none" }} />
                   <RadioGroupCustom
-                    name="sexe"
+                    name="genre"
                     label="Genre"
                     options={[
-                      { value: "M", label: "Homme" },
+                      { value: "H", label: "Homme" },
                       { value: "F", label: "Femme" },
                     ]}
                   />
@@ -121,15 +120,16 @@ export default function AddFormRelais() {
               </Grid>
               <Grid item xs={12} md={6}>
                 <Stack gap={2}>
-                  <Input fullWidth name="name" label="Nom d'utilisateur" />
+                  <Input fullWidth name="nom" label="Nom d'utilisateur" />
                   <Input fullWidth name="email" label="Email" />
-                  <Input fullWidth name="address" label="Adresse" />
+                  <Input fullWidth name="adresse" label="Adresse" />
+                  <Input fullWidth name="num_tel" label="Téléphone" />
                   <Input
+                    type="number"
                     fullWidth
-                    name="cin"
-                    label="N° Carte d'identité nationale"
+                    name="annee_naissance"
+                    label="Année de naissance"
                   />
-                  <Input fullWidth name="phone" label="Téléphone" />
                 </Stack>
               </Grid>
             </Grid>
