@@ -56,7 +56,7 @@ export default function AddFormRelais() {
       } else {
         await createUser({ ...values, photo: path });
       }
-      router.push("/relais");
+      router.push("/user/relais");
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +80,7 @@ export default function AddFormRelais() {
         <Form>
           <FormTitle>
             <Typography variant="h5">
-              {user ? "Modifier" : "Ajouter"} un utilisateur
+              {user ? "Modifier" : "Ajouter"} un relais
             </Typography>
             <ActionContainer>
               <Button
@@ -88,7 +88,7 @@ export default function AddFormRelais() {
                 color="primary"
                 startIcon={<Icons name="ArrowLeft" />}
                 type="button"
-                onClick={() => router.push("/user")}
+                onClick={() => router.push("/user/relais")}
               >
                 Retour
               </Button>

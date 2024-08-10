@@ -26,14 +26,14 @@ export default function QuantifierDetail() {
   return (
     <Stack marginBottom={2}>
       <FormTitle>
-        <Typography variant="h5">Détail utilisateur</Typography>
+        <Typography variant="h5">Détail quantificateur</Typography>
         <ActionContainer>
           <Button
             variant="text"
             color="primary"
             startIcon={<Icons name="ArrowLeft" />}
             type="button"
-            onClick={() => router.push("/quantifier")}
+            onClick={() => router.push("/user/quantifier")}
           >
             Retour
           </Button>

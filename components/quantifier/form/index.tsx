@@ -56,7 +56,7 @@ export default function AddFormQuantifier() {
       } else {
         await createUser({ ...values, photo: path });
       }
-      router.push("/quantifier");
+      router.push("/user/quantifier");
     } catch (error) {
       console.log(error);
     }
@@ -80,7 +80,7 @@ export default function AddFormQuantifier() {
         <Form>
           <FormTitle>
             <Typography variant="h5">
-              {user ? "Modifier" : "Ajouter"} un utilisateur
+              {user ? "Modifier" : "Ajouter"} un quantificateur
             </Typography>
             <ActionContainer>
               <Button
@@ -88,7 +88,7 @@ export default function AddFormQuantifier() {
                 color="primary"
                 startIcon={<Icons name="ArrowLeft" />}
                 type="button"
-                onClick={() => router.push("/user")}
+                onClick={() => router.push("/user/quantifier")}
               >
                 Retour
               </Button>

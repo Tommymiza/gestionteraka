@@ -1,3 +1,5 @@
+import Icons from "@/components/utils/Icons";
+import { theme } from "@/lib/theme";
 import { UserItem } from "@/store/user/type";
 import { Chip, Typography } from "@mui/material";
 import { type MRT_ColumnDef } from "material-react-table";
@@ -60,15 +62,12 @@ export default function Columns() {
       {
         accessorKey: "is_active",
         header: "Active",
-        Cell: ({ row }) => {
-          return (
-            <Chip
-              variant="filled"
-              color={row.original.is_active ? "success" : "error"}
-              label={row.original.is_active ? "Oui" : "Non"}
-            />
-          );
-        },
+        Cell: ({ row }) =>
+          row.original.is_active ? (
+            <Icons name="Check" color={theme.palette.primary.main} />
+          ) : (
+            <Icons name="X" color={theme.palette.error.main} />
+          ),
       },
     ],
     []

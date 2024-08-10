@@ -62,7 +62,7 @@ export default function AddFormUser() {
       } else {
         await createUser({ ...values, photo: path });
       }
-      router.push("/user");
+      router.push("/user/personnel");
     } catch (error) {
       console.log(error);
     }
@@ -94,7 +94,7 @@ export default function AddFormUser() {
                 color="primary"
                 startIcon={<Icons name="ArrowLeft" />}
                 type="button"
-                onClick={() => router.push("/user")}
+                onClick={() => router.push("/user/personnel")}
               >
                 Retour
               </Button>

@@ -26,14 +26,14 @@ export default function RelaisDetail() {
   return (
     <Stack marginBottom={2}>
       <FormTitle>
-        <Typography variant="h5">Détail utilisateur</Typography>
+        <Typography variant="h5">Détail relais</Typography>
         <ActionContainer>
           <Button
             variant="text"
             color="primary"
             startIcon={<Icons name="ArrowLeft" />}
             type="button"
-            onClick={() => router.push("/relais")}
+            onClick={() => router.push("/user/relais")}
           >
             Retour
           </Button>

@@ -42,7 +42,7 @@ export default function ListQuantifier() {
     <MaterialTable
       columns={Columns()}
       data={userList}
-      title="Liste des utilisateurs"
+      title="Liste des quantificateurs"
       topToolbar={TopToolbar}
       state={{
         isLoading: loading,
@@ -54,12 +54,12 @@ export default function ListQuantifier() {
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>
-          <Link href={`/quantifier/${row.original.id}`}>
+          <Link href={`/user/quantifier/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/quantifier/${row.original.id}/edit`}>
+          <Link href={`/user/quantifier/${row.original.id}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>
@@ -79,7 +79,7 @@ export default function ListQuantifier() {
 function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
   return (
     <Stack direction={"row"} alignItems={"center"} gap={1}>
-      <Link href="/user/add">
+      <Link href="/user/quantifier/add">
         <Button
           variant="contained"
           color="primary"

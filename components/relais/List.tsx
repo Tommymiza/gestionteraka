@@ -54,12 +54,12 @@ export default function ListRelais() {
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>
-          <Link href={`/relais/${row.original.id}`}>
+          <Link href={`/user/relais/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/relais/${row.original.id}/edit`}>
+          <Link href={`/user/relais/${row.original.id}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>
@@ -79,7 +79,7 @@ export default function ListRelais() {
 function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
   return (
     <Stack direction={"row"} alignItems={"center"} gap={1}>
-      <Link href="/user/add">
+      <Link href="/user/relais/add">
         <Button
           variant="contained"
           color="primary"

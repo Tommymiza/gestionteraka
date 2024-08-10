@@ -34,7 +34,7 @@ export default function UserDetail() {
             color="primary"
             startIcon={<Icons name="ArrowLeft" />}
             type="button"
-            onClick={() => router.push("/user")}
+            onClick={() => router.push("/user/personnel")}
           >
             Retour
           </Button>

@@ -1,6 +1,6 @@
 import Icons from "@/components/utils/Icons";
 import getAvatar from "@/lib/avatar";
-import { menus } from "@/lib/menu";
+import { MenuProps, menus } from "@/lib/menu";
 import authStore from "@/store/auth";
 import {
   Avatar,
@@ -62,9 +62,13 @@ export default function Navbar() {
             alt="Logo Teraka"
           />
           <Stack direction={"row"} gap={1}>
-            {menus.map((menu) => (
-              <LinkItem menu={menu} key={menu.name} />
-            ))}
+            {menus.map((menu) =>
+              menu.children ? (
+                <MenuChildren menu={menu} key={menu.name} />
+              ) : (
+                <LinkItem menu={menu} key={menu.name} />
+              )
+            )}
           </Stack>
         </Stack>
         <Stack>
@@ -143,6 +147,72 @@ function ProfileItem({
       <Icons name={icon} size={20} strokeWidth={1} />
       <Typography variant="body1">{label}</Typography>
     </MenuItem>
+  );
+}
+
+function MenuChildren({ menu }: { menu: MenuProps }) {
+  const [anchorEl, setAnchorEl] = useState<null | HTMLElement>(null);
+  const router = useRouter();
+  const path = usePathname();
+  return (
+    <Stack>
+      <MenuItem
+        onClick={(e) => setAnchorEl(e.currentTarget)}
+        dense
+        sx={{
+          color: grey[600],
+          backgroundColor:
+            menu.path === "/"
+              ? path === menu.path
+                ? "white"
+                : "transparent"
+              : path.includes(menu.path)
+              ? "white"
+              : "transparent",
+          padding: "5px 15px",
+          borderRadius: 1,
+          display: "flex",
+          gap: 1,
+        }}
+      >
+        <Icons
+          name={menu.icon as keyof typeof icons}
+          size={20}
+          strokeWidth={2}
+        />
+        <Typography variant="body1" sx={{ fontWeight: "bold" }}>
+          {menu.name}
+        </Typography>
+      </MenuItem>
+      <Menu
+        open={Boolean(anchorEl)}
+        onClose={() => setAnchorEl(null)}
+        anchorEl={anchorEl}
+        anchorOrigin={{ horizontal: "left", vertical: "bottom" }}
+        elevation={0}
+        slotProps={{
+          paper: {
+            sx: {
+              marginTop: 1,
+              boxShadow: "0 0 15px 0 rgba(0, 0, 0, 0.1)",
+              width: 200,
+              borderRadius: 2,
+            },
+          },
+        }}
+      >
+        <Stack paddingX={1}>
+          {menu.children?.map((item) => (
+            <ProfileItem
+              icon={item.icon}
+              label={item.name}
+              onClick={() => router.push(item.path)}
+              key={item.name}
+            />
+          ))}
+        </Stack>
+      </Menu>
+    </Stack>
   );
 }
 
