@@ -1,7 +1,7 @@
 "use client";
 import smallGroupStore from "@/store/small-group";
 import { Button, Divider, Stack, styled, Typography } from "@mui/material";
-import { Image } from "antd";
+import { format } from "date-fns";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Icons from "../utils/Icons";
@@ -16,8 +16,8 @@ export default function SmallGroupDetail() {
         id: +idSmallGroup,
         args: {
           include: {
-            smallGroupImages: true,
-            relais: true,
+            operateur: true,
+            verificateur: true,
           },
         },
       });
@@ -41,50 +41,19 @@ export default function SmallGroupDetail() {
       </FormTitle>
       <Divider />
       <Stack direction={"column"} gap={2} padding={2}>
-        <ItemDetail label={"Nom"} value={smallGroup?.name} />
-        <ItemDetail label={"Slogan"} value={smallGroup?.slogan} />
+        <ItemDetail label={"Nom"} value={smallGroup?.nom} />
         <ItemDetail label={"Région"} value={smallGroup?.region} />
         <ItemDetail label={"District"} value={smallGroup?.district} />
         <ItemDetail label={"Commune"} value={smallGroup?.commune} />
-        <ItemDetail label={"Fokontany"} value={smallGroup?.fokontany} />
         <ItemDetail
-          label={"Familles différentes"}
-          value={smallGroup?.families ? "Oui" : "Non"}
+          label={"Date d'inscription"}
+          value={
+            smallGroup?.date_inscription
+              ? format(new Date(smallGroup.date_inscription), "dd/MM/yyyy")
+              : ""
+          }
         />
-        <ItemDetail
-          label={"Formations"}
-          value={smallGroup?.trainings ? "Oui" : "Non"}
-        />
-        <ItemDetail
-          label={"Avoir une pépinière"}
-          value={smallGroup?.nursery ? "Oui" : "Non"}
-        />
-        <ItemDetail label={"Champion"} value={smallGroup?.relais?.name} />
-        <ItemDetail label={"Téléphone 1"} value={smallGroup?.phone1} />
-        <ItemDetail label={"Téléphone 2"} value={smallGroup?.phone2} />
-        <ItemDetail label={"Téléphone 3"} value={smallGroup?.phone3} />
-        <Stack
-          padding={3}
-          borderRadius={5}
-          sx={{ background: "white", boxShadow: "0 0 25px rgba(0,0,0,0.01)" }}
-          direction={"column"}
-          gap={2}
-        >
-          <Typography variant="h6" fontWeight={"bold"}>
-            Photos :
-          </Typography>
-          <Stack direction={"row"} gap={2} flexWrap={"wrap"}>
-            <Image.PreviewGroup>
-              {smallGroup?.smallGroupImages.map((image) => (
-                <Image
-                  key={image.id}
-                  src={`${process.env.NEXT_PUBLIC_API}/file/${image.path}`}
-                  width={300}
-                />
-              ))}
-            </Image.PreviewGroup>
-          </Stack>
-        </Stack>
+        <ItemDetail label={"Nom du cluster"} value={smallGroup?.nom_cluster} />
       </Stack>
     </Stack>
   );

@@ -1,7 +1,6 @@
 "use client";
 import memberStore from "@/store/member";
 import {
-  Avatar,
   Button,
   Divider,
   Grid,
@@ -9,7 +8,6 @@ import {
   styled,
   Typography,
 } from "@mui/material";
-import { Image } from "antd";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect } from "react";
 import Icons from "../utils/Icons";
@@ -41,33 +39,7 @@ export default function MemberDetail() {
       </FormTitle>
       <Divider />
       <Grid container marginTop={2} spacing={2}>
-        <Grid item xs={12} sm={6}>
-          <Stack direction={"row"} justifyContent={"center"} width={"100%"}>
-            <Stack
-              width={"40%"}
-              sx={{
-                borderRadius: "100%",
-                aspectRatio: 1,
-                minWidth: 250,
-                overflow: "hidden",
-              }}
-            >
-              {member?.photo ? (
-                <Image
-                  src={`${process.env.NEXT_PUBLIC_API}/file/${member.photo}`}
-                  style={{ objectFit: "cover" }}
-                  width={"100%"}
-                  height={"100%"}
-                />
-              ) : (
-                <Avatar sx={{ width: "100%", height: "100%" }} />
-              )}
-            </Stack>
-          </Stack>
-        </Grid>
-        <Grid item xs={12} sm={6}>
-          <Stack spacing={2}></Stack>
-        </Grid>
+        <Grid item xs={12} sm={6}></Grid>
       </Grid>
     </Stack>
   );

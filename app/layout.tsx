@@ -16,7 +16,7 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="fr">
-      <body>
+      <body suppressHydrationWarning={true}>
         <AppRouterCacheProvider>
           <ThemeProvider theme={theme}>
             <ConfigProvider locale={fr_FR}>

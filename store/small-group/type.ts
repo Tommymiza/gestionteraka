@@ -1,27 +1,22 @@
 import { MemberItem } from "../member/type";
-import { SmallGroupImageItem } from "../small-group-image/type";
 import { UserItem } from "../user/type";
 
 export type SmallGroupItem = {
-  id: number;
-  relais_id: number;
-  personal_id?: number;
-  name: string;
-  slogan: string;
+  fid: number;
+  code: string;
+  nom: string;
   region: string;
   district: string;
   commune: string;
-  fokontany: string;
-  phone1?: string;
-  phone2?: string;
-  phone3?: string;
-  photo: string;
-  families: boolean;
-  trainings: boolean;
-  nursery: boolean;
-  relais: UserItem;
+  nom_cluster?: string;
+  date_inscription: string;
+  lieu_inscription: string;
+  remarque?: string;
+  operateur_id: number;
+  verificateur_id?: number;
+  operateur: UserItem;
+  verificateur?: UserItem;
   members: MemberItem[];
-  smallGroupImages: SmallGroupImageItem[];
 };
 
 export type SmallGroupStore = {

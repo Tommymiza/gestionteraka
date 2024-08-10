@@ -83,14 +83,7 @@ const smallGroupStore = create<SmallGroupStore>((set) => ({
   editSmallgroup: async (id) => {
     try {
       set({ loading: true });
-      const params = {
-        args: JSON.stringify({
-          include: {
-            smallGroupImages: true,
-          },
-        }),
-      };
-      const response = await axios.get(`/small-group/${id}`, { params });
+      const response = await axios.get(`/small-group/${id}`);
       set({ smallGroup: response.data, isEditing: true });
       return response.data;
     } catch (error) {

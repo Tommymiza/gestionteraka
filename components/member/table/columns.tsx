@@ -1,4 +1,5 @@
 import { MemberItem } from "@/store/member/type";
+import { Typography } from "@mui/material";
 import { format } from "date-fns";
 import { type MRT_ColumnDef } from "material-react-table";
 import { useMemo } from "react";
@@ -7,31 +8,24 @@ export default function Columns() {
   const col = useMemo<MRT_ColumnDef<MemberItem, any>[]>(
     () => [
       {
-        accessorFn: (row) => `PG${row.smallGroup.id}`,
+        accessorKey: "code_pg",
         header: "Code du petit groupe",
       },
       {
-        accessorKey: "smallGroup.name",
+        accessorKey: "smallGroup.nom",
         header: "Nom du petit groupe",
       },
       {
-        accessorKey: "name",
+        accessorFn: (row) =>
+          row.nom_membre_teraka + " " + row.prenom_membre_teraka,
         header: "Nom et prénoms",
       },
       {
-        accessorKey: "smallGroup.region",
-        header: "Région",
-      },
-      {
-        accessorKey: "smallGroup.district",
-        header: "District",
-      },
-      {
-        accessorKey: "smallGroup.commune",
+        accessorKey: "commune",
         header: "Commune",
       },
       {
-        accessorKey: "smallGroup.fokontany",
+        accessorKey: "fokontany",
         header: "Fokontany",
       },
       {
@@ -39,14 +33,19 @@ export default function Columns() {
         header: "Village",
       },
       {
-        accessorKey: "sexe",
-        header: "Sexe",
+        accessorKey: "genre",
+        header: "Genre",
+        Cell: ({ row }) => {
+          return (
+            <Typography variant="body2">
+              {row.original.genre === "H" ? "Masculin" : "Féminin"}
+            </Typography>
+          );
+        },
       },
       {
-        accessorKey: "phone",
-        header: "Téléphone",
-        enableClickToCopy: true,
-        enableSorting: false,
+        accessorKey: "age",
+        header: "Age",
       },
       {
         accessorKey: "cin",
@@ -54,19 +53,25 @@ export default function Columns() {
         enableSorting: false,
       },
       {
-        accessorKey: "job",
-        header: "Profession",
+        accessorKey: "profession",
+        header: "Proféssion",
       },
       {
-        accessorKey: "school",
+        accessorKey: "tel",
+        header: "Téléphone",
+        enableClickToCopy: true,
+        enableSorting: false,
+      },
+      {
+        accessorKey: "niveau_education",
         header: "Niveau d'éducation",
       },
       {
-        accessorKey: "known_by",
+        accessorKey: "connaissance_teraka",
         header: "Connaissance du Teraka",
       },
       {
-        accessorKey: "motivation",
+        accessorKey: "motivation_programme",
         header: "Motivation",
       },
       {
@@ -79,6 +84,10 @@ export default function Columns() {
       {
         accessorKey: "lieu_inscription",
         header: "Lieu d'inscription",
+      },
+      {
+        accessorKey: "remarque",
+        header: "Remarque",
       },
     ],
     []

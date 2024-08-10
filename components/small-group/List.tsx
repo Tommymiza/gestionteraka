@@ -27,7 +27,13 @@ export default function ListSmallGroup() {
       cancellationText: "Annuler",
     }).then(async () => {
       await deleteSmallGroup(id);
-      getSmallGroups();
+      getSmallGroups({
+        include: {
+          members: true,
+          operateur: true,
+          verificateur: true,
+        },
+      });
     });
   };
 
@@ -35,6 +41,8 @@ export default function ListSmallGroup() {
     getSmallGroups({
       include: {
         members: true,
+        operateur: true,
+        verificateur: true,
       },
     });
   }, []);
@@ -50,19 +58,19 @@ export default function ListSmallGroup() {
       enableRowActions={true}
       renderRowActions={({ row, table }) => (
         <BtnContainer>
-          <Link href={`/small-group/${row.original.id}`}>
+          <Link href={`/small-group/${row.original.fid}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/small-group/${row.original.id}/edit`}>
+          <Link href={`/small-group/${row.original.fid}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>
           </Link>
           <IconButton
             color="error"
-            onClick={() => handleDelete(row.original.id)}
+            onClick={() => handleDelete(row.original.fid)}
           >
             <DeleteRounded />
           </IconButton>
@@ -77,7 +85,9 @@ function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
     let parties = key.split(".");
     let valeur: any = value;
     for (var i = 0; i < parties.length; i++) {
-      valeur = valeur[parties[i] as keyof SmallGroupItem];
+      if (valeur) {
+        valeur = valeur[parties[i] as keyof SmallGroupItem];
+      }
     }
     return valeur;
   }
@@ -92,7 +102,9 @@ function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
           if (c.columnDef.accessorFn) {
             currentRow[c.columnDef.header] = c.columnDef.accessorFn(r);
           } else {
-            currentRow[c.columnDef.header] = evaluateValue(r, c.columnDef.id);
+            if (c.columnDef.id !== "mrt-row-actions") {
+              currentRow[c.columnDef.header] = evaluateValue(r, c.columnDef.id);
+            }
           }
         });
         delete currentRow["Actions"];

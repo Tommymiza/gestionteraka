@@ -1,81 +1,122 @@
 "use client";
-import AvatarUpload from "@/components/shared/AvatarUpload";
-import Input from "@/components/shared/Input";
-import RadioGroupCustom from "@/components/shared/RadioGroupCustom";
-import Select from "@/components/shared/Select";
 import Icons from "@/components/utils/Icons";
-import fileStore from "@/store/file";
-import userStore from "@/store/user";
+import memberStore from "@/store/member";
+import { MemberItem } from "@/store/member/type";
 import { UserItem } from "@/store/user/type";
 import { LoadingButton } from "@mui/lab";
 import {
   Button,
   Container,
   Divider,
-  Grid,
   Stack,
   styled,
   Typography,
 } from "@mui/material";
+import { format } from "date-fns";
 import { Form, Formik } from "formik";
 import { useParams, useRouter } from "next/navigation";
 import { useEffect, useMemo } from "react";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
-  name: Yup.string().required(),
-  email: Yup.string().email().required(),
-  cin: Yup.string().max(12).min(12).required(),
-  phone: Yup.string().max(10).min(10).required(),
-  role: Yup.string().required(),
+  code_pg: Yup.string().required(),
+  nom_membre_teraka: Yup.string().required(),
+  prenom_membre_teraka: Yup.string().required(),
+  date_inscription: Yup.date().required(), // Consider using Yup.date() if it's an actual date
+  lieu_inscription: Yup.string().required(),
+  commune: Yup.string().required(),
+  fokontany: Yup.string().required(),
+  village: Yup.string().required(),
+  age: Yup.number().notRequired(),
+  genre: Yup.mixed<"H" | "F">().oneOf(["H", "F"]).required(),
+  statut_marital: Yup.mixed<"CELIBATAIRE" | "MARIE" | "DIVORCE" | "VEUF">()
+    .oneOf(["CELIBATAIRE", "MARIE", "DIVORCE", "VEUF"])
+    .required(),
+  nombre_d_enfant: Yup.number().required(),
+  conjoint_membre: Yup.boolean().required(),
+  nom_conjoint: Yup.string().notRequired(),
+  cin: Yup.string().notRequired(),
+  profession: Yup.string().notRequired(),
+  tel: Yup.string().notRequired(),
+  niveau_education: Yup.string().notRequired(),
+  connaissance_teraka: Yup.string().notRequired(),
+  surface_estimee: Yup.number().notRequired(),
+  nombre_arbres_prevue: Yup.number().notRequired(),
+  parcelle_proche_riviere: Yup.boolean().required(),
+  types_arbres: Yup.string().notRequired(),
+  etat_actuel_terrain: Yup.string().notRequired(),
+  approvisionnement_pepiniere: Yup.string().notRequired(),
+  motivation_programme: Yup.string().notRequired(),
+  remarque: Yup.string().notRequired(),
 });
 
-export const Role = [
-  { value: "PERSONAL", label: "Personnel" },
-  { value: "ADMIN", label: "Administrateur" },
-];
-
 export default function AddFormMember() {
-  const { user, createUser, editUser, cancelEdit, updateUser, loading } =
-    userStore();
-  const { createFile } = fileStore();
+  const {
+    member,
+    cancelEdit,
+    createMember,
+    editMember,
+    updateMember,
+    loading,
+  } = memberStore();
   const router = useRouter();
-  const { idUser } = useParams();
-  const initialValues: Partial<UserItem> = useMemo(
+  const { idMember } = useParams();
+  const initialValues: Partial<MemberItem> = useMemo(
     () => ({
-      name: user?.name ?? "",
-      email: user?.email ?? "",
-      role: user?.role ?? "PERSONAL",
-      phone: user?.phone ?? "",
-      cin: user?.cin ?? "",
-      address: user?.address ?? "",
-      photo: user?.photo ?? null,
-      sexe: user?.sexe ?? "M",
+      code_pg: member?.code_pg ?? "",
+      nom_membre_teraka: member?.nom_membre_teraka ?? "",
+      prenom_membre_teraka: member?.prenom_membre_teraka ?? "",
+      date_inscription: format(
+        new Date(member?.date_inscription ?? new Date()),
+        "yyyy-MM-dd"
+      ),
+      lieu_inscription: member?.lieu_inscription ?? "",
+      commune: member?.commune ?? "",
+      fokontany: member?.fokontany ?? "",
+      village: member?.village ?? "",
+      age: member?.age ?? 0,
+      genre: member?.genre ?? "H",
+      approvisionnement_pepiniere: member?.approvisionnement_pepiniere ?? "",
+      cin: member?.cin ?? "",
+      conjoint_membre: member?.conjoint_membre ?? false,
+      connaissance_teraka: member?.connaissance_teraka ?? "",
+      etat_actuel_terrain: member?.etat_actuel_terrain ?? "",
+      motivation_programme: member?.motivation_programme ?? "",
+      niveau_education: member?.niveau_education ?? "",
+      nombre_arbres_prevue: member?.nombre_arbres_prevue ?? 0,
+      nombre_d_enfant: member?.nombre_d_enfant ?? 0,
+      parcelle_proche_riviere: member?.parcelle_proche_riviere ?? false,
+      profession: member?.profession ?? "",
+      remarque: member?.remarque ?? "",
+      nom_conjoint: member?.nom_conjoint ?? "",
+      statut_marital: member?.statut_marital ?? "CELIBATAIRE",
+      surface_estimee: member?.surface_estimee ?? 0,
+      tel: member?.tel ?? "",
+      types_arbres: member?.types_arbres ?? "",
     }),
-    [user]
+    [member]
   );
 
   const handleSubmit = async (values: Partial<UserItem>) => {
     try {
-      let path = await createFile(values.photo || null);
-      if (user) {
-        await updateUser({ id: user.id, user: { ...values, photo: path } });
+      if (member) {
+        await updateMember({ id: member.fid, member: values });
       } else {
-        await createUser({ ...values, photo: path });
+        await createMember(values);
       }
-      router.push("/user");
+      router.push("/member");
     } catch (error) {
       console.log(error);
     }
   };
   useEffect(() => {
-    if (typeof idUser === "string") {
-      editUser(+idUser);
+    if (typeof idMember === "string") {
+      editMember(+idMember);
     } else {
       cancelEdit();
     }
     return () => cancelEdit();
-  }, [idUser]);
+  }, [idMember]);
   return (
     <Stack>
       <Formik
@@ -87,7 +128,7 @@ export default function AddFormMember() {
         <Form>
           <FormTitle>
             <Typography variant="h5">
-              {user ? "Modifier" : "Ajouter"} un utilisateur
+              {member ? "Modifier" : "Ajouter"} un membre
             </Typography>
             <ActionContainer>
               <Button
@@ -110,43 +151,7 @@ export default function AddFormMember() {
             </ActionContainer>
           </FormTitle>
           <Divider />
-          <FormContainer maxWidth="lg">
-            <Grid container spacing={2}>
-              <Grid item xs={12} md={6}>
-                <Stack gap={2} alignItems={"center"}>
-                  <AvatarUpload name="photo" sx={{ display: "none" }} />
-                  <RadioGroupCustom
-                    name="sexe"
-                    label="Genre"
-                    options={[
-                      { value: "M", label: "Homme" },
-                      { value: "F", label: "Femme" },
-                    ]}
-                  />
-                </Stack>
-              </Grid>
-              <Grid item xs={12} md={6}>
-                <Stack gap={2}>
-                  <Input fullWidth name="name" label="Nom d'utilisateur" />
-                  <Input fullWidth name="email" label="Email" />
-                  <Input fullWidth name="address" label="Adresse" />
-                  <Select
-                    valueKey="value"
-                    getOptionLabel={(option) => option.label ?? ""}
-                    name="role"
-                    options={Role}
-                    label="Rôle"
-                  />
-                  <Input
-                    fullWidth
-                    name="cin"
-                    label="N° Carte d'identité nationale"
-                  />
-                  <Input fullWidth name="phone" label="Téléphone" />
-                </Stack>
-              </Grid>
-            </Grid>
-          </FormContainer>
+          <FormContainer maxWidth="lg"></FormContainer>
         </Form>
       </Formik>
     </Stack>

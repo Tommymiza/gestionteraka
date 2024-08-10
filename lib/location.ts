@@ -1,4970 +1,3680 @@
-export const REGIONS = [
-  {
-    region: "ALAOTRA MANGORO",
-  },
-  {
-    region: "AMORON'I MANIA",
-  },
-  {
-    region: "ANALAMANGA",
-  },
-  {
-    region: "ANALANJIROFO",
-  },
-  {
-    region: "ANDROY",
-  },
-  {
-    region: "ANOSY",
-  },
-  {
-    region: "ATSIMO ANDREFANA",
-  },
-  {
-    region: "ATSIMO ATSINANANA",
-  },
-  {
-    region: "ATSINANANA",
-  },
-  {
-    region: "BETSIBOKA",
-  },
-  {
-    region: "BOENY",
-  },
-  {
-    region: "BONGOLAVA",
-  },
-  {
-    region: "DIANA",
-  },
-  {
-    region: "IHOROMBE",
-  },
-  {
-    region: "ITASY",
-  },
-  {
-    region: "MATSIATRA AMBONY",
-  },
-  {
-    region: "MELAKY",
-  },
-  {
-    region: "MENABE",
-  },
-  {
-    region: "SAVA",
-  },
-  {
-    region: "SOFIA",
-  },
-  {
-    region: "VAKINANKARATRA",
-  },
-  {
-    region: "VATOVAVY FITOVINANY",
-  },
-];
+export function getDistricts(region: string) {
+  let temp = new Set(
+    Array.from(lieu.filter((l) => l.REGION === region).map((l) => l.DISTRICT))
+  );
+  let districts = Array.from(temp);
+  return districts.map((district) => ({
+    name: district,
+  }));
+}
 
-export const DISTRICTS = [
-  {
-    district: "AMBATONDRAZAKA",
-  },
-  {
-    district: "AMPARAFARAVOLA",
-  },
-  {
-    district: "ANDILAMENA",
-  },
-  {
-    district: "ANOSIBE AN'ALA",
-  },
-  {
-    district: "MORAMANGA",
-  },
-  {
-    district: "AMBOSITRA",
-  },
-  {
-    district: "AMBATOFINANDRAHANA",
-  },
-  {
-    district: "FANDRIANA",
-  },
-  {
-    district: "MANANDRIANA",
-  },
-  {
-    district: "AMBOHIDRATRIMO",
-  },
-  {
-    district: "ANDRAMASINA",
-  },
-  {
-    district: "ANJOZOROBE",
-  },
-  {
-    district: "ANKAZOBE",
-  },
-  {
-    district: "ANTANANARIVO ATSIMONDRANO",
-  },
-  {
-    district: "ANTANANARIVO AVARADRANO",
-  },
-  {
-    district: "MANJAKANDRIANA",
-  },
-  {
-    district: "ANTANANARIVO RENIVOHITRA",
-  },
-  {
-    district: "FENOARIVO ATSINANANA",
-  },
-  {
-    district: "MANANARA",
-  },
-  {
-    district: "MAROANTSETRA",
-  },
-  {
-    district: "SOANIERANA IVONGO",
-  },
-  {
-    district: "SAINTE MARIE",
-  },
-  {
-    district: "VAVATENINA",
-  },
-  {
-    district: "BELOHA",
-  },
-  {
-    district: "TSIOMBE",
-  },
-  {
-    district: "AMBOVOMBE",
-  },
-  {
-    district: "BEKILY",
-  },
-  {
-    district: "TAOLANARO",
-  },
-  {
-    district: "BETROKA",
-  },
-  {
-    district: "AMBOASARY",
-  },
-  {
-    district: "TOLIARA I",
-  },
-  {
-    district: "BEROROHA",
-  },
-  {
-    district: "MOROMBE",
-  },
-  {
-    district: "ANKAZOABO",
-  },
-  {
-    district: "BETIOKY",
-  },
-  {
-    district: "AMPANIHY",
-  },
-  {
-    district: "SAKARAHA",
-  },
-  {
-    district: "TOLIARA II",
-  },
-  {
-    district: "BENENITRA",
-  },
-  {
-    district: "FARAFANGANA",
-  },
-  {
-    district: "BEFOTAKA",
-  },
-  {
-    district: "MIDONGY",
-  },
-  {
-    district: "VANGAINDRANO",
-  },
-  {
-    district: "VONDROZO",
-  },
-  {
-    district: "MAROLAMBO",
-  },
-  {
-    district: "BRICKAVILLE",
-  },
-  {
-    district: "MAHANORO",
-  },
-  {
-    district: "ANTANAMBAO MANAMPOTSY",
-  },
-  {
-    district: "TOAMASINA I",
-  },
-  {
-    district: "TOAMASINA II",
-  },
-  {
-    district: "VATOMANDRY",
-  },
-  {
-    district: "KANDREHO",
-  },
-  {
-    district: "MAEVATANANA",
-  },
-  {
-    district: "TSARATANANA",
-  },
-  {
-    district: "MAHAJANGAI",
-  },
-  {
-    district: "SOALALA",
-  },
-  {
-    district: "MITSINJO",
-  },
-  {
-    district: "AMBATOBOENY",
-  },
-  {
-    district: "MAROVOAY",
-  },
-  {
-    district: "MAHAJANGAII",
-  },
-  {
-    district: "FENOARIVOBE",
-  },
-  {
-    district: "TSIROANOMANDIDY",
-  },
-  {
-    district: "AMBANJA",
-  },
-  {
-    district: "AMBILOBE",
-  },
-  {
-    district: "ANTSIRANANA I",
-  },
-  {
-    district: "ANTSIRANANA II",
-  },
-  {
-    district: "NOSY BE",
-  },
-  {
-    district: "IAKORA",
-  },
-  {
-    district: "IHOSY",
-  },
-  {
-    district: "IVOHIBE",
-  },
-  {
-    district: "ARIVONIMAMO",
-  },
-  {
-    district: "MIARINARIVO",
-  },
-  {
-    district: "SOAVINANDRIANA",
-  },
-  {
-    district: "AMBALAVAO",
-  },
-  {
-    district: "AMBOHIMAHASOA",
-  },
-  {
-    district: "FIANARANTSOA I",
-  },
-  {
-    district: "IKALAMAVONY",
-  },
-  {
-    district: "ISANDRA",
-  },
-  {
-    district: "LALANGINA",
-  },
-  {
-    district: "VOHIBATO",
-  },
-  {
-    district: "AMBATOMAINTY",
-  },
-  {
-    district: "ANTSALOVA",
-  },
-  {
-    district: "BESALAMPY",
-  },
-  {
-    district: "MAINTIRANO",
-  },
-  {
-    district: "MORAFENOBE",
-  },
-  {
-    district: "BELO SUR TSIRIBIHINA",
-  },
-  {
-    district: "MAHABO",
-  },
-  {
-    district: "MANJA",
-  },
-  {
-    district: "MIANDRIVAZO",
-  },
-  {
-    district: "MORONDAVA",
-  },
-  {
-    district: "ANDAPA",
-  },
-  {
-    district: "ANTALAHA",
-  },
-  {
-    district: "IHARANA",
-  },
-  {
-    district: "SAMBAVA",
-  },
-  {
-    district: "ANALALAVA",
-  },
-  {
-    district: "ANTSOHIHY",
-  },
-  {
-    district: "BEALANANA",
-  },
-  {
-    district: "BEFANDRIANA AVARATRA",
-  },
-  {
-    district: "BORIZINY",
-  },
-  {
-    district: "MAMPIKONY",
-  },
-  {
-    district: "MANDRITSARA",
-  },
-  {
-    district: "ANTANIFOTSY",
-  },
-  {
-    district: "ANTSIRABE I",
-  },
-  {
-    district: "ANTSIRABE II",
-  },
-  {
-    district: "BETAFO",
-  },
-  {
-    district: "FARATSIHO",
-  },
-  {
-    district: "AMBATOLAMPY",
-  },
-  {
-    district: "MANDOTO",
-  },
-  {
-    district: "IFANADIANA",
-  },
-  {
-    district: "IKONGO",
-  },
-  {
-    district: "MANAKARA",
-  },
-  {
-    district: "MANANJARY",
-  },
-  {
-    district: "NOSY VARIKA",
-  },
-  {
-    district: "VOHIPENO",
-  },
-];
+export function getCommunes(region: string, district: string) {
+  let temp = new Set(
+    Array.from(
+      lieu
+        .filter((l) => l.REGION === region && l.DISTRICT === district)
+        .map((l) => l.COMMUNE)
+    )
+  );
+  let communes = Array.from(temp);
+  return communes.map((commune) => ({
+    name: commune,
+  }));
+}
 
-export const COMMUNES = [
+export function getRegions() {
+  let temp = new Set(Array.from(lieu.map((l) => l.REGION)));
+  let regions = Array.from(temp);
+  return regions.map((region) => ({
+    name: region,
+  }));
+}
+
+export const lieu = [
   {
-    commune: "Ambatondrazaka I",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambatondrazaka I",
   },
   {
-    commune: "Ambatondrazaka II",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambatondrazaka II",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMBATONDRAZAKA", COMMUNE: "Didy" },
   {
-    commune: "Didy",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambandrika",
   },
   {
-    commune: "Ambandrika",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambatosoratra",
   },
   {
-    commune: "Ambatosoratra",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambohiboromanga",
   },
   {
-    commune: "Ambohiboromanga",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambodidava",
   },
   {
-    commune: "Ambodidava",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ambohitsilaozana",
   },
   {
-    commune: "Ambohitsilaozana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Amparihitsokatra",
   },
   {
-    commune: "Amparihitsokatra",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Ampitatsimo",
   },
   {
-    commune: "Ampitatsimo",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Andilanatoby",
   },
   {
-    commune: "Andilanatoby",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Andromba",
   },
   {
-    commune: "Andromba",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Antanandava",
   },
   {
-    commune: "Antanandava",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Antsangatsanga",
   },
   {
-    commune: "Antsangatsanga",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Feramanga Avaratra",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMBATONDRAZAKA", COMMUNE: "Ilafy" },
   {
-    commune: "Feramanga Avaratra",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Imerimandroso",
   },
   {
-    commune: "Ilafy",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Manakambahiny Andrefana",
   },
   {
-    commune: "Imerimandroso",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Manakambahiny Atsinanana",
   },
   {
-    commune: "Manakambahiny Andrefana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Soalazaina",
   },
   {
-    commune: "Manakambahiny Atsinanana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMBATONDRAZAKA",
+    COMMUNE: "Tanambao Besakay",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMBATONDRAZAKA", COMMUNE: "Bejofo" },
   {
-    commune: "Soalazaina",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Amparafaravola",
   },
   {
-    commune: "Tanambao Besakay",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ambatomainty",
   },
   {
-    commune: "Bejofo",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ambodimanga",
   },
   {
-    commune: "Amparafaravola",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ambohidrano",
   },
   {
-    commune: "Ambatomainty",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ambohijanahary",
   },
   {
-    commune: "Ambodimanga",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Andilana Avaratra",
   },
   {
-    commune: "Ambohidrano",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Andranobe",
   },
   {
-    commune: "Ambohijanahary",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Andrebakely I",
   },
   {
-    commune: "Andilana Avaratra",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Andrebakely II",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMPARAFARAVOLA", COMMUNE: "Anororo" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMPARAFARAVOLA", COMMUNE: "Bedidy" },
   {
-    commune: "Andranobe",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Morarano Kiraoma",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMPARAFARAVOLA", COMMUNE: "Tanambe" },
   {
-    commune: "Andrebakely I",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Vohimenakely",
   },
   {
-    commune: "Andrebakely II",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Vohitsara",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "AMPARAFARAVOLA", COMMUNE: "Beanana" },
   {
-    commune: "Anororo",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Amboavory",
   },
   {
-    commune: "Bedidy",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ranomainty Tsarahonenana",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Andilamena" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Bemaitso" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Marovato" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Miarinarivo" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Ampondrabe" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Maitsokely" },
   {
-    commune: "Morarano Kiraoma",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANDILAMENA",
+    COMMUNE: "Tanananifololahy",
   },
   {
-    commune: "Tanambe",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANDILAMENA",
+    COMMUNE: "Antanimenabaka",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "ANDILAMENA", COMMUNE: "Maroadabo" },
   {
-    commune: "Vohimenakely",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Anosibe An'Ala",
   },
   {
-    commune: "Vohitsara",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Ambalaomby",
   },
   {
-    commune: "Beanana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Ambatoharanana",
   },
   {
-    commune: "Amboavory",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Ampandroantraka",
   },
   {
-    commune: "Ranomainty Tsarahonenana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Ampasimaneva",
   },
   {
-    commune: "Andilamena",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Tratramarina",
   },
   {
-    commune: "Bemaitso",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Tsaravinany",
   },
   {
-    commune: "Marovato",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Niarovana",
   },
   {
-    commune: "Miarinarivo",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Antandrokomby",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Moramanga" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Ambatovola" },
   {
-    commune: "Ampondrabe",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Amboasary Gara",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Ambohibary" },
   {
-    commune: "Maitsokely",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Ambohidronono",
   },
   {
-    commune: "Tanananifololahy",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Ampasimpotsy Gara",
   },
   {
-    commune: "Antanimenabaka",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Ampasipotsy Mandialaza",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Analasoa" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Andasibe" },
   {
-    commune: "Maroadabo",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Anosibe Ifody",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Antanandava" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Antaniditra" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Beforona" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Belavabary" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Fierenana" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Lakato" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Mandialaza" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Beparasy" },
   {
-    commune: "Anosibe An'Ala",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Morarano Gara",
   },
   {
-    commune: "Ambalaomby",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "MORAMANGA",
+    COMMUNE: "Sabotsy Anjiro",
   },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Vodiriana" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Bembary" },
+  { REGION: "ALAOTRA MANGORO", DISTRICT: "MORAMANGA", COMMUNE: "Andaingo" },
   {
-    commune: "Ambatoharanana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Sahamamy",
   },
   {
-    commune: "Ampandroantraka",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ambohitrarivo",
   },
   {
-    commune: "Ampasimaneva",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ampasikely",
   },
   {
-    commune: "Tratramarina",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "AMPARAFARAVOLA",
+    COMMUNE: "Ambohimandroso I",
   },
   {
-    commune: "Tsaravinany",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Ambohimerana",
   },
   {
-    commune: "Niarovana",
+    REGION: "ALAOTRA MANGORO",
+    DISTRICT: "ANOSIBE AN'ALA",
+    COMMUNE: "Longozabe",
   },
   {
-    commune: "Antandrokomby",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Alakamisy Ambohijato",
   },
   {
-    commune: "Moramanga",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ambatofitorahana",
   },
   {
-    commune: "Ambatovola",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ambinanindrano",
   },
   {
-    commune: "Amboasary Gara",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ambohimitombo I",
   },
   {
-    commune: "Ambohibary",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ambohimitombo II",
   },
   {
-    commune: "Ambohidronono",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ambohipirevoana",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Andina" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Antoetra" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Fahizay" },
   {
-    commune: "Ampasimpotsy Gara",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ilaka Afovoany",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Ivony" },
   {
-    commune: "Ampasipotsy Mandialaza",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Kianjandrakefina",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Mahazina" },
   {
-    commune: "Analasoa",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Sahatsiho Ambohimanjaka",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Vohidahy" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Ihadilanana" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Tsarasaotra" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Ambositra I" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Ankazoambo" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Imerin'Imady" },
   {
-    commune: "Andasibe",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ambalamanakana",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Ivato" },
   {
-    commune: "Anosibe Ifody",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Ambatofinandrahana",
   },
   {
-    commune: "Antaniditra",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Ambatomifanongoa",
   },
   {
-    commune: "Beforona",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Ambondromisotra",
   },
   {
-    commune: "Belavabary",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Amborompotsy",
   },
   {
-    commune: "Fierenana",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Fenoarivo",
   },
   {
-    commune: "Lakato",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Itremo",
   },
   {
-    commune: "Mandialaza",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Mandrosonoro",
   },
   {
-    commune: "Beparasy",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Mangataboahangy",
   },
   {
-    commune: "Morarano Gara",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBATOFINANDRAHANA",
+    COMMUNE: "Soavina",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Ambohimahazo" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Ankarinoro" },
   {
-    commune: "Sabotsy Anjiro",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "FANDRIANA",
+    COMMUNE: "Isandrandahy Ambony",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Mahazoarivo" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Sandrandahy" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Tsarazaza" },
   {
-    commune: "Vodiriana",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "FANDRIANA",
+    COMMUNE: "Sahamadio Fisakana",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Fiadanana" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Fandriana" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Milamaina" },
   {
-    commune: "Bembary",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Anjoman'Ankoana",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "MANANDRIANA", COMMUNE: "Andakatany" },
   {
-    commune: "Andaingo",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Ambatomarina",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "MANANDRIANA", COMMUNE: "Ilanjana" },
   {
-    commune: "Sahamamy",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Vinany Andakatanikely",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "MANANDRIANA", COMMUNE: "Soatanana" },
   {
-    commune: "Ambohitrarivo",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Ambohimilanja",
   },
   {
-    commune: "Ampasikely",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Ambohimahazo",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "MANANDRIANA", COMMUNE: "Ambohipo" },
   {
-    commune: "Ambohimandroso I",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Anjoma Nandihizana",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "MANANDRIANA", COMMUNE: "Ambovombe" },
   {
-    commune: "Ambohimerana",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "MANANDRIANA",
+    COMMUNE: "Talata Vohimena",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Tatamalaza" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Betsimisotra" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Soanakambana" },
   {
-    commune: "Longozabe",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "FANDRIANA",
+    COMMUNE: "Miarinavaratra",
   },
+  { REGION: "AMORON'I MANIA", DISTRICT: "FANDRIANA", COMMUNE: "Imito" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Ambositra II" },
+  { REGION: "AMORON'I MANIA", DISTRICT: "AMBOSITRA", COMMUNE: "Marosoa" },
   {
-    commune: "Alakamisy Ambohijato",
+    REGION: "AMORON'I MANIA",
+    DISTRICT: "AMBOSITRA",
+    COMMUNE: "Ankazotsararavina",
   },
   {
-    commune: "Ambatofitorahana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "AMBOHIDRATRIMO",
+    COMMUNE: "Ambohidratrimo",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Ivato" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Talatamaty" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Ampangabe" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Anjanadoria" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Antsahafilo" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Fiadanana" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Iarinarivo" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Mahabo" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Mahereza" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Anosiala" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Mahitsy" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Antanetibe" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Ambato" },
   {
-    commune: "Ambinanindrano",
+    REGION: "ANALAMANGA",
+    DISTRICT: "AMBOHIDRATRIMO",
+    COMMUNE: "Manjakavaradrano",
   },
   {
-    commune: "Ambohimitombo I",
+    REGION: "ANALAMANGA",
+    DISTRICT: "AMBOHIDRATRIMO",
+    COMMUNE: "Ambohimanjaka",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Mananjara" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Ampanotokana" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Avaratsena" },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Antehiroka" },
   {
-    commune: "Ambohimitombo II",
+    REGION: "ANALAMANGA",
+    DISTRICT: "AMBOHIDRATRIMO",
+    COMMUNE: "Ambatolampy Tsimahafotsy",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "AMBOHIDRATRIMO", COMMUNE: "Merimandroso" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANDRAMASINA", COMMUNE: "Ambohimiadana" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANDRAMASINA", COMMUNE: "Andramasina" },
   {
-    commune: "Ambohipirevoana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Alarobia Vatosola",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANDRAMASINA", COMMUNE: "Andohariana" },
   {
-    commune: "Andina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Anjoma Faliarivo",
   },
   {
-    commune: "Antoetra",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Anosibe Trimoloharano",
   },
   {
-    commune: "Fahizay",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Fitsinjovana Bakaro",
   },
   {
-    commune: "Ilaka Afovoany",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Morarano Soafiraisana",
   },
   {
-    commune: "Ivony",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Sabotsy Ambohitromby",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANDRAMASINA", COMMUNE: "Tankafatra" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANDRAMASINA", COMMUNE: "Antotohazo" },
   {
-    commune: "Kianjandrakefina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Alatsinainy Bakaro",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANDRAMASINA", COMMUNE: "Mandrosoa" },
   {
-    commune: "Mahazina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANDRAMASINA",
+    COMMUNE: "Sabotsy Manjakavahoaka",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Anjozorobe" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Alakamisy" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Ambatomanoina" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Amboasary" },
   {
-    commune: "Sahatsiho Ambohimanjaka",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANJOZOROBE",
+    COMMUNE: "Ambohibary Vohilena",
   },
   {
-    commune: "Vohidahy",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANJOZOROBE",
+    COMMUNE: "Ambohimarina Marovazaha",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Ambohimirary" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Ambongamarina" },
   {
-    commune: "Ihadilanana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANJOZOROBE",
+    COMMUNE: "Amparatanjona Ambony",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Analaroa" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Andranomisa" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Androvakely" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Antanetibe" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Beronono" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Betatao" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Mangamila" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Marotsipoy" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Tsarasaotra" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANJOZOROBE", COMMUNE: "Belanitra" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Ambohitromby" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Ambolotarakely" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Andranomiely" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Antakavana" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Antotohazo" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Fiadanana" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Kiangara" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Mahavelona" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Mangasoavina" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Marondry" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Tsaramandroso" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Miantso" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Fihaonana" },
   {
-    commune: "Tsarasaotra",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ampitatafika",
   },
   {
-    commune: "Ambositra I",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Andranonahoatra",
   },
   {
-    commune: "Ankazoambo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Bemasoandro",
   },
   {
-    commune: "Imerin'Imady",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Itaosy",
   },
   {
-    commune: "Ambalamanakana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Alatsinainy Ambazaha",
   },
   {
-    commune: "Ivato",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ambohidrapeto",
   },
   {
-    commune: "Ambatofinandrahana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ampanefy",
   },
   {
-    commune: "Ambatomifanongoa",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Androhibe",
   },
   {
-    commune: "Ambondromisotra",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ankadimanga",
   },
   {
-    commune: "Amborompotsy",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Fiombonana",
   },
   {
-    commune: "Fenoarivo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Soavina",
   },
   {
-    commune: "Itremo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Anosizato Andrefana",
   },
   {
-    commune: "Mandrosonoro",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Soalandy",
   },
   {
-    commune: "Mangataboahangy",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Antanetikely",
   },
   {
-    commune: "Soavina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ambalavao",
   },
   {
-    commune: "Ambohimahazo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ampahitrosy",
   },
   {
-    commune: "Ankarinoro",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Bongatsara",
   },
   {
-    commune: "Isandrandahy Ambony",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ambohijanaka",
   },
   {
-    commune: "Mahazoarivo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Tsiafahy",
   },
   {
-    commune: "Sandrandahy",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ambatofahavalo",
   },
   {
-    commune: "Tsarazaza",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ambohidrabiby",
   },
   {
-    commune: "Sahamadio Fisakana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Vilihazo",
   },
   {
-    commune: "Fiadanana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Anosy Avaratra",
   },
   {
-    commune: "Fandriana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Manandriana",
   },
   {
-    commune: "Milamaina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Sabotsy Namehana",
   },
   {
-    commune: "Anjoman'Ankoana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ankadikely Ilafy",
   },
   {
-    commune: "Andakatany",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Fieferana",
   },
   {
-    commune: "Ambatomarina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ambohimalaza Miray",
   },
   {
-    commune: "Ilanjana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ambohimangakely",
   },
   {
-    commune: "Vinany Andakatanikely",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ambohimanambola",
   },
   {
-    commune: "Soatanana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Alasora",
   },
   {
-    commune: "Ambohimilanja",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Anjeva Gara",
   },
   {
-    commune: "Ambohipo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Masindray",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Mantasoa" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ambatolaona" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ambatomanga" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ambatomena" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Anjepy" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ankazondandy" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Merikanjaka" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ranovao" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Sadabe" },
   {
-    commune: "Anjoma Nandihizana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Soavinandriana",
   },
   {
-    commune: "Ambovombe",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Ambohitrandriamanitra",
   },
   {
-    commune: "Talata Vohimena",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Miadanandriana",
   },
   {
-    commune: "Tatamalaza",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Alarobia Ambatomanga",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ambanitsena" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ampaneva" },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ambohibary" },
   {
-    commune: "Betsimisotra",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Manjakandriana",
   },
   {
-    commune: "Soanakambana",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Antsahalalina",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Ambohitrony" },
   {
-    commune: "Miarinavaratra",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Ambohitseheno",
   },
   {
-    commune: "Imito",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Ambohitrolomahitsy",
   },
   {
-    commune: "Ambositra II",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Ambohibao Atsimo",
   },
   {
-    commune: "Marosoa",
+    REGION: "ANALAMANGA",
+    DISTRICT: "AMBOHIDRATRIMO",
+    COMMUNE: "Ambohitrimanjaka",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Ankazobe" },
+  { REGION: "ANALAMANGA", DISTRICT: "ANKAZOBE", COMMUNE: "Talatan'Angavo" },
   {
-    commune: "Ankazotsararavina",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Alakamisy Fenoarivo",
   },
   {
-    commune: "Ambohidratrimo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Fenoarivo",
   },
+  { REGION: "ANALAMANGA", DISTRICT: "MANJAKANDRIANA", COMMUNE: "Sambaina" },
   {
-    commune: "Talatamaty",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Nandihizana Carion",
   },
   {
-    commune: "Ampangabe",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Talata Volonondry",
   },
   {
-    commune: "Anjanadoria",
+    REGION: "ANALAMANGA",
+    DISTRICT: "AMBOHIDRATRIMO",
+    COMMUNE: "Ambohipihaonana",
   },
   {
-    commune: "Antsahafilo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ambavahaditokana",
   },
   {
-    commune: "Iarinarivo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Tanjombato",
   },
   {
-    commune: "Mahabo",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Andoharanofotsy",
   },
   {
-    commune: "Mahereza",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO RENIVOHITRA",
+    COMMUNE: "Antananarivo",
   },
   {
-    commune: "Anosiala",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ambohimanga Rova",
   },
   {
-    commune: "Mahitsy",
+    REGION: "ANALAMANGA",
+    DISTRICT: "MANJAKANDRIANA",
+    COMMUNE: "Anjoma Betoho",
   },
   {
-    commune: "Antanetibe",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO ATSIMONDRANO",
+    COMMUNE: "Ankaraobato",
   },
   {
-    commune: "Ambato",
+    REGION: "ANALAMANGA",
+    DISTRICT: "ANTANANARIVO AVARADRANO",
+    COMMUNE: "Ankadinandriana",
   },
   {
-    commune: "Manjakavaradrano",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Ambanjan'ny Sahalava",
   },
   {
-    commune: "Ambohimanjaka",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Ambatoaranana Tsaratampona",
   },
   {
-    commune: "Mananjara",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Ambodimanga II",
   },
   {
-    commune: "Ampanotokana",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Ampasimbe Manantsantrana",
   },
   {
-    commune: "Avaratsena",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Ampasina Maningory",
   },
   {
-    commune: "Antehiroka",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Antsiatsiaka",
   },
   {
-    commune: "Ambatolampy Tsimahafotsy",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Vohilengo",
   },
   {
-    commune: "Merimandroso",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Vohipeno",
   },
   {
-    commune: "Ambohimiadana",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Miaromivalana I",
   },
   {
-    commune: "Andramasina",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Saranambana",
   },
   {
-    commune: "Alarobia Vatosola",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Fenoarivo Atsinanana",
   },
   {
-    commune: "Andohariana",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Mahanoro",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Ambodiampana" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Imorona" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Saromaona" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Ambodivoanio" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Analampotsy" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Antanambaobe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Sandrakatsy" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Manambolosy" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Maroantsetra" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Ambanizana" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Ambinanitelo" },
   {
-    commune: "Anjoma Faliarivo",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "MAROANTSETRA",
+    COMMUNE: "Ambodimanga Rantabe",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Androndrona" },
   {
-    commune: "Anosibe Trimoloharano",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "MAROANTSETRA",
+    COMMUNE: "Anjanazana Ankadimbazaha",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Ankofa" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Ankofabe" },
   {
-    commune: "Fitsinjovana Bakaro",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "MAROANTSETRA",
+    COMMUNE: "Antsirabe Sahatany",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Manambolo" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Mariharano" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Morafeno" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Rantabe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Sahasindro" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Ivoloina" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Anjahana" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Mahalevona" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Andranofotsy" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Antakotako" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MAROANTSETRA", COMMUNE: "Anandrivola" },
   {
-    commune: "Morarano Soafiraisana",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Ambinanisakana",
   },
   {
-    commune: "Sabotsy Ambohitromby",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Andapafito",
   },
   {
-    commune: "Tankafatra",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Antenina",
   },
   {
-    commune: "Antotohazo",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Fotsialanana",
   },
   {
-    commune: "Alatsinainy Bakaro",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Soanierana Ivongo",
   },
   {
-    commune: "Mandrosoa",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Antanifotsy",
   },
   {
-    commune: "Sabotsy Manjakavahoaka",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Ambodiampana",
   },
   {
-    commune: "Anjozorobe",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SAINTE MARIE",
+    COMMUNE: "Ambodifotatra",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Vavatenina" },
   {
-    commune: "Alakamisy",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "VAVATENINA",
+    COMMUNE: "Ambodimangavalo",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Ambohibe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Anjahambe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Miarinarivo" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Sahatavy" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Andasibe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Ambatoharanana" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Tanamarina" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Mananara" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Antananivo" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Antanambe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Mahanoro" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Vanono" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Andasibe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Tanibe" },
+  { REGION: "ANALANJIROFO", DISTRICT: "MANANARA", COMMUNE: "Ambatoharanana" },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Ampasimazava" },
   {
-    commune: "Ambatomanoina",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Betampona",
   },
   {
-    commune: "Amboasary",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Ambahoabe",
   },
   {
-    commune: "Ambohibary Vohilena",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "SOANIERANA IVONGO",
+    COMMUNE: "Manompana",
   },
   {
-    commune: "Ambohimarina Marovazaha",
+    REGION: "ANALANJIROFO",
+    DISTRICT: "FENOARIVO ATSINANANA",
+    COMMUNE: "Mahambo",
   },
+  { REGION: "ANALANJIROFO", DISTRICT: "VAVATENINA", COMMUNE: "Maromitety" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Beloha" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Ambatotsivala" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Beabobo" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Ikopoky" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Mahaenene" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Marolinta" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Tranoroa" },
+  { REGION: "ANDROY", DISTRICT: "BELOHA", COMMUNE: "Tranovaho" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Tsiombe" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Anjampaly" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Ankilivalo" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Antaritarika" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Behazomanga" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Faux Cap" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Imongy" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Marovato" },
+  { REGION: "ANDROY", DISTRICT: "TSIOMBE", COMMUNE: "Nikoly" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ambovombe" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ambanisarike" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ambazoa" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ambohimalaza" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ambonaivo" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ambondro" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Ampamata" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Analamary" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Andalatanosy" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Andoharano" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Andragnanivo" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Anjeke Ankilikira" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Antanimora Atsimo" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Erada Tsimanato" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Imanombo" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Jafaro" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Maroalomainty" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Maroalopoty" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Marovato Befeno" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Sihanamaro" },
+  { REGION: "ANDROY", DISTRICT: "AMBOVOMBE", COMMUNE: "Tsimananada" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Bekily Morafeno" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Ambahita" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Ambatosola" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Anivorano Mitsinjo" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Anja Avaratra" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Ankaranabo Avaratra" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Bekitro" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Belindo Mahasoa" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Beraketa" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Besakoa" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Beteza" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Bevitiky" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Manakompy" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Besaroa Maroviro" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Mikaikarivo Ambatomainty" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Tanandava" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Tsikolaky" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Vohimanga" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Tanambao Tsirandrany" },
+  { REGION: "ANDROY", DISTRICT: "BEKILY", COMMUNE: "Antskoamaro" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Tolanaro" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ampasy Nahampoana" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Mandromodromotra" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Soanierana" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ambatoabo" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ampasimena" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Analamary" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Analapatsa I" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Andranobory" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ankaramena" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ankarera" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ankilivalo" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Bevoay" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Emanobo" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Enakara Ambony" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Enaniliha" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Fenoevo Efita" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Iaboakoho" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ifarantsa" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Isaka Ivondro" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Mahatalaky" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Manambaro" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Manantenina" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Mandiso" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ranomafana Atsimo" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Ranopiso" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Sarasambo" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Soavary" },
+  { REGION: "ANOSY", DISTRICT: "TAOLANARO", COMMUNE: "Tanandava" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Betroka" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Ambalasoa" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Ambatomivary" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Analamary" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Andriandampy" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Beapombo I" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Beapombo II" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Bekorobo" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Benato Toby" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Iaborotra" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Ianabinda" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Ianakafy" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Isoanala" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Ivahona" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Jangany" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Kelivaho" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Mahabo" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Mahasoa Atsinanana" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Nanarena Besakoa" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Nanirona" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Tsaraitso" },
+  { REGION: "ANOSY", DISTRICT: "BETROKA", COMMUNE: "Sakamahily" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Amboasary" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Behara" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Berano Ville" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Ebelo" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Eloty" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Esira" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Ifotaka" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Mahabo" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Mahaly" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Manevy" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Maromby" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Marotsiraka" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Ranobe" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Tanandava Atsimo" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Tranomaro" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Tsivory" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Tomboarivo" },
+  { REGION: "ANOSY", DISTRICT: "AMBOASARY", COMMUNE: "Sampona" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA I", COMMUNE: "Toliara I" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Beroroha" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Behisatra" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Fanjakana" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Mandronarivo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Marerano" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Sakena" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Tanamary" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Tanandava" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BEROROHA", COMMUNE: "Bemavo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "MOROMBE", COMMUNE: "Morombe" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "MOROMBE", COMMUNE: "Ambahikily" },
   {
-    commune: "Ambohimirary",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "MOROMBE",
+    COMMUNE: "Ankatsakantsa Atsimo",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "MOROMBE", COMMUNE: "Antanimieva" },
   {
-    commune: "Ambongamarina",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "MOROMBE",
+    COMMUNE: "Antongo Vaovao",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "MOROMBE", COMMUNE: "Basibasy" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "MOROMBE", COMMUNE: "Befandefa" },
   {
-    commune: "Amparatanjona Ambony",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "MOROMBE",
+    COMMUNE: "Befandriana Atsimo",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "MOROMBE", COMMUNE: "Tanandava" },
   {
-    commune: "Analaroa",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "ANKAZOABO",
+    COMMUNE: "Ankazoabo Atsimo",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "ANKAZOABO", COMMUNE: "Ambatolahy" },
   {
-    commune: "Andranomisa",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "ANKAZOABO",
+    COMMUNE: "Andranomafana",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "ANKAZOABO", COMMUNE: "Ankeriky" },
   {
-    commune: "Androvakely",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "ANKAZOABO",
+    COMMUNE: "Ankilivalokely",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "ANKAZOABO", COMMUNE: "Berenty" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "ANKAZOABO", COMMUNE: "Fotivolo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "ANKAZOABO", COMMUNE: "Ilemby" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "ANKAZOABO", COMMUNE: "Tandrano" },
   {
-    commune: "Beronono",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "BETIOKY",
+    COMMUNE: "Ankazomanga Andrefana",
   },
   {
-    commune: "Betatao",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "BETIOKY",
+    COMMUNE: "Maroarivo Ankazomanga",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Marosavoa" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Masiaboay" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Soaserana" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Ampanihy" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Amboropotsy" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Anavoha" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Androipano" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Androka" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Ankiliabo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Ankilimivory" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Ankilizato" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Antaly" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Beahitse" },
   {
-    commune: "Mangamila",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "AMPANIHY",
+    COMMUNE: "Belafika Ambony",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Fotadrevo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Gogogogo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Itampolo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Maniry" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Vohitany" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Sakaraha" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Ambinany" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Amboronabo" },
   {
-    commune: "Marotsipoy",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "SAKARAHA",
+    COMMUNE: "Vineta Andamasiny",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Andranolava" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Beraketa" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Mahaboboka" },
   {
-    commune: "Belanitra",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "SAKARAHA",
+    COMMUNE: "Miary Lamatihy",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Miary Taheza" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Mihavatsy" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "SAKARAHA", COMMUNE: "Mikoboka" },
   {
-    commune: "Ambohitromby",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "SAKARAHA",
+    COMMUNE: "Mitsinjo Kiliarivo",
   },
   {
-    commune: "Ambolotarakely",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Ankiloaka I",
   },
   {
-    commune: "Andranomiely",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Mitsinjo Betanimena",
   },
   {
-    commune: "Antakavana",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Ambohimahavelona",
   },
   {
-    commune: "Kiangara",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Ambolofotsy",
   },
   {
-    commune: "Mahavelona",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Analamisampy",
   },
   {
-    commune: "Mangasoavina",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Andranohinaly",
   },
   {
-    commune: "Marondry",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Andranovory",
   },
   {
-    commune: "Tsaramandroso",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Ankilimalinike",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Antanimena" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Beheloka" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Behompy" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Belalanda" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Betsinjaka" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Efoetse" },
   {
-    commune: "Miantso",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Manombo Atsimo",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Manorofify" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Marofoty" },
   {
-    commune: "Fihaonana",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Maromiandra",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Miary" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Milenake" },
   {
-    commune: "Ampitatafika",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Saint Augustin",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Soahazo" },
   {
-    commune: "Andranonahoatra",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "TOLIARA II",
+    COMMUNE: "Soalara Atsimo",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Tsianisiha" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Tsifota" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "TOLIARA II", COMMUNE: "Anakao" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BENENITRA", COMMUNE: "Ambalavato" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BENENITRA", COMMUNE: "Benonoky" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Ejeda" },
   {
-    commune: "Bemasoandro",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "BETIOKY",
+    COMMUNE: "Betioky Atsimo",
   },
   {
-    commune: "Itaosy",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "BETIOKY",
+    COMMUNE: "Ambatry Mitsinjo",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Ankazombalala" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Ankilivalo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Antohabato" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Antsavoa" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Beantake" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Belamoty" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Beora" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Besely" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Bezaha" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Fenoandala" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Lazarivo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Manalobe" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Sakamasay" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Salobe" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Soamanonga" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Tameantsoa" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Tongobory" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Vatolatsaka" },
   {
-    commune: "Alatsinainy Ambazaha",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "BETIOKY",
+    COMMUNE: "Andranomangatsiaka",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Montifeno" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BENENITRA", COMMUNE: "Benenitra" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BENENITRA", COMMUNE: "Ankilimary" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BENENITRA", COMMUNE: "Ianapera" },
   {
-    commune: "Ambohidrapeto",
+    REGION: "ATSIMO ANDREFANA",
+    DISTRICT: "BETIOKY",
+    COMMUNE: "Tanambao Ambony",
   },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Vohimary" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BETIOKY", COMMUNE: "Savazy" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Beara" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "AMPANIHY", COMMUNE: "Beroy Atsimo" },
+  { REGION: "ATSIMO ANDREFANA", DISTRICT: "BENENITRA", COMMUNE: "Ehara" },
   {
-    commune: "Ampanefy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Farafangana",
   },
   {
-    commune: "Androhibe",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ambalavato Antevato",
   },
   {
-    commune: "Ankadimanga",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ambalavato Avaratra",
   },
   {
-    commune: "Fiombonana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ambohigogo",
   },
   {
-    commune: "Anosizato Andrefana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ambohimandroso",
   },
   {
-    commune: "Soalandy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Amporoforo",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Beretra" },
   {
-    commune: "Antanetikely",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Etrotroka",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Evato" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Ihorombe" },
   {
-    commune: "Ambalavao",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ivandrika",
   },
   {
-    commune: "Ampahitrosy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Mahabo Mananivo",
   },
   {
-    commune: "Bongatsara",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Maheriraty",
   },
   {
-    commune: "Ambohijanaka",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Marovandrika",
   },
   {
-    commune: "Tsiafahy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Sahamadio",
   },
   {
-    commune: "Ambatofahavalo",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Vohilengo",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Vohimasy" },
   {
-    commune: "Ambohidrabiby",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Vohilavan'i Manampatra",
   },
   {
-    commune: "Vilihazo",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Anosivelo",
   },
   {
-    commune: "Anosy Avaratra",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "BEFOTAKA",
+    COMMUNE: "Befotaka Atsimo",
   },
   {
-    commune: "Manandriana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "BEFOTAKA",
+    COMMUNE: "Antaninarenina",
   },
   {
-    commune: "Sabotsy Namehana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "BEFOTAKA",
+    COMMUNE: "Antokoboritelo",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "BEFOTAKA", COMMUNE: "Beharena" },
   {
-    commune: "Ankadikely Ilafy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "BEFOTAKA",
+    COMMUNE: "Bekofafa Atsimo",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "BEFOTAKA", COMMUNE: "Inosy" },
   {
-    commune: "Fieferana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "BEFOTAKA",
+    COMMUNE: "Marovitsika Atsimo",
   },
   {
-    commune: "Ambohimalaza Miray",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "BEFOTAKA",
+    COMMUNE: "Ranotsara Atsimo",
   },
   {
-    commune: "Ambohimangakely",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "MIDONGY",
+    COMMUNE: "Nosifeno ( ex Midongy)",
   },
   {
-    commune: "Ambohimanambola",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "MIDONGY",
+    COMMUNE: "Andranolalina",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "MIDONGY", COMMUNE: "Ankazovelo" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "MIDONGY", COMMUNE: "Bevaho" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "MIDONGY", COMMUNE: "Ivondro" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "MIDONGY", COMMUNE: "Soakibany" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "MIDONGY", COMMUNE: "Zaraha" },
   {
-    commune: "Alasora",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Vangaindrano",
   },
   {
-    commune: "Anjeva Gara",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Ambatolava",
   },
   {
-    commune: "Masindray",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Bekaraoka",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Bevata" },
   {
-    commune: "Mantasoa",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Fenoambany",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Iara" },
   {
-    commune: "Ambatolaona",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Karimbary",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Mahabe" },
   {
-    commune: "Ambatomanga",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Manambondro",
   },
   {
-    commune: "Ambatomena",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Marokibo",
   },
   {
-    commune: "Anjepy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Sandravinany",
   },
   {
-    commune: "Ankazondandy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Tsiately",
   },
   {
-    commune: "Merikanjaka",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Fonilaza",
   },
   {
-    commune: "Ranovao",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Vohitrambo",
   },
   {
-    commune: "Sadabe",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Lohafary",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Anilobe" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Bema" },
   {
-    commune: "Soavinandriana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Ampataka",
   },
   {
-    commune: "Ambohitrandriamanitra",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Ampasimalemy",
   },
   {
-    commune: "Miadanandriana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Tsianofana",
   },
   {
-    commune: "Alarobia Ambatomanga",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Vohimalaza",
   },
   {
-    commune: "Ambanitsena",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Vatanato",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Isahara" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Ambongo" },
   {
-    commune: "Ampaneva",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Ranomena",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Matanga" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Vondrozo" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Ambodirano" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Anandravy" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Andakana" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Antokonala" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Iamonta" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Ivato" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Karianga" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Mahavelo" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Manambidala" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Manato" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Moroteza" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Vohimary" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Vohiboreka" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Mahatsinjo" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Andoharano" },
   {
-    commune: "Manjakandriana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Anosy Tsararafa",
   },
   {
-    commune: "Antsahalalina",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ambalatany",
   },
   {
-    commune: "Ambohitrony",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Namohora Iaborano",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Ambohimana" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VONDROZO", COMMUNE: "Mahazoarivo" },
   {
-    commune: "Ambohitseheno",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Tangainony",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Mahavelo" },
   {
-    commune: "Ambohitrolomahitsy",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Mahafasa Afovoany",
   },
   {
-    commune: "Ambohibao Atsimo",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Vohitromby",
   },
   {
-    commune: "Ambohitrimanjaka",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Manambotra Atsimo",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "BEFOTAKA", COMMUNE: "Antondabe" },
   {
-    commune: "Ankazobe",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Amparihy Atsinanana",
   },
   {
-    commune: "Talatan'Angavo",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Soamanova",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Iabohazo" },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "FARAFANGANA", COMMUNE: "Tovona" },
   {
-    commune: "Alakamisy Fenoarivo",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Antseranambe",
   },
   {
-    commune: "Sambaina",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Ankarana Miraihina",
   },
   {
-    commune: "Nandihizana Carion",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Efatsy Anandroza",
   },
   {
-    commune: "Talata Volonondry",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "FARAFANGANA",
+    COMMUNE: "Fenoarivo",
   },
+  { REGION: "ATSIMO ATSINANANA", DISTRICT: "VANGAINDRANO", COMMUNE: "Lopary" },
   {
-    commune: "Ambohipihaonana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Vohipaho",
   },
   {
-    commune: "Ambavahaditokana",
+    REGION: "ATSIMO ATSINANANA",
+    DISTRICT: "VANGAINDRANO",
+    COMMUNE: "Masianaka Nosibe",
   },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Ambohimilanja" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Andonabe Atsimo" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Anosiarivo" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Maromitety I" },
   {
-    commune: "Tanjombato",
+    REGION: "ATSINANANA",
+    DISTRICT: "MAROLAMBO",
+    COMMUNE: "Tanambao Rabemanana",
   },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Amboasary" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Lohavanana" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Sahakevo" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Ambodinonoka" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "AmbalapaisoII" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Ambalarondra" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Ambinaninony" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Ambohimanana" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Ampasimbe" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Andekaleka" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Andevoranto" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Anjahamana" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Antsampanana" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Fanasana" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Fetraomby" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Lohariandava" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Mahatsara" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Maroseranana" },
   {
-    commune: "Andoharanofotsy",
+    REGION: "ATSINANANA",
+    DISTRICT: "BRICKAVILLE",
+    COMMUNE: "Ranomafana Atsinanana",
   },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Razanaka" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Vohitranivona" },
+  { REGION: "ATSINANANA", DISTRICT: "BRICKAVILLE", COMMUNE: "Brickaville" },
   {
-    commune: "Antananarivo",
+    REGION: "ATSINANANA",
+    DISTRICT: "BRICKAVILLE",
+    COMMUNE: "Anivorano Atsinanana",
   },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Mahanoro" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Ambinanidilana" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Ambinanindrano" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Ambodibonara" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Ambodiharina" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Ankazotsifantatra" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Befotaka" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Betsizaraina" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Manjakandriana" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Masomeloka" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Tsaravinany" },
+  { REGION: "ATSINANANA", DISTRICT: "MAHANORO", COMMUNE: "Andranambomaro" },
   {
-    commune: "Ambohimanga Rova",
+    REGION: "ATSINANANA",
+    DISTRICT: "ANTANAMBAO MANAMPOTSY",
+    COMMUNE: "Antanandehibe",
   },
   {
-    commune: "Anjoma Betoho",
+    REGION: "ATSINANANA",
+    DISTRICT: "ANTANAMBAO MANAMPOTSY",
+    COMMUNE: "Manakana",
   },
   {
-    commune: "Ankaraobato",
+    REGION: "ATSINANANA",
+    DISTRICT: "ANTANAMBAO MANAMPOTSY",
+    COMMUNE: "Manaratsandry",
   },
   {
-    commune: "Ankadinandriana",
+    REGION: "ATSINANANA",
+    DISTRICT: "ANTANAMBAO MANAMPOTSY",
+    COMMUNE: "Mahela",
   },
   {
-    commune: "Ambanjan'ny Sahalava",
+    REGION: "ATSINANANA",
+    DISTRICT: "ANTANAMBAO MANAMPOTSY",
+    COMMUNE: "Saivaza",
   },
   {
-    commune: "Ambatoaranana Tsaratampona",
+    REGION: "ATSINANANA",
+    DISTRICT: "ANTANAMBAO MANAMPOTSY",
+    COMMUNE: "Antanambao Manampotsy",
   },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA I", COMMUNE: "Toamasina" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Ambodiriana" },
   {
-    commune: "Ambodimanga II",
+    REGION: "ATSINANANA",
+    DISTRICT: "TOAMASINA II",
+    COMMUNE: "Amboditandroho Mahatsara",
   },
   {
-    commune: "Ampasimbe Manantsantrana",
+    REGION: "ATSINANANA",
+    DISTRICT: "TOAMASINA II",
+    COMMUNE: "Ampasimadinika Manambolo",
   },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Amporoforo" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Antenina I" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Antetezambaro" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Mangabe" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Ampisokina" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Andondabe" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Mahavelona" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Fanandrana" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Andranobolaha" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ambodivoananto" },
   {
-    commune: "Ampasina Maningory",
+    REGION: "ATSINANANA",
+    DISTRICT: "VATOMANDRY",
+    COMMUNE: "Antanambao Mahatsara",
   },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Iamborano" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ifasina I" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ifasina II" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Niherenana" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Tsivangiana" },
   {
-    commune: "Antsiatsiaka",
+    REGION: "ATSINANANA",
+    DISTRICT: "VATOMANDRY",
+    COMMUNE: "Ambodivononoka Ranganana",
   },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ifasina III" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Amboditavolo" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Sahamatevina" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Vatomandry" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Maintinandry" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ilaka" },
   {
-    commune: "Vohilengo",
+    REGION: "ATSINANANA",
+    DISTRICT: "VATOMANDRY",
+    COMMUNE: "Niarovana Caroline",
   },
   {
-    commune: "Vohipeno",
+    REGION: "ATSINANANA",
+    DISTRICT: "TOAMASINA II",
+    COMMUNE: "Ampasimbe Onibe",
   },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Sahambala" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Ambodilazana" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Satrandroy" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Fito Sahaviavy" },
+  { REGION: "ATSINANANA", DISTRICT: "TOAMASINA II", COMMUNE: "Toamasina II" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ambalabe" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ambalavolo" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Tsarasambo" },
   {
-    commune: "Miaromivalana I",
+    REGION: "ATSINANANA",
+    DISTRICT: "VATOMANDRY",
+    COMMUNE: "Tanambao Vahatrakaka",
   },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ampasimadinika" },
+  { REGION: "ATSINANANA", DISTRICT: "VATOMANDRY", COMMUNE: "Ampasimazava" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Ambodivoahangy" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Ambatofisaka II" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Androrangavola" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Marolambo" },
+  { REGION: "ATSINANANA", DISTRICT: "MAROLAMBO", COMMUNE: "Betampona" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Andasibe" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Mahatsinjo Atsimo" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Maevatanana I" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Andriba" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Antanimbary" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Antsiafabositra" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Beratsimanina" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Berivotra" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Mahatsinjo" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Mangabe" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Marokoro" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Morafeno" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Tsararano" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Tsaratanana" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Ambakireny" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Ampandrana" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Andriamena" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Bekapaika" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Betrandraka" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Brieville" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Isinko" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Keliloha" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Manakana" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Sakoamadinika" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Sarobaratra" },
+  { REGION: "BETSIBOKA", DISTRICT: "TSARATANANA", COMMUNE: "Tsararova" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Ambalanjanakomby" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Madiromirafy" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Ambalajia" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Maevatanana II" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Bemokotra" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Mahazoma" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Antanimbaribe" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Kandreho" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Ambaliha" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Behazomaty" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Maria" },
+  { REGION: "BETSIBOKA", DISTRICT: "KANDREHO", COMMUNE: "Betaimboay" },
+  { REGION: "BETSIBOKA", DISTRICT: "MAEVATANANA", COMMUNE: "Beanana" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAI", COMMUNE: "Mahajanga I" },
+  { REGION: "BOENY", DISTRICT: "SOALALA", COMMUNE: "Soalala" },
+  { REGION: "BOENY", DISTRICT: "SOALALA", COMMUNE: "Ambohipaky" },
+  { REGION: "BOENY", DISTRICT: "SOALALA", COMMUNE: "Andranomavo" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Antsakoamileka" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Ambato Ambarimay" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Andranofasika" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Ambesisika" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Andranomamy" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Anjiajia" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Ankijabe" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Ankirihitra" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Madirovalo" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Manerinerina" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Sitampiky" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Tsaramandroso" },
+  { REGION: "BOENY", DISTRICT: "AMBATOBOENY", COMMUNE: "Ambondromamy" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Marovoay" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Marovoay II" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Ambolomoty" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Ankaboka" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Ankaraobato" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Ankazomborona" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Anosinalainolona" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Antanambao Andranolava" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Antanimasaka" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Bemaharivo" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Manaratsandry" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Marosakoa" },
+  { REGION: "BOENY", DISTRICT: "MAROVOAY", COMMUNE: "Tsararano" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Mitsinjo" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Ambarimaninga" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Antseza" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Antongomena Bevary" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Bekipay" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Katsepy" },
+  { REGION: "BOENY", DISTRICT: "MITSINJO", COMMUNE: "Matsakabanja" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Ambalabe" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Ambalakida" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Andranoboka" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Bekobay Afovoany" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Belobaka" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Betsako" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Bemaharivo" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Boanamary" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Mahajamba Usine" },
+  { REGION: "BOENY", DISTRICT: "MAHAJANGAII", COMMUNE: "Mariarano" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Fenoarivobe" },
   {
-    commune: "Saranambana",
+    REGION: "BONGOLAVA",
+    DISTRICT: "FENOARIVOBE",
+    COMMUNE: "Ambatomainty Atsimo",
   },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Ambohitromby" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Firavahana" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Kiranomena" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Mangatany" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Tsinjoarivo 22" },
   {
-    commune: "Fenoarivo Atsinanana",
+    REGION: "BONGOLAVA",
+    DISTRICT: "TSIROANOMANDIDY",
+    COMMUNE: "Tsiroanomandidy",
   },
   {
-    commune: "Mahanoro",
+    REGION: "BONGOLAVA",
+    DISTRICT: "TSIROANOMANDIDY",
+    COMMUNE: "Ankadinondry Sakay",
   },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Ambatolampy" },
   {
-    commune: "Ambodiampana",
+    REGION: "BONGOLAVA",
+    DISTRICT: "TSIROANOMANDIDY",
+    COMMUNE: "Ankerana Avaratra",
   },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Antsahalava" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Belobaka" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Bemahatazana" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Fierenana" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Maroharona" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Maritampona" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Miandrarivo" },
   {
-    commune: "Imorona",
+    REGION: "BONGOLAVA",
+    DISTRICT: "TSIROANOMANDIDY",
+    COMMUNE: "Tsiroanomandidy Fihaonana",
   },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Ambararatabe" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Mahasolo" },
   {
-    commune: "Saromaona",
+    REGION: "BONGOLAVA",
+    DISTRICT: "TSIROANOMANDIDY",
+    COMMUNE: "Ambavahady Anosy",
   },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Ambalanirana" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Mahajeby" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Bevato" },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Soanierana" },
+  { REGION: "BONGOLAVA", DISTRICT: "FENOARIVOBE", COMMUNE: "Andriampotsy" },
   {
-    commune: "Ambodivoanio",
+    REGION: "BONGOLAVA",
+    DISTRICT: "TSIROANOMANDIDY",
+    COMMUNE: "Tsinjoarivo Imanga",
   },
   {
-    commune: "Analampotsy",
+    REGION: "BONGOLAVA",
+    DISTRICT: "FENOARIVOBE",
+    COMMUNE: "Morarano Marotampona",
   },
+  { REGION: "BONGOLAVA", DISTRICT: "TSIROANOMANDIDY", COMMUNE: "Fiadanantsoa" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambanja" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambalahonko" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambaliha" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambodimanga Ramena" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambohimarina" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambohimena" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ambohitrandriana" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ankatafa" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Anorotsangana" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Antafiambotry" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Antranokarany" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Antsahabe Afovoany" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Antsakoamanondro" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Antsatsaka" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Antsirabe" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Bemanevika" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Bemanevika Andrefana" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Benavony" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Djangoa" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Maevatanana" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Maherivaratra" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Marotolana" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Marovato" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Ambilobe" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Ambarakaraka" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Ambodibonara" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Anaborano Ifasy" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Anjiabe Ambony" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Antsohimbondrona" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Beramanja" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Betsiaka" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Manambato" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Mantaly" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Antanambe" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Ambatoben' Anjavy" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Ambakirano" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Ampondralava" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Tanambao Marivorahona" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Sirama" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA I", COMMUNE: "Antsiranana I" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Andranovondronina" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Mangaoka" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Antsahampano" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Ramena" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Mahavanona" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Mahalina" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Andranofanjava" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Anketrakabe" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Ankarongana" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Mosorolava" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Bobasakoa" },
   {
-    commune: "Antanambaobe",
+    REGION: "DIANA",
+    DISTRICT: "ANTSIRANANA II",
+    COMMUNE: "Anivorano Avaratra",
   },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Ambondrona" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Bobakilandy" },
   {
-    commune: "Sandrakatsy",
+    REGION: "DIANA",
+    DISTRICT: "ANTSIRANANA II",
+    COMMUNE: "Antanamitarana Atsimo",
   },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Sakaramy" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Joffre Ville" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Sadjoavato" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Andrafiabe" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Ambolombozobe" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Antsalaka" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Antsakoabe" },
+  { REGION: "DIANA", DISTRICT: "ANTSIRANANA II", COMMUNE: "Antsoha" },
+  { REGION: "DIANA", DISTRICT: "AMBANJA", COMMUNE: "Ankingameloka" },
+  { REGION: "DIANA", DISTRICT: "NOSY BE", COMMUNE: "Nosy Be" },
+  { REGION: "DIANA", DISTRICT: "AMBILOBE", COMMUNE: "Antsaravibe" },
+  { REGION: "IHOROMBE", DISTRICT: "IAKORA", COMMUNE: "Iakora" },
+  { REGION: "IHOROMBE", DISTRICT: "IAKORA", COMMUNE: "Andranombao" },
+  { REGION: "IHOROMBE", DISTRICT: "IAKORA", COMMUNE: "Begogo" },
+  { REGION: "IHOROMBE", DISTRICT: "IAKORA", COMMUNE: "Ranotsara Avaratra" },
+  { REGION: "IHOROMBE", DISTRICT: "IAKORA", COMMUNE: "Volambita" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Ihosy" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Analavoka" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Andiolava" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Ankily" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Irina" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Mahasoa" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Menamaty Iloto" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Sahambano" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Sakalalina" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Satrokala" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Tolohomiady" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Andohan' Ilakaka" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Ranohira" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Ilakaka" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Antsoha" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Zazafotsy" },
+  { REGION: "IHOROMBE", DISTRICT: "IVOHIBE", COMMUNE: "Ivohibe" },
+  { REGION: "IHOROMBE", DISTRICT: "IVOHIBE", COMMUNE: "Antambohobe" },
+  { REGION: "IHOROMBE", DISTRICT: "IVOHIBE", COMMUNE: "Antaramena" },
+  { REGION: "IHOROMBE", DISTRICT: "IVOHIBE", COMMUNE: "Ivongo" },
+  { REGION: "IHOROMBE", DISTRICT: "IVOHIBE", COMMUNE: "Maropaika" },
+  { REGION: "IHOROMBE", DISTRICT: "IVOHIBE", COMMUNE: "Kotipa" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Ambia" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Analaliry" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Soamatasy" },
+  { REGION: "IHOROMBE", DISTRICT: "IHOSY", COMMUNE: "Ambatolahy" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Arivonimamo I" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Imerintsiatosika" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Alakamisikely" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Ambatomanga" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Ambatomirahavavy" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Amboanana" },
   {
-    commune: "Manambolosy",
+    REGION: "ITASY",
+    DISTRICT: "ARIVONIMAMO",
+    COMMUNE: "Ambohimandry Atsinanana",
   },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Ambohimasina" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Ambohitrambo" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Ampahimanga" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Andranomiely" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Antambolo" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Antenimbe" },
   {
-    commune: "Maroantsetra",
+    REGION: "ITASY",
+    DISTRICT: "ARIVONIMAMO",
+    COMMUNE: "Mahatsinjo Atsinanana",
   },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Manalalondo" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Marofangady" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Miantsoarivo" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Morafeno" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Morarano" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Talata Tsimadilo" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Miandrandra" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Ambohipandrano" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Miarinarivo" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Andolofotsy" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Antoby Atsinanana" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Manazary" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Mandiavato" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Miarinarivo II" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Zoma Bealoka" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Alatsinainikely" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Analavory" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Anosibe Ifanja" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Sarobaratra" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Ambatomanjaka" },
   {
-    commune: "Ambanizana",
+    REGION: "ITASY",
+    DISTRICT: "SOAVINANDRIANA",
+    COMMUNE: "Amberomanga Atsinanana",
   },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Amparaky" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Ankaranana" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Mananasy" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Tamponala" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Mahavelona" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Ankisabe" },
   {
-    commune: "Ambinanitelo",
+    REGION: "ITASY",
+    DISTRICT: "SOAVINANDRIANA",
+    COMMUNE: "Ambatoasana Afovoany",
   },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Masindray" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Amparibohitra" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Soavimbazaha" },
+  { REGION: "ITASY", DISTRICT: "MIARINARIVO", COMMUNE: "Soamahamanina" },
+  { REGION: "ITASY", DISTRICT: "ARIVONIMAMO", COMMUNE: "Arivonimamo II" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Ampefy" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Ampary" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Soavinandriana" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Antanetibe" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Ambohidanerana" },
+  { REGION: "ITASY", DISTRICT: "SOAVINANDRIANA", COMMUNE: "Talata Dondona" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Ambalavao" },
   {
-    commune: "Ambodimanga Rantabe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBALAVAO",
+    COMMUNE: "Ambohimahamasina",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Anjoma" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Ankaramena" },
   {
-    commune: "Androndrona",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBALAVAO",
+    COMMUNE: "Ambinanindovoka",
   },
   {
-    commune: "Anjanazana Ankadimbazaha",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBALAVAO",
+    COMMUNE: "Ambinaniroa Andonaka",
   },
   {
-    commune: "Ankofa",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBALAVAO",
+    COMMUNE: "Ambohimandroso",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Andrainjato" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Besoa" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Fenoarivo" },
   {
-    commune: "Ankofabe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBALAVAO",
+    COMMUNE: "Iarintsena Firaisantsoa",
   },
   {
-    commune: "Antsirabe Sahatany",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBALAVAO",
+    COMMUNE: "Kirano Firaisantsoa",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Mahazony" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Manamisoa" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Miarinarivo" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Vohitsaoka" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Volamena" },
   {
-    commune: "Manambolo",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ampitana",
   },
   {
-    commune: "Mariharano",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ankafina",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBOHIMAHASOA", COMMUNE: "Befeta" },
   {
-    commune: "Morafeno",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Camp Robin",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBOHIMAHASOA", COMMUNE: "Isaka" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBOHIMAHASOA", COMMUNE: "Kalalao" },
   {
-    commune: "Rantabe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Manandroy",
   },
   {
-    commune: "Sahasindro",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Morafeno",
   },
   {
-    commune: "Ivoloina",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Sahatona",
   },
   {
-    commune: "Anjahana",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Vohitrarivo",
   },
   {
-    commune: "Mahalevona",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "FIANARANTSOA I",
+    COMMUNE: "Fianarantsoa",
   },
   {
-    commune: "Andranofotsy",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "IKALAMAVONY",
+    COMMUNE: "Tanamarina Sakay",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "IKALAMAVONY", COMMUNE: "Mangidy" },
   {
-    commune: "Antakotako",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "IKALAMAVONY",
+    COMMUNE: "Ambatomainty",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "IKALAMAVONY", COMMUNE: "Solila" },
   {
-    commune: "Anandrivola",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "IKALAMAVONY",
+    COMMUNE: "Tanamarina Bekisopa",
   },
   {
-    commune: "Ambinanisakana",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "IKALAMAVONY",
+    COMMUNE: "Ikalamavony",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "IKALAMAVONY", COMMUNE: "Fitampito" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Fanjakana" },
   {
-    commune: "Andapafito",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "IKALAMAVONY",
+    COMMUNE: "Tsitondroina",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Isorana" },
   {
-    commune: "Antenina",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "ISANDRA",
+    COMMUNE: "Ambalamidera II",
   },
   {
-    commune: "Fotsialanana",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "ISANDRA",
+    COMMUNE: "Andoharanomaitso",
   },
   {
-    commune: "Soanierana Ivongo",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "ISANDRA",
+    COMMUNE: "Ankarinarivo Manirisoa",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Nasandratrony" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Soatanana" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Mahazoarivo" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Ambondrona" },
   {
-    commune: "Antanifotsy",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Alakamisy Ambohimaha",
   },
   {
-    commune: "Ambodifotatra",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Alatsinainy Ialamarina",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Ambalakely" },
   {
-    commune: "Vavatenina",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Ambalamahasoa",
   },
   {
-    commune: "Ambodimangavalo",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Andrainjato Afovoany",
   },
   {
-    commune: "Ambohibe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Andrainjato Atsinanana",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Fandrandava" },
   {
-    commune: "Anjahambe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Mahatsinjony",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Sahafata" },
   {
-    commune: "Sahatavy",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "ISANDRA",
+    COMMUNE: "Iavinomby Vohibola",
   },
   {
-    commune: "Tanamarina",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Vinaninoro Andrefana",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Ivoamba" },
   {
-    commune: "Mananara",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Ialananindro",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Taindambo" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Sahambavy" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "LALANGINA", COMMUNE: "Androy" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Mahasoabe" },
   {
-    commune: "Antananivo",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Talata Ampano",
   },
   {
-    commune: "Antanambe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Andranovorivato",
   },
   {
-    commune: "Vanono",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Ankaromalaza Mifanasoa",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Ihazoara" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Lamosina" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Maneva" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Soaindrana" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Vohimarina" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Vohitrafeno" },
   {
-    commune: "Tanibe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Vohibato Andrefana",
   },
   {
-    commune: "Ampasimazava",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ambohinamboarina",
   },
   {
-    commune: "Betampona",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Fiadanana",
   },
   {
-    commune: "Ambahoabe",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Vohiposa",
   },
   {
-    commune: "Manompana",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ambatosoa",
   },
   {
-    commune: "Mahambo",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ambalakindresy",
   },
   {
-    commune: "Maromitety",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ambohimahasoa",
   },
   {
-    commune: "Beloha",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "AMBOHIMAHASOA",
+    COMMUNE: "Ankerana",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBOHIMAHASOA", COMMUNE: "Sahave" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Andreamalama" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "ISANDRA", COMMUNE: "Anjoma Itsara" },
   {
-    commune: "Ambatotsivala",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Anjanomanona Tsimiavaka",
   },
   {
-    commune: "Beabobo",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Alakamisy Itenina",
   },
   {
-    commune: "Ikopoky",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "LALANGINA",
+    COMMUNE: "Ampatsy Ampangabe",
   },
   {
-    commune: "Mahaenene",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Andranomiditra",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "VOHIBATO", COMMUNE: "Mahaditra" },
   {
-    commune: "Marolinta",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "VOHIBATO",
+    COMMUNE: "Vinanitelo Andrefana",
   },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Sendrisoa" },
+  { REGION: "MATSIATRA AMBONY", DISTRICT: "AMBALAVAO", COMMUNE: "Namoly" },
   {
-    commune: "Tranoroa",
+    REGION: "MATSIATRA AMBONY",
+    DISTRICT: "ISANDRA",
+    COMMUNE: "Ambalamidera Ambohimanana",
   },
+  { REGION: "MELAKY", DISTRICT: "AMBATOMAINTY", COMMUNE: "Makaraingo" },
+  { REGION: "MELAKY", DISTRICT: "AMBATOMAINTY", COMMUNE: "Marotsialeha" },
+  { REGION: "MELAKY", DISTRICT: "AMBATOMAINTY", COMMUNE: "Bemarivo" },
+  { REGION: "MELAKY", DISTRICT: "ANTSALOVA", COMMUNE: "Bemaraha Atsinanana" },
+  { REGION: "MELAKY", DISTRICT: "ANTSALOVA", COMMUNE: "Masoarivo" },
+  { REGION: "MELAKY", DISTRICT: "ANTSALOVA", COMMUNE: "Soahany" },
+  { REGION: "MELAKY", DISTRICT: "ANTSALOVA", COMMUNE: "Trangahy" },
+  { REGION: "MELAKY", DISTRICT: "ANTSALOVA", COMMUNE: "Bekopaka" },
+  { REGION: "MELAKY", DISTRICT: "ANTSALOVA", COMMUNE: "Antsalova" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Besalampy" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Ampako Ambalarano" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Ankasakasa Tsibiray" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Antsirasira" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Bekodoka" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Mahabe" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Soanenga" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Ambolodia Atsimo" },
+  { REGION: "MELAKY", DISTRICT: "BESALAMPY", COMMUNE: "Marovoay Atsimo" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Maintirano" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Andabotoka" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Andranovao" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Andrea" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Ankisatra" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Antsondrondava" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Betanantanana" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Tambohorano" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Bebaboka Atsimo" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Berevo Ranobe" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Bemokotra Atsimo" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Veromanga" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Maromavo" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Antsaidoha Bebao" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Marohazo" },
+  { REGION: "MELAKY", DISTRICT: "MORAFENOBE", COMMUNE: "Morafenobe" },
+  { REGION: "MELAKY", DISTRICT: "MORAFENOBE", COMMUNE: "Beravina" },
+  { REGION: "MELAKY", DISTRICT: "MORAFENOBE", COMMUNE: "Andramy" },
+  { REGION: "MELAKY", DISTRICT: "MORAFENOBE", COMMUNE: "Antranokoaky" },
+  { REGION: "MELAKY", DISTRICT: "AMBATOMAINTY", COMMUNE: "Ambatomainty" },
+  { REGION: "MELAKY", DISTRICT: "AMBATOMAINTY", COMMUNE: "Sarodrano" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Mafajijo" },
+  { REGION: "MELAKY", DISTRICT: "MAINTIRANO", COMMUNE: "Belitsaka" },
   {
-    commune: "Tranovaho",
+    REGION: "MENABE",
+    DISTRICT: "BELO SUR TSIRIBIHINA",
+    COMMUNE: "Amboalimena",
   },
   {
-    commune: "Tsiombe",
+    REGION: "MENABE",
+    DISTRICT: "BELO SUR TSIRIBIHINA",
+    COMMUNE: "Andimaky Manambolo",
   },
   {
-    commune: "Anjampaly",
+    REGION: "MENABE",
+    DISTRICT: "BELO SUR TSIRIBIHINA",
+    COMMUNE: "Beroboka Avaratra",
   },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Delta" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Masoarivo" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Tsimafana" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Ambiky" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Ankalalobe" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Berevo" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Ankororoky" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Antsoha" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Belinta" },
+  { REGION: "MENABE", DISTRICT: "BELO SUR TSIRIBIHINA", COMMUNE: "Tsaraotana" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Mahabo" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Ambia" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Ampanihy" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Analamitsivala" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Ankilizato" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Befotaka" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Beronono" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Bezezika" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Malaimbandy" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Mandabe" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Tsimazava" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Andranopasy" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Betsioky" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Soaserana" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Anontsibe Sakalava" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Manja" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Beharona" },
+  { REGION: "MENABE", DISTRICT: "MANJA", COMMUNE: "Ankiliabo" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Ambatolahy" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Ampanihy" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Dabolava" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Itondy" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Manambina" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Manandaza" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Isalo" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Ankotrofotsy" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Anosimena" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Bemahatazana" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Andranomainty" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Miandrivazo" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Betsipolitra" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Ankavandra" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Soaloka" },
+  { REGION: "MENABE", DISTRICT: "MIANDRIVAZO", COMMUNE: "Ankondromena" },
+  { REGION: "MENABE", DISTRICT: "MORONDAVA", COMMUNE: "Morondava" },
+  { REGION: "MENABE", DISTRICT: "MORONDAVA", COMMUNE: "Befasy" },
+  { REGION: "MENABE", DISTRICT: "MORONDAVA", COMMUNE: "Belo sur Mer" },
+  { REGION: "MENABE", DISTRICT: "MORONDAVA", COMMUNE: "Bemanonga" },
   {
-    commune: "Ankilivalo",
+    REGION: "MENABE",
+    DISTRICT: "MORONDAVA",
+    COMMUNE: "Bemanonga Marofangiliha",
   },
+  { REGION: "MENABE", DISTRICT: "MORONDAVA", COMMUNE: "Analaiva" },
+  { REGION: "MENABE", DISTRICT: "MAHABO", COMMUNE: "Ankilivalo" },
   {
-    commune: "Antaritarika",
+    REGION: "MENABE",
+    DISTRICT: "BELO SUR TSIRIBIHINA",
+    COMMUNE: "Bemarivo Ankirondro",
   },
   {
-    commune: "Behazomanga",
+    REGION: "MENABE",
+    DISTRICT: "BELO SUR TSIRIBIHINA",
+    COMMUNE: "Belo sur Tsiribihina",
   },
-  {
-    commune: "Faux Cap",
-  },
-  {
-    commune: "Imongy",
-  },
-  {
-    commune: "Nikoly",
-  },
-  {
-    commune: "Ambanisarike",
-  },
-  {
-    commune: "Ambazoa",
-  },
-  {
-    commune: "Ambohimalaza",
-  },
-  {
-    commune: "Ambonaivo",
-  },
-  {
-    commune: "Ambondro",
-  },
-  {
-    commune: "Ampamata",
-  },
-  {
-    commune: "Analamary",
-  },
-  {
-    commune: "Andalatanosy",
-  },
-  {
-    commune: "Andoharano",
-  },
-  {
-    commune: "Andragnanivo",
-  },
-  {
-    commune: "Anjeke Ankilikira",
-  },
-  {
-    commune: "Antanimora Atsimo",
-  },
-  {
-    commune: "Erada Tsimanato",
-  },
-  {
-    commune: "Imanombo",
-  },
-  {
-    commune: "Jafaro",
-  },
-  {
-    commune: "Maroalomainty",
-  },
-  {
-    commune: "Maroalopoty",
-  },
-  {
-    commune: "Marovato Befeno",
-  },
-  {
-    commune: "Sihanamaro",
-  },
-  {
-    commune: "Tsimananada",
-  },
-  {
-    commune: "Bekily Morafeno",
-  },
-  {
-    commune: "Ambahita",
-  },
-  {
-    commune: "Ambatosola",
-  },
-  {
-    commune: "Anivorano Mitsinjo",
-  },
-  {
-    commune: "Anja Avaratra",
-  },
-  {
-    commune: "Ankaranabo Avaratra",
-  },
-  {
-    commune: "Bekitro",
-  },
-  {
-    commune: "Belindo Mahasoa",
-  },
-  {
-    commune: "Beraketa",
-  },
-  {
-    commune: "Besakoa",
-  },
-  {
-    commune: "Beteza",
-  },
-  {
-    commune: "Bevitiky",
-  },
-  {
-    commune: "Manakompy",
-  },
-  {
-    commune: "Besaroa Maroviro",
-  },
-  {
-    commune: "Mikaikarivo Ambatomainty",
-  },
-  {
-    commune: "Tanandava",
-  },
-  {
-    commune: "Tsikolaky",
-  },
-  {
-    commune: "Vohimanga",
-  },
-  {
-    commune: "Tanambao Tsirandrany",
-  },
-  {
-    commune: "Antskoamaro",
-  },
-  {
-    commune: "Tolanaro",
-  },
-  {
-    commune: "Ampasy Nahampoana",
-  },
-  {
-    commune: "Mandromodromotra",
-  },
-  {
-    commune: "Soanierana",
-  },
-  {
-    commune: "Ambatoabo",
-  },
-  {
-    commune: "Ampasimena",
-  },
-  {
-    commune: "Analapatsa I",
-  },
-  {
-    commune: "Andranobory",
-  },
-  {
-    commune: "Ankaramena",
-  },
-  {
-    commune: "Ankarera",
-  },
-  {
-    commune: "Bevoay",
-  },
-  {
-    commune: "Emanobo",
-  },
-  {
-    commune: "Enakara Ambony",
-  },
-  {
-    commune: "Enaniliha",
-  },
-  {
-    commune: "Fenoevo Efita",
-  },
-  {
-    commune: "Iaboakoho",
-  },
-  {
-    commune: "Ifarantsa",
-  },
-  {
-    commune: "Isaka Ivondro",
-  },
-  {
-    commune: "Mahatalaky",
-  },
-  {
-    commune: "Manambaro",
-  },
-  {
-    commune: "Manantenina",
-  },
-  {
-    commune: "Mandiso",
-  },
-  {
-    commune: "Ranomafana Atsimo",
-  },
-  {
-    commune: "Ranopiso",
-  },
-  {
-    commune: "Sarasambo",
-  },
-  {
-    commune: "Soavary",
-  },
-  {
-    commune: "Betroka",
-  },
-  {
-    commune: "Ambalasoa",
-  },
-  {
-    commune: "Ambatomivary",
-  },
-  {
-    commune: "Andriandampy",
-  },
-  {
-    commune: "Beapombo I",
-  },
-  {
-    commune: "Beapombo II",
-  },
-  {
-    commune: "Bekorobo",
-  },
-  {
-    commune: "Benato Toby",
-  },
-  {
-    commune: "Iaborotra",
-  },
-  {
-    commune: "Ianabinda",
-  },
-  {
-    commune: "Ianakafy",
-  },
-  {
-    commune: "Isoanala",
-  },
-  {
-    commune: "Ivahona",
-  },
-  {
-    commune: "Jangany",
-  },
-  {
-    commune: "Kelivaho",
-  },
-  {
-    commune: "Mahasoa Atsinanana",
-  },
-  {
-    commune: "Nanarena Besakoa",
-  },
-  {
-    commune: "Nanirona",
-  },
-  {
-    commune: "Tsaraitso",
-  },
-  {
-    commune: "Sakamahily",
-  },
-  {
-    commune: "Behara",
-  },
-  {
-    commune: "Berano Ville",
-  },
-  {
-    commune: "Ebelo",
-  },
-  {
-    commune: "Eloty",
-  },
-  {
-    commune: "Esira",
-  },
-  {
-    commune: "Ifotaka",
-  },
-  {
-    commune: "Mahaly",
-  },
-  {
-    commune: "Manevy",
-  },
-  {
-    commune: "Maromby",
-  },
-  {
-    commune: "Marotsiraka",
-  },
-  {
-    commune: "Ranobe",
-  },
-  {
-    commune: "Tanandava Atsimo",
-  },
-  {
-    commune: "Tranomaro",
-  },
-  {
-    commune: "Tsivory",
-  },
-  {
-    commune: "Tomboarivo",
-  },
-  {
-    commune: "Sampona",
-  },
-  {
-    commune: "Toliara I",
-  },
-  {
-    commune: "Beroroha",
-  },
-  {
-    commune: "Behisatra",
-  },
-  {
-    commune: "Fanjakana",
-  },
-  {
-    commune: "Mandronarivo",
-  },
-  {
-    commune: "Marerano",
-  },
-  {
-    commune: "Sakena",
-  },
-  {
-    commune: "Tanamary",
-  },
-  {
-    commune: "Bemavo",
-  },
-  {
-    commune: "Morombe",
-  },
-  {
-    commune: "Ambahikily",
-  },
-  {
-    commune: "Ankatsakantsa Atsimo",
-  },
-  {
-    commune: "Antanimieva",
-  },
-  {
-    commune: "Antongo Vaovao",
-  },
-  {
-    commune: "Basibasy",
-  },
-  {
-    commune: "Befandefa",
-  },
-  {
-    commune: "Befandriana Atsimo",
-  },
-  {
-    commune: "Ankazoabo Atsimo",
-  },
-  {
-    commune: "Ambatolahy",
-  },
-  {
-    commune: "Andranomafana",
-  },
-  {
-    commune: "Ankeriky",
-  },
-  {
-    commune: "Ankilivalokely",
-  },
-  {
-    commune: "Berenty",
-  },
-  {
-    commune: "Fotivolo",
-  },
-  {
-    commune: "Ilemby",
-  },
-  {
-    commune: "Tandrano",
-  },
-  {
-    commune: "Ankazomanga Andrefana",
-  },
-  {
-    commune: "Maroarivo Ankazomanga",
-  },
-  {
-    commune: "Marosavoa",
-  },
-  {
-    commune: "Masiaboay",
-  },
-  {
-    commune: "Soaserana",
-  },
-  {
-    commune: "Ampanihy",
-  },
-  {
-    commune: "Amboropotsy",
-  },
-  {
-    commune: "Anavoha",
-  },
-  {
-    commune: "Androipano",
-  },
-  {
-    commune: "Androka",
-  },
-  {
-    commune: "Ankiliabo",
-  },
-  {
-    commune: "Ankilimivory",
-  },
-  {
-    commune: "Ankilizato",
-  },
-  {
-    commune: "Antaly",
-  },
-  {
-    commune: "Beahitse",
-  },
-  {
-    commune: "Belafika Ambony",
-  },
-  {
-    commune: "Fotadrevo",
-  },
-  {
-    commune: "Gogogogo",
-  },
-  {
-    commune: "Itampolo",
-  },
-  {
-    commune: "Maniry",
-  },
-  {
-    commune: "Vohitany",
-  },
-  {
-    commune: "Sakaraha",
-  },
-  {
-    commune: "Ambinany",
-  },
-  {
-    commune: "Amboronabo",
-  },
-  {
-    commune: "Vineta Andamasiny",
-  },
-  {
-    commune: "Andranolava",
-  },
-  {
-    commune: "Mahaboboka",
-  },
-  {
-    commune: "Miary Lamatihy",
-  },
-  {
-    commune: "Miary Taheza",
-  },
-  {
-    commune: "Mihavatsy",
-  },
-  {
-    commune: "Mikoboka",
-  },
-  {
-    commune: "Mitsinjo Kiliarivo",
-  },
-  {
-    commune: "Ankiloaka I",
-  },
-  {
-    commune: "Mitsinjo Betanimena",
-  },
-  {
-    commune: "Ambohimahavelona",
-  },
-  {
-    commune: "Ambolofotsy",
-  },
-  {
-    commune: "Analamisampy",
-  },
-  {
-    commune: "Andranohinaly",
-  },
-  {
-    commune: "Andranovory",
-  },
-  {
-    commune: "Ankilimalinike",
-  },
-  {
-    commune: "Antanimena",
-  },
-  {
-    commune: "Beheloka",
-  },
-  {
-    commune: "Behompy",
-  },
-  {
-    commune: "Belalanda",
-  },
-  {
-    commune: "Betsinjaka",
-  },
-  {
-    commune: "Efoetse",
-  },
-  {
-    commune: "Manombo Atsimo",
-  },
-  {
-    commune: "Manorofify",
-  },
-  {
-    commune: "Marofoty",
-  },
-  {
-    commune: "Maromiandra",
-  },
-  {
-    commune: "Miary",
-  },
-  {
-    commune: "Milenake",
-  },
-  {
-    commune: "Saint Augustin",
-  },
-  {
-    commune: "Soahazo",
-  },
-  {
-    commune: "Soalara Atsimo",
-  },
-  {
-    commune: "Tsianisiha",
-  },
-  {
-    commune: "Tsifota",
-  },
-  {
-    commune: "Anakao",
-  },
-  {
-    commune: "Ambalavato",
-  },
-  {
-    commune: "Benonoky",
-  },
-  {
-    commune: "Ejeda",
-  },
-  {
-    commune: "Betioky Atsimo",
-  },
-  {
-    commune: "Ambatry Mitsinjo",
-  },
-  {
-    commune: "Ankazombalala",
-  },
-  {
-    commune: "Antohabato",
-  },
-  {
-    commune: "Antsavoa",
-  },
-  {
-    commune: "Beantake",
-  },
-  {
-    commune: "Belamoty",
-  },
-  {
-    commune: "Beora",
-  },
-  {
-    commune: "Besely",
-  },
-  {
-    commune: "Bezaha",
-  },
-  {
-    commune: "Fenoandala",
-  },
-  {
-    commune: "Lazarivo",
-  },
-  {
-    commune: "Manalobe",
-  },
-  {
-    commune: "Sakamasay",
-  },
-  {
-    commune: "Salobe",
-  },
-  {
-    commune: "Soamanonga",
-  },
-  {
-    commune: "Tameantsoa",
-  },
-  {
-    commune: "Tongobory",
-  },
-  {
-    commune: "Vatolatsaka",
-  },
-  {
-    commune: "Andranomangatsiaka",
-  },
-  {
-    commune: "Montifeno",
-  },
-  {
-    commune: "Benenitra",
-  },
-  {
-    commune: "Ankilimary",
-  },
-  {
-    commune: "Ianapera",
-  },
-  {
-    commune: "Tanambao Ambony",
-  },
-  {
-    commune: "Vohimary",
-  },
-  {
-    commune: "Savazy",
-  },
-  {
-    commune: "Beara",
-  },
-  {
-    commune: "Beroy Atsimo",
-  },
-  {
-    commune: "Ehara",
-  },
-  {
-    commune: "Farafangana",
-  },
-  {
-    commune: "Ambalavato Antevato",
-  },
-  {
-    commune: "Ambalavato Avaratra",
-  },
-  {
-    commune: "Ambohigogo",
-  },
-  {
-    commune: "Ambohimandroso",
-  },
-  {
-    commune: "Amporoforo",
-  },
-  {
-    commune: "Beretra",
-  },
-  {
-    commune: "Etrotroka",
-  },
-  {
-    commune: "Evato",
-  },
-  {
-    commune: "Ihorombe",
-  },
-  {
-    commune: "Ivandrika",
-  },
-  {
-    commune: "Mahabo Mananivo",
-  },
-  {
-    commune: "Maheriraty",
-  },
-  {
-    commune: "Marovandrika",
-  },
-  {
-    commune: "Sahamadio",
-  },
-  {
-    commune: "Vohimasy",
-  },
-  {
-    commune: "Vohilavan'i Manampatra",
-  },
-  {
-    commune: "Anosivelo",
-  },
-  {
-    commune: "Befotaka Atsimo",
-  },
-  {
-    commune: "Antaninarenina",
-  },
-  {
-    commune: "Antokoboritelo",
-  },
-  {
-    commune: "Beharena",
-  },
-  {
-    commune: "Bekofafa Atsimo",
-  },
-  {
-    commune: "Inosy",
-  },
-  {
-    commune: "Marovitsika Atsimo",
-  },
-  {
-    commune: "Ranotsara Atsimo",
-  },
-  {
-    commune: "Nosifeno ( ex Midongy)",
-  },
-  {
-    commune: "Andranolalina",
-  },
-  {
-    commune: "Ankazovelo",
-  },
-  {
-    commune: "Bevaho",
-  },
-  {
-    commune: "Ivondro",
-  },
-  {
-    commune: "Soakibany",
-  },
-  {
-    commune: "Zaraha",
-  },
-  {
-    commune: "Vangaindrano",
-  },
-  {
-    commune: "Ambatolava",
-  },
-  {
-    commune: "Bekaraoka",
-  },
-  {
-    commune: "Bevata",
-  },
-  {
-    commune: "Fenoambany",
-  },
-  {
-    commune: "Iara",
-  },
-  {
-    commune: "Karimbary",
-  },
-  {
-    commune: "Mahabe",
-  },
-  {
-    commune: "Manambondro",
-  },
-  {
-    commune: "Marokibo",
-  },
-  {
-    commune: "Sandravinany",
-  },
-  {
-    commune: "Tsiately",
-  },
-  {
-    commune: "Fonilaza",
-  },
-  {
-    commune: "Vohitrambo",
-  },
-  {
-    commune: "Lohafary",
-  },
-  {
-    commune: "Anilobe",
-  },
-  {
-    commune: "Bema",
-  },
-  {
-    commune: "Ampataka",
-  },
-  {
-    commune: "Ampasimalemy",
-  },
-  {
-    commune: "Tsianofana",
-  },
-  {
-    commune: "Vohimalaza",
-  },
-  {
-    commune: "Vatanato",
-  },
-  {
-    commune: "Isahara",
-  },
-  {
-    commune: "Ambongo",
-  },
-  {
-    commune: "Ranomena",
-  },
-  {
-    commune: "Matanga",
-  },
-  {
-    commune: "Vondrozo",
-  },
-  {
-    commune: "Ambodirano",
-  },
-  {
-    commune: "Anandravy",
-  },
-  {
-    commune: "Andakana",
-  },
-  {
-    commune: "Antokonala",
-  },
-  {
-    commune: "Iamonta",
-  },
-  {
-    commune: "Karianga",
-  },
-  {
-    commune: "Mahavelo",
-  },
-  {
-    commune: "Manambidala",
-  },
-  {
-    commune: "Manato",
-  },
-  {
-    commune: "Moroteza",
-  },
-  {
-    commune: "Vohiboreka",
-  },
-  {
-    commune: "Mahatsinjo",
-  },
-  {
-    commune: "Anosy Tsararafa",
-  },
-  {
-    commune: "Ambalatany",
-  },
-  {
-    commune: "Namohora Iaborano",
-  },
-  {
-    commune: "Ambohimana",
-  },
-  {
-    commune: "Tangainony",
-  },
-  {
-    commune: "Mahafasa Afovoany",
-  },
-  {
-    commune: "Vohitromby",
-  },
-  {
-    commune: "Manambotra Atsimo",
-  },
-  {
-    commune: "Antondabe",
-  },
-  {
-    commune: "Amparihy Atsinanana",
-  },
-  {
-    commune: "Soamanova",
-  },
-  {
-    commune: "Iabohazo",
-  },
-  {
-    commune: "Tovona",
-  },
-  {
-    commune: "Antseranambe",
-  },
-  {
-    commune: "Ankarana Miraihina",
-  },
-  {
-    commune: "Efatsy Anandroza",
-  },
-  {
-    commune: "Lopary",
-  },
-  {
-    commune: "Vohipaho",
-  },
-  {
-    commune: "Masianaka Nosibe",
-  },
-  {
-    commune: "Andonabe Atsimo",
-  },
-  {
-    commune: "Anosiarivo",
-  },
-  {
-    commune: "Maromitety I",
-  },
-  {
-    commune: "Tanambao Rabemanana",
-  },
-  {
-    commune: "Lohavanana",
-  },
-  {
-    commune: "Sahakevo",
-  },
-  {
-    commune: "Ambodinonoka",
-  },
-  {
-    commune: "AmbalapaisoII",
-  },
-  {
-    commune: "Ambalarondra",
-  },
-  {
-    commune: "Ambinaninony",
-  },
-  {
-    commune: "Ambohimanana",
-  },
-  {
-    commune: "Ampasimbe",
-  },
-  {
-    commune: "Andekaleka",
-  },
-  {
-    commune: "Andevoranto",
-  },
-  {
-    commune: "Anjahamana",
-  },
-  {
-    commune: "Antsampanana",
-  },
-  {
-    commune: "Fanasana",
-  },
-  {
-    commune: "Fetraomby",
-  },
-  {
-    commune: "Lohariandava",
-  },
-  {
-    commune: "Mahatsara",
-  },
-  {
-    commune: "Maroseranana",
-  },
-  {
-    commune: "Ranomafana Atsinanana",
-  },
-  {
-    commune: "Razanaka",
-  },
-  {
-    commune: "Vohitranivona",
-  },
-  {
-    commune: "Brickaville",
-  },
-  {
-    commune: "Anivorano Atsinanana",
-  },
-  {
-    commune: "Ambinanidilana",
-  },
-  {
-    commune: "Ambodibonara",
-  },
-  {
-    commune: "Ambodiharina",
-  },
-  {
-    commune: "Ankazotsifantatra",
-  },
-  {
-    commune: "Befotaka",
-  },
-  {
-    commune: "Betsizaraina",
-  },
-  {
-    commune: "Masomeloka",
-  },
-  {
-    commune: "Andranambomaro",
-  },
-  {
-    commune: "Antanandehibe",
-  },
-  {
-    commune: "Manakana",
-  },
-  {
-    commune: "Manaratsandry",
-  },
-  {
-    commune: "Mahela",
-  },
-  {
-    commune: "Saivaza",
-  },
-  {
-    commune: "Antanambao Manampotsy",
-  },
-  {
-    commune: "Toamasina",
-  },
-  {
-    commune: "Ambodiriana",
-  },
-  {
-    commune: "Amboditandroho Mahatsara",
-  },
-  {
-    commune: "Ampasimadinika Manambolo",
-  },
-  {
-    commune: "Antenina I",
-  },
-  {
-    commune: "Antetezambaro",
-  },
-  {
-    commune: "Mangabe",
-  },
-  {
-    commune: "Ampisokina",
-  },
-  {
-    commune: "Andondabe",
-  },
-  {
-    commune: "Fanandrana",
-  },
-  {
-    commune: "Andranobolaha",
-  },
-  {
-    commune: "Ambodivoananto",
-  },
-  {
-    commune: "Antanambao Mahatsara",
-  },
-  {
-    commune: "Iamborano",
-  },
-  {
-    commune: "Ifasina I",
-  },
-  {
-    commune: "Ifasina II",
-  },
-  {
-    commune: "Niherenana",
-  },
-  {
-    commune: "Tsivangiana",
-  },
-  {
-    commune: "Ambodivononoka Ranganana",
-  },
-  {
-    commune: "Ifasina III",
-  },
-  {
-    commune: "Amboditavolo",
-  },
-  {
-    commune: "Sahamatevina",
-  },
-  {
-    commune: "Vatomandry",
-  },
-  {
-    commune: "Maintinandry",
-  },
-  {
-    commune: "Ilaka",
-  },
-  {
-    commune: "Niarovana Caroline",
-  },
-  {
-    commune: "Ampasimbe Onibe",
-  },
-  {
-    commune: "Sahambala",
-  },
-  {
-    commune: "Ambodilazana",
-  },
-  {
-    commune: "Satrandroy",
-  },
-  {
-    commune: "Fito Sahaviavy",
-  },
-  {
-    commune: "Toamasina II",
-  },
-  {
-    commune: "Ambalabe",
-  },
-  {
-    commune: "Ambalavolo",
-  },
-  {
-    commune: "Tsarasambo",
-  },
-  {
-    commune: "Tanambao Vahatrakaka",
-  },
-  {
-    commune: "Ampasimadinika",
-  },
-  {
-    commune: "Ambodivoahangy",
-  },
-  {
-    commune: "Ambatofisaka II",
-  },
-  {
-    commune: "Androrangavola",
-  },
-  {
-    commune: "Marolambo",
-  },
-  {
-    commune: "Mahatsinjo Atsimo",
-  },
-  {
-    commune: "Maevatanana I",
-  },
-  {
-    commune: "Andriba",
-  },
-  {
-    commune: "Antanimbary",
-  },
-  {
-    commune: "Antsiafabositra",
-  },
-  {
-    commune: "Beratsimanina",
-  },
-  {
-    commune: "Berivotra",
-  },
-  {
-    commune: "Marokoro",
-  },
-  {
-    commune: "Tsararano",
-  },
-  {
-    commune: "Tsaratanana",
-  },
-  {
-    commune: "Ambakireny",
-  },
-  {
-    commune: "Ampandrana",
-  },
-  {
-    commune: "Andriamena",
-  },
-  {
-    commune: "Bekapaika",
-  },
-  {
-    commune: "Betrandraka",
-  },
-  {
-    commune: "Brieville",
-  },
-  {
-    commune: "Isinko",
-  },
-  {
-    commune: "Keliloha",
-  },
-  {
-    commune: "Sakoamadinika",
-  },
-  {
-    commune: "Sarobaratra",
-  },
-  {
-    commune: "Tsararova",
-  },
-  {
-    commune: "Ambalanjanakomby",
-  },
-  {
-    commune: "Madiromirafy",
-  },
-  {
-    commune: "Ambalajia",
-  },
-  {
-    commune: "Maevatanana II",
-  },
-  {
-    commune: "Bemokotra",
-  },
-  {
-    commune: "Mahazoma",
-  },
-  {
-    commune: "Antanimbaribe",
-  },
-  {
-    commune: "Kandreho",
-  },
-  {
-    commune: "Ambaliha",
-  },
-  {
-    commune: "Behazomaty",
-  },
-  {
-    commune: "Maria",
-  },
-  {
-    commune: "Betaimboay",
-  },
-  {
-    commune: "Mahajanga I",
-  },
-  {
-    commune: "Soalala",
-  },
-  {
-    commune: "Ambohipaky",
-  },
-  {
-    commune: "Andranomavo",
-  },
-  {
-    commune: "Antsakoamileka",
-  },
-  {
-    commune: "Ambato Ambarimay",
-  },
-  {
-    commune: "Andranofasika",
-  },
-  {
-    commune: "Ambesisika",
-  },
-  {
-    commune: "Andranomamy",
-  },
-  {
-    commune: "Anjiajia",
-  },
-  {
-    commune: "Ankijabe",
-  },
-  {
-    commune: "Ankirihitra",
-  },
-  {
-    commune: "Madirovalo",
-  },
-  {
-    commune: "Manerinerina",
-  },
-  {
-    commune: "Sitampiky",
-  },
-  {
-    commune: "Ambondromamy",
-  },
-  {
-    commune: "Marovoay",
-  },
-  {
-    commune: "Marovoay II",
-  },
-  {
-    commune: "Ambolomoty",
-  },
-  {
-    commune: "Ankaboka",
-  },
-  {
-    commune: "Ankazomborona",
-  },
-  {
-    commune: "Anosinalainolona",
-  },
-  {
-    commune: "Antanambao Andranolava",
-  },
-  {
-    commune: "Antanimasaka",
-  },
-  {
-    commune: "Bemaharivo",
-  },
-  {
-    commune: "Marosakoa",
-  },
-  {
-    commune: "Mitsinjo",
-  },
-  {
-    commune: "Ambarimaninga",
-  },
-  {
-    commune: "Antseza",
-  },
-  {
-    commune: "Antongomena Bevary",
-  },
-  {
-    commune: "Bekipay",
-  },
-  {
-    commune: "Katsepy",
-  },
-  {
-    commune: "Matsakabanja",
-  },
-  {
-    commune: "Ambalakida",
-  },
-  {
-    commune: "Andranoboka",
-  },
-  {
-    commune: "Bekobay Afovoany",
-  },
-  {
-    commune: "Belobaka",
-  },
-  {
-    commune: "Betsako",
-  },
-  {
-    commune: "Boanamary",
-  },
-  {
-    commune: "Mahajamba Usine",
-  },
-  {
-    commune: "Mariarano",
-  },
-  {
-    commune: "Fenoarivobe",
-  },
-  {
-    commune: "Ambatomainty Atsimo",
-  },
-  {
-    commune: "Firavahana",
-  },
-  {
-    commune: "Kiranomena",
-  },
-  {
-    commune: "Mangatany",
-  },
-  {
-    commune: "Tsinjoarivo 22",
-  },
-  {
-    commune: "Tsiroanomandidy",
-  },
-  {
-    commune: "Ankadinondry Sakay",
-  },
-  {
-    commune: "Ambatolampy",
-  },
-  {
-    commune: "Ankerana Avaratra",
-  },
-  {
-    commune: "Antsahalava",
-  },
-  {
-    commune: "Bemahatazana",
-  },
-  {
-    commune: "Maroharona",
-  },
-  {
-    commune: "Maritampona",
-  },
-  {
-    commune: "Miandrarivo",
-  },
-  {
-    commune: "Tsiroanomandidy Fihaonana",
-  },
-  {
-    commune: "Ambararatabe",
-  },
-  {
-    commune: "Mahasolo",
-  },
-  {
-    commune: "Ambavahady Anosy",
-  },
-  {
-    commune: "Ambalanirana",
-  },
-  {
-    commune: "Mahajeby",
-  },
-  {
-    commune: "Bevato",
-  },
-  {
-    commune: "Andriampotsy",
-  },
-  {
-    commune: "Tsinjoarivo Imanga",
-  },
-  {
-    commune: "Morarano Marotampona",
-  },
-  {
-    commune: "Fiadanantsoa",
-  },
-  {
-    commune: "Ambanja",
-  },
-  {
-    commune: "Ambalahonko",
-  },
-  {
-    commune: "Ambodimanga Ramena",
-  },
-  {
-    commune: "Ambohimarina",
-  },
-  {
-    commune: "Ambohimena",
-  },
-  {
-    commune: "Ambohitrandriana",
-  },
-  {
-    commune: "Ankatafa",
-  },
-  {
-    commune: "Anorotsangana",
-  },
-  {
-    commune: "Antafiambotry",
-  },
-  {
-    commune: "Antranokarany",
-  },
-  {
-    commune: "Antsahabe Afovoany",
-  },
-  {
-    commune: "Antsakoamanondro",
-  },
-  {
-    commune: "Antsatsaka",
-  },
-  {
-    commune: "Antsirabe",
-  },
-  {
-    commune: "Bemanevika",
-  },
-  {
-    commune: "Bemanevika Andrefana",
-  },
-  {
-    commune: "Benavony",
-  },
-  {
-    commune: "Djangoa",
-  },
-  {
-    commune: "Maevatanana",
-  },
-  {
-    commune: "Maherivaratra",
-  },
-  {
-    commune: "Marotolana",
-  },
-  {
-    commune: "Ambilobe",
-  },
-  {
-    commune: "Ambarakaraka",
-  },
-  {
-    commune: "Anaborano Ifasy",
-  },
-  {
-    commune: "Anjiabe Ambony",
-  },
-  {
-    commune: "Antsohimbondrona",
-  },
-  {
-    commune: "Beramanja",
-  },
-  {
-    commune: "Betsiaka",
-  },
-  {
-    commune: "Manambato",
-  },
-  {
-    commune: "Mantaly",
-  },
-  {
-    commune: "Ambatoben' Anjavy",
-  },
-  {
-    commune: "Ambakirano",
-  },
-  {
-    commune: "Ampondralava",
-  },
-  {
-    commune: "Tanambao Marivorahona",
-  },
-  {
-    commune: "Sirama",
-  },
-  {
-    commune: "Antsiranana I",
-  },
-  {
-    commune: "Andranovondronina",
-  },
-  {
-    commune: "Mangaoka",
-  },
-  {
-    commune: "Antsahampano",
-  },
-  {
-    commune: "Ramena",
-  },
-  {
-    commune: "Mahavanona",
-  },
-  {
-    commune: "Mahalina",
-  },
-  {
-    commune: "Andranofanjava",
-  },
-  {
-    commune: "Anketrakabe",
-  },
-  {
-    commune: "Ankarongana",
-  },
-  {
-    commune: "Mosorolava",
-  },
-  {
-    commune: "Bobasakoa",
-  },
-  {
-    commune: "Anivorano Avaratra",
-  },
-  {
-    commune: "Ambondrona",
-  },
-  {
-    commune: "Bobakilandy",
-  },
-  {
-    commune: "Antanamitarana Atsimo",
-  },
-  {
-    commune: "Sakaramy",
-  },
-  {
-    commune: "Joffre Ville",
-  },
-  {
-    commune: "Sadjoavato",
-  },
-  {
-    commune: "Andrafiabe",
-  },
-  {
-    commune: "Ambolombozobe",
-  },
-  {
-    commune: "Antsalaka",
-  },
-  {
-    commune: "Antsakoabe",
-  },
-  {
-    commune: "Antsoha",
-  },
-  {
-    commune: "Ankingameloka",
-  },
-  {
-    commune: "Nosy Be",
-  },
-  {
-    commune: "Antsaravibe",
-  },
-  {
-    commune: "Iakora",
-  },
-  {
-    commune: "Andranombao",
-  },
-  {
-    commune: "Begogo",
-  },
-  {
-    commune: "Ranotsara Avaratra",
-  },
-  {
-    commune: "Volambita",
-  },
-  {
-    commune: "Ihosy",
-  },
-  {
-    commune: "Analavoka",
-  },
-  {
-    commune: "Andiolava",
-  },
-  {
-    commune: "Ankily",
-  },
-  {
-    commune: "Irina",
-  },
-  {
-    commune: "Mahasoa",
-  },
-  {
-    commune: "Menamaty Iloto",
-  },
-  {
-    commune: "Sahambano",
-  },
-  {
-    commune: "Sakalalina",
-  },
-  {
-    commune: "Satrokala",
-  },
-  {
-    commune: "Tolohomiady",
-  },
-  {
-    commune: "Andohan' Ilakaka",
-  },
-  {
-    commune: "Ranohira",
-  },
-  {
-    commune: "Ilakaka",
-  },
-  {
-    commune: "Zazafotsy",
-  },
-  {
-    commune: "Ivohibe",
-  },
-  {
-    commune: "Antambohobe",
-  },
-  {
-    commune: "Antaramena",
-  },
-  {
-    commune: "Ivongo",
-  },
-  {
-    commune: "Maropaika",
-  },
-  {
-    commune: "Kotipa",
-  },
-  {
-    commune: "Ambia",
-  },
-  {
-    commune: "Analaliry",
-  },
-  {
-    commune: "Soamatasy",
-  },
-  {
-    commune: "Arivonimamo I",
-  },
-  {
-    commune: "Imerintsiatosika",
-  },
-  {
-    commune: "Alakamisikely",
-  },
-  {
-    commune: "Ambatomirahavavy",
-  },
-  {
-    commune: "Amboanana",
-  },
-  {
-    commune: "Ambohimandry Atsinanana",
-  },
-  {
-    commune: "Ambohimasina",
-  },
-  {
-    commune: "Ambohitrambo",
-  },
-  {
-    commune: "Ampahimanga",
-  },
-  {
-    commune: "Antambolo",
-  },
-  {
-    commune: "Antenimbe",
-  },
-  {
-    commune: "Mahatsinjo Atsinanana",
-  },
-  {
-    commune: "Manalalondo",
-  },
-  {
-    commune: "Marofangady",
-  },
-  {
-    commune: "Miantsoarivo",
-  },
-  {
-    commune: "Morarano",
-  },
-  {
-    commune: "Talata Tsimadilo",
-  },
-  {
-    commune: "Miandrandra",
-  },
-  {
-    commune: "Ambohipandrano",
-  },
-  {
-    commune: "Andolofotsy",
-  },
-  {
-    commune: "Antoby Atsinanana",
-  },
-  {
-    commune: "Manazary",
-  },
-  {
-    commune: "Mandiavato",
-  },
-  {
-    commune: "Miarinarivo II",
-  },
-  {
-    commune: "Zoma Bealoka",
-  },
-  {
-    commune: "Alatsinainikely",
-  },
-  {
-    commune: "Analavory",
-  },
-  {
-    commune: "Anosibe Ifanja",
-  },
-  {
-    commune: "Ambatomanjaka",
-  },
-  {
-    commune: "Amberomanga Atsinanana",
-  },
-  {
-    commune: "Amparaky",
-  },
-  {
-    commune: "Ankaranana",
-  },
-  {
-    commune: "Mananasy",
-  },
-  {
-    commune: "Tamponala",
-  },
-  {
-    commune: "Ankisabe",
-  },
-  {
-    commune: "Ambatoasana Afovoany",
-  },
-  {
-    commune: "Amparibohitra",
-  },
-  {
-    commune: "Soavimbazaha",
-  },
-  {
-    commune: "Soamahamanina",
-  },
-  {
-    commune: "Arivonimamo II",
-  },
-  {
-    commune: "Ampefy",
-  },
-  {
-    commune: "Ampary",
-  },
-  {
-    commune: "Ambohidanerana",
-  },
-  {
-    commune: "Talata Dondona",
-  },
-  {
-    commune: "Ambohimahamasina",
-  },
-  {
-    commune: "Anjoma",
-  },
-  {
-    commune: "Ambinanindovoka",
-  },
-  {
-    commune: "Ambinaniroa Andonaka",
-  },
-  {
-    commune: "Andrainjato",
-  },
-  {
-    commune: "Besoa",
-  },
-  {
-    commune: "Iarintsena Firaisantsoa",
-  },
-  {
-    commune: "Kirano Firaisantsoa",
-  },
-  {
-    commune: "Mahazony",
-  },
-  {
-    commune: "Manamisoa",
-  },
-  {
-    commune: "Vohitsaoka",
-  },
-  {
-    commune: "Volamena",
-  },
-  {
-    commune: "Ampitana",
-  },
-  {
-    commune: "Ankafina",
-  },
-  {
-    commune: "Befeta",
-  },
-  {
-    commune: "Camp Robin",
-  },
-  {
-    commune: "Isaka",
-  },
-  {
-    commune: "Kalalao",
-  },
-  {
-    commune: "Manandroy",
-  },
-  {
-    commune: "Sahatona",
-  },
-  {
-    commune: "Vohitrarivo",
-  },
-  {
-    commune: "Fianarantsoa",
-  },
-  {
-    commune: "Tanamarina Sakay",
-  },
-  {
-    commune: "Mangidy",
-  },
-  {
-    commune: "Solila",
-  },
-  {
-    commune: "Tanamarina Bekisopa",
-  },
-  {
-    commune: "Ikalamavony",
-  },
-  {
-    commune: "Fitampito",
-  },
-  {
-    commune: "Tsitondroina",
-  },
-  {
-    commune: "Isorana",
-  },
-  {
-    commune: "Ambalamidera II",
-  },
-  {
-    commune: "Andoharanomaitso",
-  },
-  {
-    commune: "Ankarinarivo Manirisoa",
-  },
-  {
-    commune: "Nasandratrony",
-  },
-  {
-    commune: "Alakamisy Ambohimaha",
-  },
-  {
-    commune: "Alatsinainy Ialamarina",
-  },
-  {
-    commune: "Ambalakely",
-  },
-  {
-    commune: "Ambalamahasoa",
-  },
-  {
-    commune: "Andrainjato Afovoany",
-  },
-  {
-    commune: "Andrainjato Atsinanana",
-  },
-  {
-    commune: "Fandrandava",
-  },
-  {
-    commune: "Mahatsinjony",
-  },
-  {
-    commune: "Sahafata",
-  },
-  {
-    commune: "Iavinomby Vohibola",
-  },
-  {
-    commune: "Vinaninoro Andrefana",
-  },
-  {
-    commune: "Ivoamba",
-  },
-  {
-    commune: "Ialananindro",
-  },
-  {
-    commune: "Taindambo",
-  },
-  {
-    commune: "Sahambavy",
-  },
-  {
-    commune: "Androy",
-  },
-  {
-    commune: "Mahasoabe",
-  },
-  {
-    commune: "Talata Ampano",
-  },
-  {
-    commune: "Andranovorivato",
-  },
-  {
-    commune: "Ankaromalaza Mifanasoa",
-  },
-  {
-    commune: "Ihazoara",
-  },
-  {
-    commune: "Lamosina",
-  },
-  {
-    commune: "Maneva",
-  },
-  {
-    commune: "Soaindrana",
-  },
-  {
-    commune: "Vohimarina",
-  },
-  {
-    commune: "Vohitrafeno",
-  },
-  {
-    commune: "Vohibato Andrefana",
-  },
-  {
-    commune: "Ambohinamboarina",
-  },
-  {
-    commune: "Vohiposa",
-  },
-  {
-    commune: "Ambatosoa",
-  },
-  {
-    commune: "Ambalakindresy",
-  },
-  {
-    commune: "Ambohimahasoa",
-  },
-  {
-    commune: "Ankerana",
-  },
-  {
-    commune: "Sahave",
-  },
-  {
-    commune: "Andreamalama",
-  },
-  {
-    commune: "Anjoma Itsara",
-  },
-  {
-    commune: "Anjanomanona Tsimiavaka",
-  },
-  {
-    commune: "Alakamisy Itenina",
-  },
-  {
-    commune: "Ampatsy Ampangabe",
-  },
-  {
-    commune: "Andranomiditra",
-  },
-  {
-    commune: "Mahaditra",
-  },
-  {
-    commune: "Vinanitelo Andrefana",
-  },
-  {
-    commune: "Sendrisoa",
-  },
-  {
-    commune: "Namoly",
-  },
-  {
-    commune: "Ambalamidera Ambohimanana",
-  },
-  {
-    commune: "Makaraingo",
-  },
-  {
-    commune: "Marotsialeha",
-  },
-  {
-    commune: "Bemarivo",
-  },
-  {
-    commune: "Bemaraha Atsinanana",
-  },
-  {
-    commune: "Masoarivo",
-  },
-  {
-    commune: "Soahany",
-  },
-  {
-    commune: "Trangahy",
-  },
-  {
-    commune: "Bekopaka",
-  },
-  {
-    commune: "Antsalova",
-  },
-  {
-    commune: "Besalampy",
-  },
-  {
-    commune: "Ampako Ambalarano",
-  },
-  {
-    commune: "Ankasakasa Tsibiray",
-  },
-  {
-    commune: "Antsirasira",
-  },
-  {
-    commune: "Bekodoka",
-  },
-  {
-    commune: "Soanenga",
-  },
-  {
-    commune: "Ambolodia Atsimo",
-  },
-  {
-    commune: "Marovoay Atsimo",
-  },
-  {
-    commune: "Maintirano",
-  },
-  {
-    commune: "Andabotoka",
-  },
-  {
-    commune: "Andranovao",
-  },
-  {
-    commune: "Andrea",
-  },
-  {
-    commune: "Ankisatra",
-  },
-  {
-    commune: "Antsondrondava",
-  },
-  {
-    commune: "Betanantanana",
-  },
-  {
-    commune: "Tambohorano",
-  },
-  {
-    commune: "Bebaboka Atsimo",
-  },
-  {
-    commune: "Berevo Ranobe",
-  },
-  {
-    commune: "Bemokotra Atsimo",
-  },
-  {
-    commune: "Veromanga",
-  },
-  {
-    commune: "Maromavo",
-  },
-  {
-    commune: "Antsaidoha Bebao",
-  },
-  {
-    commune: "Marohazo",
-  },
-  {
-    commune: "Morafenobe",
-  },
-  {
-    commune: "Beravina",
-  },
-  {
-    commune: "Andramy",
-  },
-  {
-    commune: "Antranokoaky",
-  },
-  {
-    commune: "Sarodrano",
-  },
-  {
-    commune: "Mafajijo",
-  },
-  {
-    commune: "Belitsaka",
-  },
-  {
-    commune: "Amboalimena",
-  },
-  {
-    commune: "Andimaky Manambolo",
-  },
-  {
-    commune: "Beroboka Avaratra",
-  },
-  {
-    commune: "Delta",
-  },
-  {
-    commune: "Tsimafana",
-  },
-  {
-    commune: "Ambiky",
-  },
-  {
-    commune: "Ankalalobe",
-  },
-  {
-    commune: "Berevo",
-  },
-  {
-    commune: "Ankororoky",
-  },
-  {
-    commune: "Belinta",
-  },
-  {
-    commune: "Tsaraotana",
-  },
-  {
-    commune: "Analamitsivala",
-  },
-  {
-    commune: "Bezezika",
-  },
-  {
-    commune: "Malaimbandy",
-  },
-  {
-    commune: "Mandabe",
-  },
-  {
-    commune: "Tsimazava",
-  },
-  {
-    commune: "Andranopasy",
-  },
-  {
-    commune: "Betsioky",
-  },
-  {
-    commune: "Anontsibe Sakalava",
-  },
-  {
-    commune: "Manja",
-  },
-  {
-    commune: "Beharona",
-  },
-  {
-    commune: "Dabolava",
-  },
-  {
-    commune: "Itondy",
-  },
-  {
-    commune: "Manambina",
-  },
-  {
-    commune: "Manandaza",
-  },
-  {
-    commune: "Isalo",
-  },
-  {
-    commune: "Ankotrofotsy",
-  },
-  {
-    commune: "Anosimena",
-  },
-  {
-    commune: "Andranomainty",
-  },
-  {
-    commune: "Miandrivazo",
-  },
-  {
-    commune: "Betsipolitra",
-  },
-  {
-    commune: "Ankavandra",
-  },
-  {
-    commune: "Soaloka",
-  },
-  {
-    commune: "Ankondromena",
-  },
-  {
-    commune: "Morondava",
-  },
-  {
-    commune: "Befasy",
-  },
-  {
-    commune: "Belo sur Mer",
-  },
-  {
-    commune: "Bemanonga",
-  },
-  {
-    commune: "Bemanonga Marofangiliha",
-  },
-  {
-    commune: "Analaiva",
-  },
-  {
-    commune: "Bemarivo Ankirondro",
-  },
-  {
-    commune: "Belo sur Tsiribihina",
-  },
-  {
-    commune: "Anjialavabe",
-  },
-  {
-    commune: "Andapa",
-  },
-  {
-    commune: "Ambodimanga I",
-  },
-  {
-    commune: "Ambinany Antsahamena",
-  },
-  {
-    commune: "Anoviara",
-  },
-  {
-    commune: "Andasibe  Kobahina",
-  },
-  {
-    commune: "Ambalamanasy II",
-  },
-  {
-    commune: "Belaoka Lokoho",
-  },
-  {
-    commune: "Andrakata",
-  },
-  {
-    commune: "Ambalavelona",
-  },
-  {
-    commune: "Belaoka Marovato",
-  },
-  {
-    commune: "Ankiakabe Avaratra",
-  },
-  {
-    commune: "Matsohely",
-  },
-  {
-    commune: "Bealampona",
-  },
-  {
-    commune: "Ambohitralanana",
-  },
-  {
-    commune: "Ampanavoana",
-  },
-  {
-    commune: "Andampy",
-  },
-  {
-    commune: "Manakambahiny Ankavia",
-  },
-  {
-    commune: "Marofinaritra",
-  },
-  {
-    commune: "Vinanivao",
-  },
-  {
-    commune: "Antombana",
-  },
-  {
-    commune: "Sahantaha",
-  },
-  {
-    commune: "Ambinanifaho",
-  },
-  {
-    commune: "Antsahanoro",
-  },
-  {
-    commune: "Ampohibe",
-  },
-  {
-    commune: "Antananambo",
-  },
-  {
-    commune: "Antsambalahy",
-  },
-  {
-    commune: "Sarahandrano",
-  },
-  {
-    commune: "Ambalasatrana",
-  },
-  {
-    commune: "Ambinanin'Andravory",
-  },
-  {
-    commune: "Amboriala",
-  },
-  {
-    commune: "Ampisikinana",
-  },
-  {
-    commune: "Andrafainkona",
-  },
-  {
-    commune: "Andravory",
-  },
-  {
-    commune: "Fanambana",
-  },
-  {
-    commune: "Maromokotra Loky",
-  },
-  {
-    commune: "Nosibe",
-  },
-  {
-    commune: "Ampanefena",
-  },
-  {
-    commune: "Tsarabaria",
-  },
-  {
-    commune: "Bobakindro",
-  },
-  {
-    commune: "Daraina",
-  },
-  {
-    commune: "Milanoa",
-  },
-  {
-    commune: "Ambodivoara",
-  },
-  {
-    commune: "Ambohimitsinjo",
-  },
-  {
-    commune: "Analamaho",
-  },
-  {
-    commune: "Andratamarina",
-  },
-  {
-    commune: "Anjinjaomby",
-  },
-  {
-    commune: "Maroambihy",
-  },
-  {
-    commune: "Marogaona",
-  },
-  {
-    commune: "Marojala",
-  },
-  {
-    commune: "Anjangoveratra",
-  },
-  {
-    commune: "Tanambao Daoud",
-  },
-  {
-    commune: "Nosiarina",
-  },
-  {
-    commune: "Sambava",
-  },
-  {
-    commune: "Farahalana",
-  },
-  {
-    commune: "Antsambaharo",
-  },
-  {
-    commune: "Andrembona",
-  },
-  {
-    commune: "Bevonotra",
-  },
-  {
-    commune: "Anjialava",
-  },
-  {
-    commune: "Antsahavaribe",
-  },
-  {
-    commune: "Mahasoa Antindra",
-  },
-  {
-    commune: "Iharana",
-  },
-  {
-    commune: "Ampondra",
-  },
-  {
-    commune: "Ambodisambalahy",
-  },
-  {
-    commune: "Belambo",
-  },
-  {
-    commune: "Antindra",
-  },
-  {
-    commune: "Antsirabe Avaratra",
-  },
-  {
-    commune: "Amboahangibe",
-  },
-  {
-    commune: "Ambatoafo",
-  },
-  {
-    commune: "Doany",
-  },
-  {
-    commune: "Andapabe",
-  },
-  {
-    commune: "Andrahanjo",
-  },
-  {
-    commune: "Ambodidivaina",
-  },
-  {
-    commune: "Ambodiangezoka",
-  },
-  {
-    commune: "Betsakotsako Andranotsara",
-  },
-  {
-    commune: "Andranomena",
-  },
-  {
-    commune: "Ampahana",
-  },
-  {
-    commune: "Antalaha",
-  },
-  {
-    commune: "Lanjarivo",
-  },
-  {
-    commune: "Ambolobozo",
-  },
-  {
-    commune: "Analalava",
-  },
-  {
-    commune: "Antonibe",
-  },
-  {
-    commune: "Ambarijeby Atsimo",
-  },
-  {
-    commune: "Marovatolena",
-  },
-  {
-    commune: "Andribavontsina",
-  },
-  {
-    commune: "Mahadrodroka",
-  },
-  {
-    commune: "Maromandia",
-  },
-  {
-    commune: "Andrevorevo",
-  },
-  {
-    commune: "Marovantaza",
-  },
-  {
-    commune: "Angoaka Atsimo",
-  },
-  {
-    commune: "Ambodimadiro",
-  },
-  {
-    commune: "Andreba",
-  },
-  {
-    commune: "Ambodimandresy",
-  },
-  {
-    commune: "Ankerika",
-  },
-  {
-    commune: "Antsohihy",
-  },
-  {
-    commune: "Anjalazala",
-  },
-  {
-    commune: "Ambodimanary",
-  },
-  {
-    commune: "Maroala",
-  },
-  {
-    commune: "Mangindrano",
-  },
-  {
-    commune: "Ambararatabe Avaratra",
-  },
-  {
-    commune: "Anjozoromadosy",
-  },
-  {
-    commune: "Beandrarezona",
-  },
-  {
-    commune: "Bealanana",
-  },
-  {
-    commune: "Analila",
-  },
-  {
-    commune: "Ambalaromba",
-  },
-  {
-    commune: "Ankazotokana",
-  },
-  {
-    commune: "Antsamaka",
-  },
-  {
-    commune: "Ambatosia",
-  },
-  {
-    commune: "Ambararata Sofia",
-  },
-  {
-    commune: "Ambodisikidy",
-  },
-  {
-    commune: "Ambohimisondrotra",
-  },
-  {
-    commune: "Ambodiadabo",
-  },
-  {
-    commune: "Antsiradava",
-  },
-  {
-    commune: "Ambolidibe Atsinanana",
-  },
-  {
-    commune: "Ambararata",
-  },
-  {
-    commune: "Befandriana Avaratra",
-  },
-  {
-    commune: "Antsakanalabe",
-  },
-  {
-    commune: "Ambodimotso Atsimo",
-  },
-  {
-    commune: "Tsarahonenana",
-  },
-  {
-    commune: "Ambodimotso Ambony",
-  },
-  {
-    commune: "Belalona",
-  },
-  {
-    commune: "Antsakabary",
-  },
-  {
-    commune: "Matsondakana",
-  },
-  {
-    commune: "Maroamalona",
-  },
-  {
-    commune: "Ambodisakoana",
-  },
-  {
-    commune: "Leanja",
-  },
-  {
-    commune: "Tsiningia",
-  },
-  {
-    commune: "Tsinjomitondraka",
-  },
-  {
-    commune: "Tsaratanana I",
-  },
-  {
-    commune: "Tsarahasina",
-  },
-  {
-    commune: "Maevaranohely",
-  },
-  {
-    commune: "Ambodimahabibo",
-  },
-  {
-    commune: "Ihobaka",
-  },
-  {
-    commune: "Ambatomilahatrano",
-  },
-  {
-    commune: "Andranomeva",
-  },
-  {
-    commune: "Amparihibe",
-  },
-  {
-    commune: "Ambanjabe",
-  },
-  {
-    commune: "Ambodihazoambo",
-  },
-  {
-    commune: "Komajia",
-  },
-  {
-    commune: "Mampikony II",
-  },
-  {
-    commune: "Bekoratsaka",
-  },
-  {
-    commune: "Ankiririky",
-  },
-  {
-    commune: "Betaramahamay",
-  },
-  {
-    commune: "Agnovolava Avaratra",
-  },
-  {
-    commune: "Mampikony I",
-  },
-  {
-    commune: "Pont Sofia",
-  },
-  {
-    commune: "Ankiabe Salohy",
-  },
-  {
-    commune: "Ambilombe",
-  },
-  {
-    commune: "Antsatramidola",
-  },
-  {
-    commune: "Kalandy",
-  },
-  {
-    commune: "Ankiakabe Fanoko",
-  },
-  {
-    commune: "Ambaripaika",
-  },
-  {
-    commune: "Ambodiamontana Kianga",
-  },
-  {
-    commune: "Andohajango",
-  },
-  {
-    commune: "Ambohisoa",
-  },
-  {
-    commune: "Mandritsara",
-  },
-  {
-    commune: "Ambariokorano",
-  },
-  {
-    commune: "Antsirabe Afovoany",
-  },
-  {
-    commune: "Marotandrano",
-  },
-  {
-    commune: "Antanambaon'Amberina",
-  },
-  {
-    commune: "Ampatakamaroreny",
-  },
-  {
-    commune: "Ambinany Fango",
-  },
-  {
-    commune: "Ankaramy",
-  },
-  {
-    commune: "Antananivo Ambony",
-  },
-  {
-    commune: "Antsahabe",
-  },
-  {
-    commune: "Tsiamalao",
-  },
-  {
-    commune: "Ambovonomby",
-  },
-  {
-    commune: "Ambatoria Atsinanana",
-  },
-  {
-    commune: "Ampandriakilandy",
-  },
-  {
-    commune: "Anahidrano",
-  },
-  {
-    commune: "Anjiamangirana",
-  },
-  {
-    commune: "Ambalafaminty",
-  },
-  {
-    commune: "Boriziny I",
-  },
-  {
-    commune: "Boriziny II",
-  },
-  {
-    commune: "Andranomena I",
-  },
-  {
-    commune: "Ambodivongo",
-  },
-  {
-    commune: "Anjiabe",
-  },
-  {
-    commune: "Ambalakirajy",
-  },
-  {
-    commune: "Tsarajomoka",
-  },
-  {
-    commune: "Amboaboa",
-  },
-  {
-    commune: "Manampaneva",
-  },
-  {
-    commune: "Ampasimatera",
-  },
-  {
-    commune: "Ambohitoaka",
-  },
-  {
-    commune: "Malakialina",
-  },
-  {
-    commune: "Amborondolo",
-  },
-  {
-    commune: "Ambatomiady",
-  },
-  {
-    commune: "Antsampandrano",
-  },
-  {
-    commune: "Ambatotsipihina",
-  },
-  {
-    commune: "Soamanandrariny",
-  },
-  {
-    commune: "Andranofito",
-  },
-  {
-    commune: "Anjanamanga",
-  },
-  {
-    commune: "Ibity",
-  },
-  {
-    commune: "Ambano",
-  },
-  {
-    commune: "Ambohimiarivo",
-  },
-  {
-    commune: "Antanimandry",
-  },
-  {
-    commune: "Belazao",
-  },
-  {
-    commune: "Mangarano",
-  },
-  {
-    commune: "Sahanivotry",
-  },
-  {
-    commune: "Soanindrariny",
-  },
-  {
-    commune: "Vinaninkarena",
-  },
-  {
-    commune: "Mandrosohasina",
-  },
-  {
-    commune: "Ambohidranandriana",
-  },
-  {
-    commune: "Ambohitsimanova",
-  },
-  {
-    commune: "Manandona",
-  },
-  {
-    commune: "Antanambao",
-  },
-  {
-    commune: "Alarobia Bemaha",
-  },
-  {
-    commune: "Antsoantany",
-  },
-  {
-    commune: "Andranomanelatra",
-  },
-  {
-    commune: "Betafo",
-  },
-  {
-    commune: "Ambatonikolahy",
-  },
-  {
-    commune: "Ranomafana",
-  },
-  {
-    commune: "Andrembesoa",
-  },
-  {
-    commune: "Anosiarivo Manapa",
-  },
-  {
-    commune: "Antohobe",
-  },
-  {
-    commune: "Antsoso",
-  },
-  {
-    commune: "Inanantonana",
-  },
-  {
-    commune: "Ambohijato Mandritsara",
-  },
-  {
-    commune: "Tritriva",
-  },
-  {
-    commune: "Alakamisy Anativato",
-  },
-  {
-    commune: "Mahaiza",
-  },
-  {
-    commune: "Manohisoa",
-  },
-  {
-    commune: "Alakamisy Marososona",
-  },
-  {
-    commune: "Faratsiho",
-  },
-  {
-    commune: "Ambatofotsy Ambohiborona",
-  },
-  {
-    commune: "Antsampanimahazo",
-  },
-  {
-    commune: "Vinaninony Avaratra",
-  },
-  {
-    commune: "Ramainandro",
-  },
-  {
-    commune: "Ambatoasana Valabetokana",
-  },
-  {
-    commune: "Vinaninony Atsimo",
-  },
-  {
-    commune: "Ambatondrakalavao",
-  },
-  {
-    commune: "Ambodifarihy Fenomanana",
-  },
-  {
-    commune: "Andranovelona",
-  },
-  {
-    commune: "Andriambilany",
-  },
-  {
-    commune: "Antakasina",
-  },
-  {
-    commune: "Alarobia Antanamalaza",
-  },
-  {
-    commune: "Antanimasaka Tsaramiafara",
-  },
-  {
-    commune: "Behenjy",
-  },
-  {
-    commune: "Manjakatompo",
-  },
-  {
-    commune: "Sabotsy Namatoana",
-  },
-  {
-    commune: "Tsiafajavona Ankaratra",
-  },
-  {
-    commune: "Tsinjoarivo",
-  },
-  {
-    commune: "Andriatsivalana",
-  },
-  {
-    commune: "Belambo Firaisana",
-  },
-  {
-    commune: "Andravola",
-  },
-  {
-    commune: "Ankazomiriotra",
-  },
-  {
-    commune: "Fidirana",
-  },
-  {
-    commune: "Maromandray",
-  },
-  {
-    commune: "Vasiana",
-  },
-  {
-    commune: "Vinany",
-  },
-  {
-    commune: "Tanambao Ambary",
-  },
-  {
-    commune: "Betsohana",
-  },
-  {
-    commune: "Mandoto",
-  },
-  {
-    commune: "Anjoma Ramartina",
-  },
-  {
-    commune: "Ambohitompoina",
-  },
-  {
-    commune: "Andranomiady",
-  },
-  {
-    commune: "Ifanadiana",
-  },
-  {
-    commune: "Ambiabe",
-  },
-  {
-    commune: "Ambohimanga Atsimo",
-  },
-  {
-    commune: "Ambohimiera",
-  },
-  {
-    commune: "Ampasinambo",
-  },
-  {
-    commune: "Analampasina",
-  },
-  {
-    commune: "Antaretra",
-  },
-  {
-    commune: "Antsindra",
-  },
-  {
-    commune: "Fasintsara",
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Anjialavabe" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Andapa" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Tanandava" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ambodimanga I" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ambinany Antsahamena" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Anoviara" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Andasibe  Kobahina" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ambalamanasy II" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Belaoka Lokoho" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Andrakata" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ambalavelona" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Belaoka Marovato" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Marovato" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ankiakabe Avaratra" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Matsohely" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Bealampona" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Ambohitralanana" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Ambalabe" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Ampanavoana" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Andampy" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Manakambahiny Ankavia" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Marofinaritra" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Vinanivao" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Antombana" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Sahantaha" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Ambinanifaho" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Antsahanoro" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Ampohibe" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Antananambo" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Antsambalahy" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Sarahandrano" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Ambalasatrana" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Ambinanin'Andravory" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Amboriala" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Ampisikinana" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Andrafainkona" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Andravory" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Fanambana" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Maromokotra Loky" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Nosibe" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Ampanefena" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Tsarabaria" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Bobakindro" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Daraina" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Milanoa" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Ambodivoara" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Ambohimitsinjo" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Analamaho" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Andratamarina" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Anjinjaomby" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Maroambihy" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Marogaona" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Marojala" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Anjangoveratra" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Bemanevika" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Tanambao Daoud" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Nosiarina" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Ambohimalaza" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Sambava" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Farahalana" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Morafeno" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Antsambaharo" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Andrembona" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Bevonotra" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Anjialava" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Antsahavaribe" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Mahasoa Antindra" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Ambodiampana" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Iharana" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Ampondra" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Ambodisambalahy" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Belambo" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Antindra" },
+  { REGION: "SAVA", DISTRICT: "IHARANA", COMMUNE: "Antsirabe Avaratra" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Amboahangibe" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Ambatoafo" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Doany" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Andapabe" },
+  { REGION: "SAVA", DISTRICT: "SAMBAVA", COMMUNE: "Andrahanjo" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ambodidivaina" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Ambodiangezoka" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Betsakotsako Andranotsara" },
+  { REGION: "SAVA", DISTRICT: "ANDAPA", COMMUNE: "Andranomena" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Ampahana" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Antalaha" },
+  { REGION: "SAVA", DISTRICT: "ANTALAHA", COMMUNE: "Lanjarivo" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Ambolobozo" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Ambaliha" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Befotaka" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Analalava" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Antonibe" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Ambarijeby Atsimo" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Marovatolena" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Andribavontsina" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Mahadrodroka" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Maromandia" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Andrevorevo" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Marovantaza" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Angoaka Atsimo" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Ambodimadiro" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Andreba" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Ambodimandresy" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Ankerika" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Antsohihy" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Anjalazala" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Ambodimanary" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Maroala" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Mangindrano" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambararatabe Avaratra" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Anjozoromadosy" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Beandrarezona" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Bealanana" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Analila" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambalaromba" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ankazotokana" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Antsamaka" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Marotolana" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambatosia" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambodiampana" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambararata Sofia" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambodisikidy" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambohimisondrotra" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambodiadabo" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Antsiradava" },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Ambolidibe Atsinanana",
+  },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Ambararata" },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Ankarongana" },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Befandriana Avaratra",
+  },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Antsakanalabe",
+  },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Ambodimotso Atsimo",
+  },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Tsarahonenana",
+  },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Ambodimotso Ambony",
+  },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Belalona" },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Antsakabary" },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "BEFANDRIANA AVARATRA",
+    COMMUNE: "Matsondakana",
+  },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Maroamalona" },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Morafeno" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Ambodisakoana" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Leanja" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Tsiningia" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Tsinjomitondraka" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Tsaratanana I" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Marovato" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Tsarahasina" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Maevaranohely" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Ambodimahabibo" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Ihobaka" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Ambatomilahatrano" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Andranomeva" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Amparihibe" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Ambanjabe" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Ambodihazoambo" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Komajia" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Mampikony II" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Bekoratsaka" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Ankiririky" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Betaramahamay" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Agnovolava Avaratra" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Mampikony I" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Pont Sofia" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ankiabe Salohy" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambilombe" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Antsatramidola" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Kalandy" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ankiakabe Fanoko" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambaripaika" },
+  {
+    REGION: "SOFIA",
+    DISTRICT: "MANDRITSARA",
+    COMMUNE: "Ambodiamontana Kianga",
+  },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Andratamarina" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Andohajango" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambohisoa" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Mandritsara" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambariokorano" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Antsirabe Afovoany" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Marotandrano" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Antanambaon'Amberina" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ampatakamaroreny" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Antsoha" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambinany Fango" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Antsiatsiaka" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Ankaramy" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Antananivo Ambony" },
+  { REGION: "SOFIA", DISTRICT: "ANALALAVA", COMMUNE: "Bejofo" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Antsahabe" },
+  { REGION: "SOFIA", DISTRICT: "BEFANDRIANA AVARATRA", COMMUNE: "Tsiamalao" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambovonomby" },
+  { REGION: "SOFIA", DISTRICT: "BEALANANA", COMMUNE: "Ambatoria Atsinanana" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Ampandriakilandy" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Anahidrano" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Anjiamangirana" },
+  { REGION: "SOFIA", DISTRICT: "ANTSOHIHY", COMMUNE: "Ambalafaminty" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Boriziny I" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Boriziny II" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Andranomena I" },
+  { REGION: "SOFIA", DISTRICT: "BORIZINY", COMMUNE: "Ambodivongo" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Anjiabe" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambalakirajy" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Tsarajomoka" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Antanandava" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Tsaratanana" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Amboaboa" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Manampaneva" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Ampasimatera" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Ambohitoaka" },
+  { REGION: "SOFIA", DISTRICT: "MAMPIKONY", COMMUNE: "Malakialina" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Amborondolo" },
+  { REGION: "SOFIA", DISTRICT: "MANDRITSARA", COMMUNE: "Ambodiadabo" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Ambatolahy" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Ambatomiady" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Ambodiriana" },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTANIFOTSY",
+    COMMUNE: "Ampitatafika",
+  },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Antsahalava" },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTANIFOTSY",
+    COMMUNE: "Antsampandrano",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTANIFOTSY",
+    COMMUNE: "Ambatotsipihina",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTANIFOTSY",
+    COMMUNE: "Ambohimandroso",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTANIFOTSY",
+    COMMUNE: "Soamanandrariny",
+  },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Antanifotsy" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Andranofito" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Anjanamanga" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE I", COMMUNE: "Antsirabe" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Alakamisy" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Ibity" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Ambano" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Ambatomena" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Ambohibary" },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Ambohimiarivo",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Antanimandry",
+  },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Belazao" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Mangarano" },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Sahanivotry",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Soanindrariny",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Vinaninkarena",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Mandrosohasina",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Ambohidranandriana",
+  },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Ambohitsimanova",
+  },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Manandona" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTSIRABE II", COMMUNE: "Antanambao" },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Tsarahonenana",
+  },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Alarobia Bemaha" },
+  {
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Antsoantany",
   },
   {
-    commune: "Kelilalina",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTSIRABE II",
+    COMMUNE: "Andranomanelatra",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Betafo" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Ambatonikolahy" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Ambohimanambola" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Ranomafana" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Andrembesoa" },
   {
-    commune: "Maroharatra",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "BETAFO",
+    COMMUNE: "Anosiarivo Manapa",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Antohobe" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Antsoso" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Inanantonana" },
   {
-    commune: "Marotoko",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "BETAFO",
+    COMMUNE: "Ambohijato Mandritsara",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Soavina" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Tritriva" },
   {
-    commune: "Ambohimisafy",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "BETAFO",
+    COMMUNE: "Alakamisy Anativato",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Mahaiza" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Manohisoa" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "BETAFO", COMMUNE: "Ambohimasina" },
   {
-    commune: "Andefampony",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "BETAFO",
+    COMMUNE: "Alakamisy Marososona",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "FARATSIHO", COMMUNE: "Faratsiho" },
   {
-    commune: "Ankarimbelo",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "FARATSIHO",
+    COMMUNE: "Ambatofotsy Ambohiborona",
   },
   {
-    commune: "Antodinga",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "FARATSIHO",
+    COMMUNE: "Antsampanimahazo",
   },
   {
-    commune: "Belemoka",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "FARATSIHO",
+    COMMUNE: "Vinaninony Avaratra",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "FARATSIHO", COMMUNE: "Miandrarivo" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "FARATSIHO", COMMUNE: "Ramainandro" },
   {
-    commune: "Ifanirea",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "FARATSIHO",
+    COMMUNE: "Ambatoasana Valabetokana",
   },
   {
-    commune: "Kalafotsy",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "FARATSIHO",
+    COMMUNE: "Vinaninony Atsimo",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "AMBATOLAMPY", COMMUNE: "Ambatolampy" },
   {
-    commune: "Sahalanona",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Ambatondrakalavao",
   },
   {
-    commune: "Antanakambana",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Ambodifarihy Fenomanana",
   },
   {
-    commune: "Tolongoina",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Andranovelona",
   },
   {
-    commune: "Tsifenokatana",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Andriambilany",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "AMBATOLAMPY", COMMUNE: "Antakasina" },
   {
-    commune: "Ambolomadinika",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Alarobia Antanamalaza",
   },
   {
-    commune: "Ambatofotsy",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Antanimasaka Tsaramiafara",
   },
   {
-    commune: "Ikongo",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Antsampandrano",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "AMBATOLAMPY", COMMUNE: "Behenjy" },
   {
-    commune: "Manampatrana",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Manjakatompo",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "AMBATOLAMPY", COMMUNE: "Morarano" },
   {
-    commune: "Ambinanitromby",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Sabotsy Namatoana",
   },
   {
-    commune: "Manakara",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Tsiafajavona Ankaratra",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "AMBATOLAMPY", COMMUNE: "Tsinjoarivo" },
   {
-    commune: "Marofarihy",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Andriatsivalana",
   },
   {
-    commune: "Ambahatrazo",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Belambo Firaisana",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "AMBATOLAMPY", COMMUNE: "Andravola" },
   {
-    commune: "Ambahive",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "AMBATOLAMPY",
+    COMMUNE: "Ambohipihaonana",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Ankazomiriotra" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Fidirana" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Maromandray" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Vasiana" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Vinany" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Tanambao Ambary" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Betsohana" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "MANDOTO", COMMUNE: "Mandoto" },
   {
-    commune: "Ambalavero",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "MANDOTO",
+    COMMUNE: "Anjoma Ramartina",
   },
   {
-    commune: "Amboanjo Ifaho",
+    REGION: "VAKINANKARATRA",
+    DISTRICT: "ANTANIFOTSY",
+    COMMUNE: "Ambohitompoina",
   },
+  { REGION: "VAKINANKARATRA", DISTRICT: "ANTANIFOTSY", COMMUNE: "Belanitra" },
+  { REGION: "VAKINANKARATRA", DISTRICT: "FARATSIHO", COMMUNE: "Andranomiady" },
   {
-    commune: "Ambohitsara",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Ifanadiana",
   },
   {
-    commune: "Ampasimboraka",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Ranomafana",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IFANADIANA", COMMUNE: "Ambiabe" },
   {
-    commune: "Anorombato",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Ambohimanga Atsimo",
   },
   {
-    commune: "Anteza",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Ambohimiera",
   },
   {
-    commune: "Fenomby",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Ampasinambo",
   },
   {
-    commune: "Kianjanomby",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Analampasina",
   },
   {
-    commune: "Mahabako",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Androrangavola",
   },
   {
-    commune: "Mahamaibe",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Antaretra",
   },
   {
-    commune: "Mangatsiotra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Antsindra",
   },
   {
-    commune: "Manjarivo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Fasintsara",
   },
   {
-    commune: "Nosiala",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Kelilalina",
   },
   {
-    commune: "Ionilahy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Maroharatra",
   },
   {
-    commune: "Saharefo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Marotoko",
   },
   {
-    commune: "Sahasinaka",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IFANADIANA",
+    COMMUNE: "Tsaratanana",
   },
   {
-    commune: "Sakoagna",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IKONGO",
+    COMMUNE: "Ambohimisafy",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Andefampony" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Ankarimbelo" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Antodinga" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Belemoka" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Ifanirea" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Kalafotsy" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Maromiandra" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Sahalanona" },
   {
-    commune: "Sorombo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IKONGO",
+    COMMUNE: "Antanakambana",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Tolongoina" },
   {
-    commune: "Tataho",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IKONGO",
+    COMMUNE: "Tsifenokatana",
   },
   {
-    commune: "Vohilava",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IKONGO",
+    COMMUNE: "Ambolomadinika",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Ambatofotsy" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "IKONGO", COMMUNE: "Ikongo" },
   {
-    commune: "Vohimanitra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IKONGO",
+    COMMUNE: "Manampatrana",
   },
   {
-    commune: "Vohimasina Atsimo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "IKONGO",
+    COMMUNE: "Ambinanitromby",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Manakara" },
   {
-    commune: "Vinanitelo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Marofarihy",
   },
   {
-    commune: "Ampasimpotsy Atsimo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ambahatrazo",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Ambahive" },
   {
-    commune: "Bekatra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ambalavero",
   },
   {
-    commune: "Lokomby",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Amboanjo Ifaho",
   },
   {
-    commune: "Ambohitrova",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ambohitsara",
   },
   {
-    commune: "Ambalaroka",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ampasimboraka",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Analavory" },
   {
-    commune: "Vatana",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Anorombato",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Anteza" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Fenomby" },
   {
-    commune: "Vohimasina Avaratra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Kianjanomby",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Mahabako" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Mahamaibe" },
   {
-    commune: "Ampasimanjeva",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Mangatsiotra",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Manjarivo" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Nosiala" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Ionilahy" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Saharefo" },
   {
-    commune: "Mitanty",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Sahasinaka",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Sakoagna" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Sorombo" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Tataho" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Vohilava" },
   {
-    commune: "Nihaonana  Ambany",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Vohimanitra",
   },
   {
-    commune: "Ambotaka",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Vohimasina Atsimo",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Vohimasy" },
   {
-    commune: "Mavorano",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ambandrika",
   },
   {
-    commune: "Mizilo Gara",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Vinanitelo",
   },
   {
-    commune: "Ambila",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ampasimpotsy Atsimo",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Bekatra" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Lokomby" },
   {
-    commune: "Amborondra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ambohitrova",
   },
   {
-    commune: "Sahanambohitra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ambalaroka",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Vatana" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Betampona" },
   {
-    commune: "Mananjary",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Vohimasina Avaratra",
   },
   {
-    commune: "Kianjavato",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Ampasimanjeva",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Mitanty" },
   {
-    commune: "Ambalahosy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Nihaonana  Ambany",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Ambotaka" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Mavorano" },
   {
-    commune: "Ambohimiarina II",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Mizilo Gara",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANAKARA", COMMUNE: "Ambila" },
   {
-    commune: "Ambohinihaonana",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Amborondra",
   },
   {
-    commune: "Andonabe",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANAKARA",
+    COMMUNE: "Sahanambohitra",
   },
   {
-    commune: "Andranambolava",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Mananjary",
   },
   {
-    commune: "Ankatafana",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Kianjavato",
   },
   {
-    commune: "Anosimparihy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Ambalahosy",
   },
   {
-    commune: "Antsenavolo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Ambodinonoka",
   },
   {
-    commune: "Mahatsara Atsimo",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Ambohimiarina II",
   },
   {
-    commune: "Mahavoky Avaratra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Ambohinihaonana",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Andonabe" },
   {
-    commune: "Marofototra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Andranambolava",
   },
   {
-    commune: "Marokarima",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Andranomavo",
   },
   {
-    commune: "Marosangy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Ankatafana",
   },
   {
-    commune: "Sandrohy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Anosimparihy",
   },
   {
-    commune: "Tsaravary",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Antaretra",
   },
   {
-    commune: "Tsiatosika",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Antsenavolo",
   },
   {
-    commune: "Vatohandrina",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Mahatsara",
   },
   {
-    commune: "Ambohitsara Atsinanana",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Mahatsara Atsimo",
   },
   {
-    commune: "Namorona",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Mahavoky Avaratra",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Manakana" },
   {
-    commune: "Nosy Varika",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Marofototra",
   },
   {
-    commune: "Ambakobe",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Marokarima",
   },
   {
-    commune: "Angodongodona",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Marosangy",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Morafeno" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Sandrohy" },
   {
-    commune: "Befody",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Tsaravary",
   },
   {
-    commune: "Fanivelona",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Tsiatosika",
   },
   {
-    commune: "Ambodiara",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Vatohandrina",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Vohilava" },
   {
-    commune: "Andara",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "MANANJARY",
+    COMMUNE: "Ambohitsara Atsinanana",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Mahela" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "MANANJARY", COMMUNE: "Namorona" },
   {
-    commune: "Ambahy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Nosy Varika",
   },
   {
-    commune: "Ambodiriana Sahafary",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Ambakobe",
   },
   {
-    commune: "Ambodilafa",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Angodongodona",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "NOSY VARIKA", COMMUNE: "Befody" },
   {
-    commune: "Vohidroa",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Fanivelona",
   },
   {
-    commune: "Sahavato",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Soavina",
   },
   {
-    commune: "Vohitrandriana",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Vohilava",
   },
   {
-    commune: "Amborobe",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Antanambao",
   },
   {
-    commune: "Andemaka",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Ambodiara",
   },
   {
-    commune: "Ankarimbary",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Ampasinambo",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "NOSY VARIKA", COMMUNE: "Andara" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "NOSY VARIKA", COMMUNE: "Ambahy" },
   {
-    commune: "Anoloka",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Fiadanana",
   },
   {
-    commune: "Lanivoa",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Ambodiriana Sahafary",
   },
   {
-    commune: "Nato",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Ambodilafa",
   },
   {
-    commune: "Onjatsy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Vohidroa",
   },
   {
-    commune: "Savana",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Sahavato",
   },
   {
-    commune: "Vohitrindry",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Androrangavola",
   },
   {
-    commune: "Sahalava",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "NOSY VARIKA",
+    COMMUNE: "Vohitrandriana",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Vohipeno" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Amborobe" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Andemaka" },
   {
-    commune: "Vohilany",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "VOHIPENO",
+    COMMUNE: "Ankarimbary",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Anoloka" },
   {
-    commune: "Vohindava",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "VOHIPENO",
+    COMMUNE: "Antananambo",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Ivato" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Lanivoa" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Mahasoabe" },
   {
-    commune: "Zafindrafady",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "VOHIPENO",
+    COMMUNE: "Mahazoarivo",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Nato" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Onjatsy" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Savana" },
   {
-    commune: "Ilakatra",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "VOHIPENO",
+    COMMUNE: "Vohitrindry",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Sahalava" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Vohilany" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Vohindava" },
   {
-    commune: "Ifatsy",
+    REGION: "VATOVAVY FITOVINANY",
+    DISTRICT: "VOHIPENO",
+    COMMUNE: "Zafindrafady",
   },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Ilakatra" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Mahabo" },
+  { REGION: "VATOVAVY FITOVINANY", DISTRICT: "VOHIPENO", COMMUNE: "Ifatsy" },
 ];

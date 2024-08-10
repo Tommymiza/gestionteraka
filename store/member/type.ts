@@ -1,21 +1,34 @@
 import { SmallGroupItem } from "../small-group/type";
 
 export type MemberItem = {
-  id: number;
-  name: string;
-  photo?: string | null;
+  fid: number;
+  code_pg: string;
+  nom_membre_teraka: string;
+  prenom_membre_teraka: string;
+  date_inscription: string;
+  lieu_inscription: string;
+  commune: string;
+  fokontany: string;
+  village: string;
+  age?: number;
+  genre: "H" | "F";
+  statut_marital: "CELIBATAIRE" | "MARIE" | "DIVORCE" | "VEUF";
+  nombre_d_enfant: number;
+  conjoint_membre: boolean;
+  nom_conjoint?: string;
   cin?: string;
-  phone?: string;
-  village?: string;
-  age: number;
-  job?: string;
-  school?: string;
-  known_by?: string;
-  motivation?: string;
-  date_inscription?: string;
-  lieu_inscription?: string;
-  sexe: "M" | "F";
-  smallGroup_id: number;
+  profession?: string;
+  tel?: string;
+  niveau_education?: string;
+  connaissance_teraka?: string;
+  surface_estimee?: number;
+  nombre_arbres_prevue?: number;
+  parcelle_proche_riviere: boolean;
+  types_arbres?: string;
+  etat_actuel_terrain?: string;
+  approvisionnement_pepiniere?: string;
+  motivation_programme?: string;
+  remarque?: string;
   smallGroup: SmallGroupItem;
 };
 
