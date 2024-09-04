@@ -33,7 +33,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<DroitItem>) => {
     try {
       if (droit) {
-        await updateDroit({ id: droit.fid, droit: values });
+        await updateDroit({ id: droit.id, droit: values });
       } else {
         await createDroit(values);
       }

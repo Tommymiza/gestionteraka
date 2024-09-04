@@ -17,8 +17,8 @@ import { useMemo } from "react";
 import * as Yup from "yup";
 
 const validationSchema = Yup.object({
-  genre: Yup.string().required(),
-  espece: Yup.string().required(),
+  genre: Yup.string().nullable(),
+  espece: Yup.string().nullable(),
   nom_vernaculaire: Yup.string().nullable(),
   appellation_locale: Yup.string().nullable(),
   categorie: Yup.string().nullable(),
@@ -56,7 +56,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<EspeceItem>) => {
     try {
       if (espece) {
-        await updateEspece({ id: espece.fid, espece: values });
+        await updateEspece({ id: espece.id, espece: values });
       } else {
         await createEspece(values);
       }

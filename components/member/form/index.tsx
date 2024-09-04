@@ -20,8 +20,8 @@ import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   code_pg: Yup.string().required(),
-  nom_membre_teraka: Yup.string().required(),
-  prenom_membre_teraka: Yup.string().required(),
+  nom_membre: Yup.string().required(),
+  prenom_membre: Yup.string().required(),
   date_inscription: Yup.date().required(), // Consider using Yup.date() if it's an actual date
   lieu_inscription: Yup.string().required(),
   commune: Yup.string().required(),
@@ -64,8 +64,8 @@ export default function AddFormMember() {
   const initialValues: Partial<MemberItem> = useMemo(
     () => ({
       code_pg: member?.code_pg ?? "",
-      nom_membre_teraka: member?.nom_membre_teraka ?? "",
-      prenom_membre_teraka: member?.prenom_membre_teraka ?? "",
+      nom_membre: member?.nom_membre ?? "",
+      prenom_membre: member?.prenom_membre ?? "",
       date_inscription: format(
         new Date(member?.date_inscription ?? new Date()),
         "yyyy-MM-dd"
@@ -100,7 +100,7 @@ export default function AddFormMember() {
   const handleSubmit = async (values: Partial<UserItem>) => {
     try {
       if (member) {
-        await updateMember({ id: member.fid, member: values });
+        await updateMember({ id: member.id, member: values });
       } else {
         await createMember(values);
       }

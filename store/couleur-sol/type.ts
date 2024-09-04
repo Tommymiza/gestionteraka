@@ -1,5 +1,5 @@
 export type SolColorItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

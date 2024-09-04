@@ -2,7 +2,7 @@ import { MemberItem } from "../member/type";
 import { UserItem } from "../user/type";
 
 export type SmallGroupItem = {
-  fid: number;
+  id: number;
   code: string;
   nom: string;
   region: string;

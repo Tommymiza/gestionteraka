@@ -103,6 +103,16 @@ export const menus: MenuProps[] = [
         icon: "Earth",
       },
       {
+        name: "Sourcing graine",
+        path: "/configurations/sourcing-graine",
+        icon: "Earth",
+      },
+      {
+        name: "Sourcing plant",
+        path: "/configurations/sourcing-plant",
+        icon: "Earth",
+      },
+      {
         name: "Topographie",
         path: "/configurations/topographie",
         icon: "Map",

@@ -58,19 +58,19 @@ export default function ListSmallGroup() {
       enableRowActions={true}
       renderRowActions={({ row, table }) => (
         <BtnContainer>
-          <Link href={`/small-group/${row.original.fid}`}>
+          <Link href={`/small-group/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/small-group/${row.original.fid}/edit`}>
+          <Link href={`/small-group/${row.original.id}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>
           </Link>
           <IconButton
             color="error"
-            onClick={() => handleDelete(row.original.fid)}
+            onClick={() => handleDelete(row.original.id)}
           >
             <DeleteRounded />
           </IconButton>

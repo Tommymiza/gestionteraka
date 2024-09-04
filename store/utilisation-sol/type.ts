@@ -1,5 +1,5 @@
 export type SolUsageItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

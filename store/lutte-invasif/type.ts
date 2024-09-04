@@ -1,5 +1,5 @@
 export type LutteInvasifItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

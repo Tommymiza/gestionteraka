@@ -1,4 +1,4 @@
-import nuisibleStore from "@/store/nuisible";
+import sourcingGraineStore from "@/store/sourcing-graine";
 import { DeleteRounded, EditRounded } from "@mui/icons-material";
 import { IconButton, Stack, styled } from "@mui/material";
 import { MRT_TableInstance } from "material-react-table";
@@ -8,31 +8,36 @@ import MaterialTable from "../../table/MaterialTable";
 import Columns from "./table/columns";
 
 export default function List() {
-  const { nuisibleList, getNuisibles, loading, deleteNuisible, editNuisible } =
-    nuisibleStore();
+  const {
+    sourcingGraineList,
+    getSourcingGraines,
+    loading,
+    deleteSourcingGraine,
+    editSourcingGraine,
+  } = sourcingGraineStore();
   const confirm = useConfirm();
   const handleDelete = (id: number) => {
     confirm({
       title: "Supprimer",
-      description: "Voulez-vous vraiment supprimer cette nuisible ?",
+      description: "Voulez-vous vraiment supprimer cette sourcingGraine ?",
       confirmationText: "Oui",
       cancellationText: "Annuler",
     }).then(async () => {
-      await deleteNuisible(id);
-      getNuisibles();
+      await deleteSourcingGraine(id);
+      getSourcingGraines();
     });
   };
   const handleEdit = async (id: number) => {
-    await editNuisible(id);
+    await editSourcingGraine(id);
   };
   useEffect(() => {
-    getNuisibles();
+    getSourcingGraines();
   }, []);
   return (
     <MaterialTable
       columns={Columns()}
-      data={nuisibleList}
-      title="Liste des nuisibles"
+      data={sourcingGraineList}
+      title="Liste des Sourcing Graines"
       topToolbar={TopToolbar}
       state={{
         isLoading: loading,

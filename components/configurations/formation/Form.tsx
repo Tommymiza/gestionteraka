@@ -39,7 +39,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<FormationItem>) => {
     try {
       if (formation) {
-        await updateFormation({ id: formation.fid, formation: values });
+        await updateFormation({ id: formation.id, formation: values });
       } else {
         await createFormation(values);
       }

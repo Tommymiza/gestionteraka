@@ -42,13 +42,13 @@ export default function List() {
         <BtnContainer>
           <IconButton
             color="warning"
-            onClick={() => handleEdit(row.original.fid)}
+            onClick={() => handleEdit(row.original.id)}
           >
             <EditRounded />
           </IconButton>
           <IconButton
             color="error"
-            onClick={() => handleDelete(row.original.fid)}
+            onClick={() => handleDelete(row.original.id)}
           >
             <DeleteRounded />
           </IconButton>

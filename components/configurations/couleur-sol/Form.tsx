@@ -39,7 +39,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<SolColorItem>) => {
     try {
       if (solColor) {
-        await updateSolColor({ id: solColor.fid, solColor: values });
+        await updateSolColor({ id: solColor.id, solColor: values });
       } else {
         await createSolColor(values);
       }

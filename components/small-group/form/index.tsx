@@ -72,7 +72,7 @@ export default function AddFormSmallGroup() {
         values.date_inscription!
       ).toISOString();
       if (smallGroup) {
-        await updateSmallGroup({ id: smallGroup.fid, smallGroup: values });
+        await updateSmallGroup({ id: smallGroup.id, smallGroup: values });
       } else {
         await createSmallGroup(values);
       }

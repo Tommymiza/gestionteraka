@@ -1,7 +1,7 @@
 import Input from "@/components/shared/Input";
 import Icons from "@/components/utils/Icons";
-import solUsageStore from "@/store/utilisation-sol";
-import { SolUsageItem } from "@/store/utilisation-sol/type";
+import sourcingGraineStore from "@/store/sourcing-graine";
+import { SourcingGraineItem } from "@/store/sourcing-graine/type";
 import { LoadingButton } from "@mui/lab";
 import {
   Button,
@@ -21,30 +21,33 @@ const validationSchema = Yup.object({
 
 export default function Formulaire() {
   const {
-    solUsage,
-    getSolUsages,
-    createSolUsage,
-    updateSolUsage,
+    sourcingGraine,
+    getSourcingGraines,
+    createSourcingGraine,
+    updateSourcingGraine,
     cancelEdit,
     loading,
-  } = solUsageStore();
+  } = sourcingGraineStore();
 
-  const initialValues: Partial<SolUsageItem> = useMemo(
+  const initialValues: Partial<SourcingGraineItem> = useMemo(
     () => ({
-      nom: solUsage?.nom ?? "",
+      nom: sourcingGraine?.nom ?? "",
     }),
-    [solUsage]
+    [sourcingGraine]
   );
 
-  const handleSubmit = async (values: Partial<SolUsageItem>) => {
+  const handleSubmit = async (values: Partial<SourcingGraineItem>) => {
     try {
-      if (solUsage) {
-        await updateSolUsage({ id: solUsage.id, solUsage: values });
+      if (sourcingGraine) {
+        await updateSourcingGraine({
+          id: sourcingGraine.id,
+          sourcingGraine: values,
+        });
       } else {
-        await createSolUsage(values);
+        await createSourcingGraine(values);
       }
       cancelEdit();
-      getSolUsages();
+      getSourcingGraines();
     } catch (error) {
       console.log(error);
     }

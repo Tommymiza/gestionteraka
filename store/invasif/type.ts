@@ -1,5 +1,5 @@
 export type InvasifItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

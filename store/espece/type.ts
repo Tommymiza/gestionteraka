@@ -1,5 +1,5 @@
 export type EspeceItem = {
-  fid: number;
+  id: number;
   genre: string;
   espece: string;
   nom_vernaculaire?: string;

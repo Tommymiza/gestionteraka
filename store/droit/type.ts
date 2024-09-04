@@ -1,5 +1,5 @@
 export type DroitItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

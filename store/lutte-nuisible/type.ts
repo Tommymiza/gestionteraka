@@ -1,5 +1,5 @@
 export type LutteNuisibleItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

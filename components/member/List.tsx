@@ -52,19 +52,19 @@ export default function ListMember() {
       enableRowActions={true}
       renderRowActions={({ row }) => (
         <BtnContainer>
-          <Link href={`/member/${row.original.fid}`}>
+          <Link href={`/member/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
             </IconButton>
           </Link>
-          <Link href={`/member/${row.original.fid}/edit`}>
+          <Link href={`/member/${row.original.id}/edit`}>
             <IconButton color="warning">
               <EditRounded />
             </IconButton>
           </Link>
           <IconButton
             color="error"
-            onClick={() => handleDelete(row.original.fid)}
+            onClick={() => handleDelete(row.original.id)}
           >
             <DeleteRounded />
           </IconButton>

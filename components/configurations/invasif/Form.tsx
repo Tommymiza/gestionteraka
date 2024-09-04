@@ -39,7 +39,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<InvasifItem>) => {
     try {
       if (invasif) {
-        await updateInvasif({ id: invasif.fid, invasif: values });
+        await updateInvasif({ id: invasif.id, invasif: values });
       } else {
         await createInvasif(values);
       }

@@ -16,8 +16,7 @@ export default function Columns() {
         header: "Nom du petit groupe",
       },
       {
-        accessorFn: (row) =>
-          row.nom_membre_teraka + " " + row.prenom_membre_teraka,
+        accessorKey: "nom_prenom_membre",
         header: "Nom et prénoms",
       },
       {

@@ -39,7 +39,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<NuisibleItem>) => {
     try {
       if (nuisible) {
-        await updateNuisible({ id: nuisible.fid, nuisible: values });
+        await updateNuisible({ id: nuisible.id, nuisible: values });
       } else {
         await createNuisible(values);
       }

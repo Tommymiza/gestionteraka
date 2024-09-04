@@ -1,5 +1,5 @@
 export type TopographieItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

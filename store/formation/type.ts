@@ -1,5 +1,5 @@
 export type FormationItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

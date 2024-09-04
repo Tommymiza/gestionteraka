@@ -1,5 +1,5 @@
 export type SolTypeItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

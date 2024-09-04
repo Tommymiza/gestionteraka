@@ -40,7 +40,7 @@ export default function Formulaire() {
     try {
       if (lutteNuisible) {
         await updateLutteNuisible({
-          id: lutteNuisible.fid,
+          id: lutteNuisible.id,
           lutteNuisible: values,
         });
       } else {

@@ -1,5 +1,5 @@
 export type NuisibleItem = {
-  fid: number;
+  id: number;
   nom: string;
 };
 

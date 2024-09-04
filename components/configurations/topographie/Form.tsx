@@ -39,7 +39,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<TopographieItem>) => {
     try {
       if (topographie) {
-        await updateTopographie({ id: topographie.fid, topographie: values });
+        await updateTopographie({ id: topographie.id, topographie: values });
       } else {
         await createTopographie(values);
       }

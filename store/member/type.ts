@@ -1,15 +1,16 @@
 import { SmallGroupItem } from "../small-group/type";
 
 export type MemberItem = {
-  fid: number;
+  id: number;
   code_pg: string;
-  nom_membre_teraka: string;
-  prenom_membre_teraka: string;
+  nom_membre: string;
+  prenom_membre: string;
+  nom_prenom_membre: string;
   date_inscription: string;
   lieu_inscription: string;
   commune: string;
   fokontany: string;
-  village: string;
+  village?: string;
   age?: number;
   genre: "H" | "F";
   statut_marital: "CELIBATAIRE" | "MARIE" | "DIVORCE" | "VEUF";

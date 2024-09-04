@@ -39,7 +39,7 @@ export default function Formulaire() {
   const handleSubmit = async (values: Partial<SolTypeItem>) => {
     try {
       if (solType) {
-        await updateSolType({ id: solType.fid, solType: values });
+        await updateSolType({ id: solType.id, solType: values });
       } else {
         await createSolType(values);
       }

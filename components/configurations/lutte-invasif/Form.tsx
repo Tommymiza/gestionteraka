@@ -40,7 +40,7 @@ export default function Formulaire() {
     try {
       if (lutteInvasif) {
         await updateLutteInvasif({
-          id: lutteInvasif.fid,
+          id: lutteInvasif.id,
           lutteInvasif: values,
         });
       } else {
