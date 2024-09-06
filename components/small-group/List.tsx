@@ -6,6 +6,7 @@ import {
   VisibilityRounded,
 } from "@mui/icons-material";
 import { Button, IconButton, Stack, styled } from "@mui/material";
+import { format } from "date-fns";
 import { MRT_TableInstance } from "material-react-table";
 import { useConfirm } from "material-ui-confirm";
 import Link from "next/link";
@@ -37,6 +38,43 @@ export default function ListSmallGroup() {
     });
   };
 
+  const handleExportMembers = (small_group: SmallGroupItem) => {
+    const ws = XLSX.utils.json_to_sheet(
+      small_group.members.map((m) => ({
+        "Nom PG": small_group.nom,
+        Nom: m.nom_membre,
+        Prénom: m.prenom_membre,
+        Sexe: m.genre,
+        Commune: m.commune,
+        Village: m.village,
+        Fokontany: m.fokontany,
+        Age: m.age,
+        CIN: m.cin,
+        Téléphone: m.tel,
+        Proféssion: m.profession,
+        "Niveau d'éducation": m.niveau_education,
+        "Connaissance TERAKA": m.connaissance_teraka,
+        "Surface estimée": m.surface_estimee,
+        "Nombre d'arbres prévues": m.nombre_arbres_prevue,
+        "Parcelle proche d'une rivière": m.parcelle_proche_riviere
+          ? "Oui"
+          : "Non",
+        "Type d'arbres": m.types_arbres,
+        "Etat actuel du terrain": m.etat_actuel_terrain,
+        "Approvisionnement pépinière": m.approvisionnement_pepiniere,
+        "Motivation au programme": m.motivation_programme,
+        "Date d'inscription": format(
+          new Date(m.date_inscription),
+          "dd/MM/yyyy"
+        ),
+        "Lieu d'inscription": m.lieu_inscription,
+      }))
+    );
+    const wb = XLSX.utils.book_new();
+    XLSX.utils.book_append_sheet(wb, ws, "Membres");
+    XLSX.writeFile(wb, `Membres-${small_group.nom}.xlsx`);
+  };
+
   useEffect(() => {
     getSmallGroups({
       include: {
@@ -46,6 +84,7 @@ export default function ListSmallGroup() {
       },
     });
   }, []);
+
   return (
     <MaterialTable
       columns={Columns()}
@@ -58,6 +97,12 @@ export default function ListSmallGroup() {
       enableRowActions={true}
       renderRowActions={({ row, table }) => (
         <BtnContainer>
+          <IconButton
+            color="success"
+            onClick={() => handleExportMembers(row.original)}
+          >
+            <Icons name="Download" />
+          </IconButton>
           <Link href={`/small-group/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />
