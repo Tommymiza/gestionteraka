@@ -23,6 +23,7 @@
     "axios": "^1.7.2",
     "date-fns": "^3.6.0",
     "formik": "^2.4.6",
+    "leaflet": "^1.9.4",
     "lucide-react": "^0.390.0",
     "material-react-table": "^2.13.0",
     "material-ui-confirm": "^3.0.16",
@@ -30,6 +31,7 @@
     "react": "^18",
     "react-dom": "^18",
     "react-hot-toast": "^2.4.1",
+    "react-leaflet": "^4.2.1",
     "react-lottie-player": "^2.0.0",
     "uuid": "^10.0.0",
     "xlsx": "^0.18.5",
@@ -37,6 +39,7 @@
     "zustand": "^4.5.2"
   },
   "devDependencies": {
+    "@types/leaflet": "^1.9.12",
     "@types/node": "^20",
     "@types/react": "^18",
     "@types/react-dom": "^18",
