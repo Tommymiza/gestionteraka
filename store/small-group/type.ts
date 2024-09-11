@@ -17,6 +17,9 @@ export type SmallGroupItem = {
   operateur: UserItem;
   verificateur?: UserItem;
   members: MemberItem[];
+  _count?: {
+    members: number;
+  };
 };
 
 export type SmallGroupStore = {
