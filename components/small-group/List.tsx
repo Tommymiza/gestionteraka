@@ -14,6 +14,7 @@ import { useEffect } from "react";
 import * as XLSX from "xlsx";
 import MaterialTable from "../table/MaterialTable";
 import Icons from "../utils/Icons";
+import DownloadPDF from "./pdf/DownloadPDF";
 import Columns from "./table/columns";
 
 export default function ListSmallGroup() {
@@ -33,6 +34,9 @@ export default function ListSmallGroup() {
           members: true,
           operateur: true,
           verificateur: true,
+          _count: {
+            select: { members: true },
+          },
         },
       });
     });
@@ -81,6 +85,9 @@ export default function ListSmallGroup() {
         members: true,
         operateur: true,
         verificateur: true,
+        _count: {
+          select: { members: true },
+        },
       },
     });
   }, []);
@@ -97,12 +104,7 @@ export default function ListSmallGroup() {
       enableRowActions={true}
       renderRowActions={({ row, table }) => (
         <BtnContainer>
-          <IconButton
-            color="success"
-            onClick={() => handleExportMembers(row.original)}
-          >
-            <Icons name="Download" />
-          </IconButton>
+          <DownloadPDF pg={row.original} />
           <Link href={`/small-group/${row.original.id}`}>
             <IconButton color="info">
               <VisibilityRounded />

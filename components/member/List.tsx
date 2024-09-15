@@ -9,11 +9,10 @@ import { Button, IconButton, Stack, styled } from "@mui/material";
 import { MRT_TableInstance } from "material-react-table";
 import { useConfirm } from "material-ui-confirm";
 import Link from "next/link";
-import { useEffect, useMemo } from "react";
+import { useEffect } from "react";
 import * as XLSX from "xlsx";
 import MaterialTable from "../table/MaterialTable";
 import Icons from "../utils/Icons";
-import DownloadPDF from "./pdf/DownloadPDF";
 import Columns from "./table/columns";
 
 export default function ListMember() {
@@ -137,19 +136,6 @@ function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
     XLSX.writeFile(wb, "Membre TERAKA.xlsx");
   };
 
-  const Download = useMemo(
-    () => () =>
-      (
-        <DownloadPDF
-          commune={
-            table.getSortedRowModel().rows.map((r) => r.original)[0]?.commune
-          }
-          members={table.getSortedRowModel().rows.map((r) => r.original)}
-        />
-      ),
-    [table]
-  );
-
   return (
     <Stack direction={"row"} alignItems={"center"} gap={1}>
       <Link href="/member/add">
@@ -169,7 +155,6 @@ function TopToolbar({ table }: { table: MRT_TableInstance<any> }) {
       >
         Excel
       </Button>
-      <Download />
     </Stack>
   );
 }
