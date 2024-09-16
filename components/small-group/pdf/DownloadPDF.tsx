@@ -73,7 +73,7 @@ function Print({ pg }: { pg: SmallGroupItem }) {
             <Text style={styles.text}>Sexe</Text>
           </View>
           <View style={styles.cell}>
-            <Text style={styles.text}>Année</Text>
+            <Text style={styles.text}>Année de naissance</Text>
           </View>
           <View style={styles.cell}>
             <Text style={styles.text}>CIN</Text>
@@ -83,6 +83,8 @@ function Print({ pg }: { pg: SmallGroupItem }) {
           </View>
           <View style={styles.cell}>
             <Text style={styles.text}>Riziculture</Text>
+            <Text style={styles.text}>RI (1): surface ?</Text>
+            <Text style={styles.text}>RP (2): surface ?</Text>
           </View>
         </View>
         {pg.members.map((row) => {
