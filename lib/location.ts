@@ -22,6 +22,14 @@ export function getCommunes(region: string, district: string) {
   }));
 }
 
+export function getAllCommunes() {
+  let temp = new Set(Array.from(lieu.map((l) => l.COMMUNE)));
+  let communes = Array.from(temp);
+  return communes.map((commune) => ({
+    name: commune,
+  }));
+}
+
 export function getRegions() {
   let temp = new Set(Array.from(lieu.map((l) => l.REGION)));
   let regions = Array.from(temp);

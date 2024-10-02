@@ -9,6 +9,7 @@ export type UserItem = {
   genre: "H" | "F";
   role: "ADMIN" | "PERSONNEL" | "RELAIS" | "QUANTIFICATEUR";
   is_active: boolean;
+  uuid_user: string;
 };
 
 export type UserStore = {

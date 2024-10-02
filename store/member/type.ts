@@ -29,6 +29,7 @@ export type MemberItem = {
   etat_actuel_terrain?: string;
   approvisionnement_pepiniere?: string;
   motivation_programme?: string;
+  uuid_operateur: string;
   remarque?: string;
   smallGroup: SmallGroupItem;
 };
