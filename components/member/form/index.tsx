@@ -47,7 +47,7 @@ const validationSchema = Yup.object({
   surface_estimee: Yup.number().notRequired(),
   nombre_arbres_prevue: Yup.number().notRequired(),
   parcelle_proche_riviere: Yup.boolean().required(),
-  types_arbres: Yup.string().notRequired(),
+  type_arbres: Yup.string().notRequired(),
   etat_actuel_terrain: Yup.string().notRequired(),
   approvisionnement_pepiniere: Yup.string().notRequired(),
   motivation_programme: Yup.string().notRequired(),
@@ -98,7 +98,7 @@ export default function AddFormMember() {
       statut_marital: member?.statut_marital ?? "CELIBATAIRE",
       surface_estimee: member?.surface_estimee ?? 0,
       tel: member?.tel ?? "",
-      types_arbres: member?.types_arbres ?? "",
+      type_arbres: member?.type_arbres ?? "",
     }),
     [member]
   );
@@ -300,7 +300,7 @@ export default function AddFormMember() {
                   ]}
                 />
                 <Input fullWidth name="nom_conjoint" label="Nom du conjoint" />
-                <Input fullWidth name="types_arbres" label="Types d'arbres" />
+                <Input fullWidth name="type_arbres" label="Types d'arbres" />
                 <Input
                   fullWidth
                   name="approvisionnement_pepiniere"

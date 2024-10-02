@@ -25,7 +25,7 @@ export type MemberItem = {
   surface_estimee?: number;
   nombre_arbres_prevue?: number;
   parcelle_proche_riviere: boolean;
-  types_arbres?: string;
+  type_arbres?: string;
   etat_actuel_terrain?: string;
   approvisionnement_pepiniere?: string;
   motivation_programme?: string;
