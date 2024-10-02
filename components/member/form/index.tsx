@@ -105,6 +105,9 @@ export default function AddFormMember() {
 
   const handleSubmit = async (values: Partial<MemberItem>) => {
     try {
+      values.date_inscription = new Date(
+        values.date_inscription!
+      ).toISOString();
       if (member) {
         await updateMember({
           id: member.id,
