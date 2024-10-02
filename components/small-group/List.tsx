@@ -63,7 +63,7 @@ export default function ListSmallGroup() {
         "Parcelle proche d'une rivière": m.parcelle_proche_riviere
           ? "Oui"
           : "Non",
-        "Type d'arbres": m.types_arbres,
+        "Type d'arbres": m.type_arbres,
         "Etat actuel du terrain": m.etat_actuel_terrain,
         "Approvisionnement pépinière": m.approvisionnement_pepiniere,
         "Motivation au programme": m.motivation_programme,
