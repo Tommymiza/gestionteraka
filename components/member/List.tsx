@@ -28,14 +28,14 @@ export default function ListMember() {
       await deleteMember(id);
       getMembers({
         include: {
-          smallGroup: {
+          SmallGroup: {
             select: {
               region: true,
               district: true,
               nom: true,
               code: true,
               _count: {
-                select: { members: true },
+                select: { Members: true },
               },
             },
           },
@@ -46,7 +46,7 @@ export default function ListMember() {
   useEffect(() => {
     getMembers({
       include: {
-        smallGroup: {
+        SmallGroup: {
           select: {
             region: true,
             district: true,

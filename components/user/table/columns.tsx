@@ -14,7 +14,7 @@ export default function Columns() {
       },
       {
         accessorKey: "email",
-        header: "Email",
+        header: "Username",
         enableClickToCopy: true,
       },
       {

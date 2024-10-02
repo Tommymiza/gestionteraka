@@ -10,7 +10,7 @@ const invasifStore = create<InvasifStore>((set) => ({
   createInvasif: async (invasif) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/configuration/invasif`, invasif);
+      const response = await axios.post(`/invasif`, invasif);
       toast.success("Invasif created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,10 +23,7 @@ const invasifStore = create<InvasifStore>((set) => ({
   updateInvasif: async ({ id, invasif }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/invasif/${id}`,
-        invasif
-      );
+      const response = await axios.patch(`/invasif/${id}`, invasif);
       set({ invasif: null });
       toast.success("Invasif updated successfully");
       return response.data;
@@ -39,7 +36,7 @@ const invasifStore = create<InvasifStore>((set) => ({
   },
   deleteInvasif: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/invasif/${id}`);
+      const response = await axios.delete(`/invasif/${id}`);
       toast.success("Invasif deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -53,7 +50,7 @@ const invasifStore = create<InvasifStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/invasif/${id}`, {
+      const response = await axios.get(`/invasif/${id}`, {
         params,
       });
       set({ invasif: response.data });
@@ -70,7 +67,7 @@ const invasifStore = create<InvasifStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/invasif`, { params });
+      const response = await axios.get(`/invasif`, { params });
       set({ invasifList: response.data });
       return response.data;
     } catch (error) {
@@ -81,7 +78,7 @@ const invasifStore = create<InvasifStore>((set) => ({
   },
   editInvasif: async (id) => {
     try {
-      const response = await axios.get(`/configuration/invasif/${id}`);
+      const response = await axios.get(`/invasif/${id}`);
       set({ invasif: response.data });
       return response.data;
     } catch (error) {

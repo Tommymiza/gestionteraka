@@ -10,7 +10,7 @@ const formationStore = create<FormationStore>((set) => ({
   createFormation: async (formation) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/configuration/formation`, formation);
+      const response = await axios.post(`/formation`, formation);
       toast.success("Formation created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,10 +23,7 @@ const formationStore = create<FormationStore>((set) => ({
   updateFormation: async ({ id, formation }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/formation/${id}`,
-        formation
-      );
+      const response = await axios.patch(`/formation/${id}`, formation);
       set({ formation: null });
       toast.success("Formation updated successfully");
       return response.data;
@@ -39,7 +36,7 @@ const formationStore = create<FormationStore>((set) => ({
   },
   deleteFormation: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/formation/${id}`);
+      const response = await axios.delete(`/formation/${id}`);
       toast.success("Formation deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -53,7 +50,7 @@ const formationStore = create<FormationStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/formation/${id}`, {
+      const response = await axios.get(`/formation/${id}`, {
         params,
       });
       set({ formation: response.data });
@@ -70,7 +67,7 @@ const formationStore = create<FormationStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/formation`, { params });
+      const response = await axios.get(`/formation`, { params });
       set({ formationList: response.data });
       return response.data;
     } catch (error) {
@@ -81,7 +78,7 @@ const formationStore = create<FormationStore>((set) => ({
   },
   editFormation: async (id) => {
     try {
-      const response = await axios.get(`/configuration/formation/${id}`);
+      const response = await axios.get(`/formation/${id}`);
       set({ formation: response.data });
       return response.data;
     } catch (error) {

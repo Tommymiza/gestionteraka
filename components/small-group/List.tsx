@@ -31,9 +31,9 @@ export default function ListSmallGroup() {
       await deleteSmallGroup(id);
       getSmallGroups({
         include: {
-          members: true,
-          operateur: true,
-          verificateur: true,
+          Members: true,
+          Operateur: true,
+          Verificateur: true,
           _count: {
             select: { members: true },
           },

@@ -10,7 +10,7 @@ const solTypeStore = create<SolTypeStore>((set) => ({
   createSolType: async (solType) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/configuration/ground-type`, solType);
+      const response = await axios.post(`/ground-type`, solType);
       toast.success("SolType created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,10 +23,7 @@ const solTypeStore = create<SolTypeStore>((set) => ({
   updateSolType: async ({ id, solType }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/ground-type/${id}`,
-        solType
-      );
+      const response = await axios.patch(`/ground-type/${id}`, solType);
       set({ solType: null });
       toast.success("SolType updated successfully");
       return response.data;
@@ -39,7 +36,7 @@ const solTypeStore = create<SolTypeStore>((set) => ({
   },
   deleteSolType: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/ground-type/${id}`);
+      const response = await axios.delete(`/ground-type/${id}`);
       toast.success("SolType deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -53,7 +50,7 @@ const solTypeStore = create<SolTypeStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/ground-type/${id}`, {
+      const response = await axios.get(`/ground-type/${id}`, {
         params,
       });
       set({ solType: response.data });
@@ -70,7 +67,7 @@ const solTypeStore = create<SolTypeStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/ground-type`, {
+      const response = await axios.get(`/ground-type`, {
         params,
       });
       set({ solTypeList: response.data });
@@ -83,7 +80,7 @@ const solTypeStore = create<SolTypeStore>((set) => ({
   },
   editSolType: async (id) => {
     try {
-      const response = await axios.get(`/configuration/ground-type/${id}`);
+      const response = await axios.get(`/ground-type/${id}`);
       set({ solType: response.data });
       return response.data;
     } catch (error) {

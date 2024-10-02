@@ -5,10 +5,10 @@ export type AuthStore = {
   loading: boolean;
   login: ({
     email,
-    password,
+    mot_de_passe,
   }: {
     email: string;
-    password: string;
+    mot_de_passe: string;
   }) => Promise<any>;
   logout: () => Promise<any>;
   check: () => Promise<any>;

@@ -10,10 +10,7 @@ const lutteInvasifStore = create<LutteInvasifStore>((set) => ({
   createLutteInvasif: async (lutteInvasif) => {
     try {
       set({ loading: true });
-      const response = await axios.post(
-        `/configuration/lutte-invasif`,
-        lutteInvasif
-      );
+      const response = await axios.post(`/lutte-invasif`, lutteInvasif);
       toast.success("LutteInvasif created successfully");
       return response.data;
     } catch (error: any) {
@@ -26,10 +23,7 @@ const lutteInvasifStore = create<LutteInvasifStore>((set) => ({
   updateLutteInvasif: async ({ id, lutteInvasif }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/lutte-invasif/${id}`,
-        lutteInvasif
-      );
+      const response = await axios.patch(`/lutte-invasif/${id}`, lutteInvasif);
       set({ lutteInvasif: null });
       toast.success("LutteInvasif updated successfully");
       return response.data;
@@ -42,7 +36,7 @@ const lutteInvasifStore = create<LutteInvasifStore>((set) => ({
   },
   deleteLutteInvasif: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/lutte-invasif/${id}`);
+      const response = await axios.delete(`/lutte-invasif/${id}`);
       toast.success("LutteInvasif deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -56,7 +50,7 @@ const lutteInvasifStore = create<LutteInvasifStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/lutte-invasif/${id}`, {
+      const response = await axios.get(`/lutte-invasif/${id}`, {
         params,
       });
       set({ lutteInvasif: response.data });
@@ -73,7 +67,7 @@ const lutteInvasifStore = create<LutteInvasifStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/lutte-invasif`, {
+      const response = await axios.get(`/lutte-invasif`, {
         params,
       });
       set({ lutteInvasifList: response.data });
@@ -86,7 +80,7 @@ const lutteInvasifStore = create<LutteInvasifStore>((set) => ({
   },
   editLutteInvasif: async (id) => {
     try {
-      const response = await axios.get(`/configuration/lutte-invasif/${id}`);
+      const response = await axios.get(`/lutte-invasif/${id}`);
       set({ lutteInvasif: response.data });
       return response.data;
     } catch (error) {

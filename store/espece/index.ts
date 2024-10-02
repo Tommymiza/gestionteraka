@@ -10,7 +10,7 @@ const especeStore = create<EspeceStore>((set) => ({
   createEspece: async (espece) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/configuration/espece`, espece);
+      const response = await axios.post(`/espece`, espece);
       toast.success("Espece created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,7 +23,7 @@ const especeStore = create<EspeceStore>((set) => ({
   updateEspece: async ({ id, espece }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(`/configuration/espece/${id}`, espece);
+      const response = await axios.patch(`/espece/${id}`, espece);
       set({ espece: null });
       toast.success("Espece updated successfully");
       return response.data;
@@ -36,7 +36,7 @@ const especeStore = create<EspeceStore>((set) => ({
   },
   deleteEspece: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/espece/${id}`);
+      const response = await axios.delete(`/espece/${id}`);
       toast.success("Espece deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -50,7 +50,7 @@ const especeStore = create<EspeceStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/espece/${id}`, {
+      const response = await axios.get(`/espece/${id}`, {
         params,
       });
       set({ espece: response.data });
@@ -67,7 +67,7 @@ const especeStore = create<EspeceStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/espece`, { params });
+      const response = await axios.get(`/espece`, { params });
       set({ especeList: response.data });
       return response.data;
     } catch (error) {
@@ -78,7 +78,7 @@ const especeStore = create<EspeceStore>((set) => ({
   },
   editEspece: async (id) => {
     try {
-      const response = await axios.get(`/configuration/espece/${id}`);
+      const response = await axios.get(`/espece/${id}`);
       set({ espece: response.data });
       return response.data;
     } catch (error) {

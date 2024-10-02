@@ -52,7 +52,6 @@ const authStore = create<AuthStore>((set) => ({
   },
   logout: async () => {
     try {
-      await axios.post(`/auth/logout`);
       delete axios.defaults.headers.common["Authorization"];
       localStorage.removeItem("auth");
       set({ auth: null });

@@ -10,7 +10,7 @@ const droitStore = create<DroitStore>((set) => ({
   createDroit: async (droit) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/configuration/droit`, droit);
+      const response = await axios.post(`/droit`, droit);
       toast.success("Droit created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,7 +23,7 @@ const droitStore = create<DroitStore>((set) => ({
   updateDroit: async ({ id, droit }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(`/configuration/droit/${id}`, droit);
+      const response = await axios.patch(`/droit/${id}`, droit);
       set({ droit: null });
       toast.success("Droit updated successfully");
       return response.data;
@@ -36,7 +36,7 @@ const droitStore = create<DroitStore>((set) => ({
   },
   deleteDroit: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/droit/${id}`);
+      const response = await axios.delete(`/droit/${id}`);
       toast.success("Droit deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -50,7 +50,7 @@ const droitStore = create<DroitStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/droit/${id}`, {
+      const response = await axios.get(`/droit/${id}`, {
         params,
       });
       set({ droit: response.data });
@@ -67,7 +67,7 @@ const droitStore = create<DroitStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/droit`, { params });
+      const response = await axios.get(`/droit`, { params });
       set({ droitList: response.data });
       return response.data;
     } catch (error) {
@@ -78,7 +78,7 @@ const droitStore = create<DroitStore>((set) => ({
   },
   editDroit: async (id) => {
     try {
-      const response = await axios.get(`/configuration/droit/${id}`);
+      const response = await axios.get(`/droit/${id}`);
       set({ droit: response.data });
       return response.data;
     } catch (error) {

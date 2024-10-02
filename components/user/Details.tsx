@@ -69,7 +69,7 @@ export default function UserDetail() {
         <Grid item xs={12} sm={6}>
           <Stack spacing={2}>
             <ItemDetail label="Nom" value={user?.nom} />
-            <ItemDetail label="Email" value={user?.email} />
+            <ItemDetail label="Username" value={user?.email} />
             <ItemDetail label="Téléphone" value={user?.num_tel} />
             <ItemDetail label="Adresse" value={user?.adresse} />
             <ItemDetail

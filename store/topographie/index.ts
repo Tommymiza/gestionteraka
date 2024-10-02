@@ -10,10 +10,7 @@ const topographieStore = create<TopographieStore>((set) => ({
   createTopographie: async (topographie) => {
     try {
       set({ loading: true });
-      const response = await axios.post(
-        `/configuration/topography`,
-        topographie
-      );
+      const response = await axios.post(`/topography`, topographie);
       toast.success("Topographie created successfully");
       return response.data;
     } catch (error: any) {
@@ -26,10 +23,7 @@ const topographieStore = create<TopographieStore>((set) => ({
   updateTopographie: async ({ id, topographie }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/topography/${id}`,
-        topographie
-      );
+      const response = await axios.patch(`/topography/${id}`, topographie);
       set({ topographie: null });
       toast.success("Topographie updated successfully");
       return response.data;
@@ -42,7 +36,7 @@ const topographieStore = create<TopographieStore>((set) => ({
   },
   deleteTopographie: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/topography/${id}`);
+      const response = await axios.delete(`/topography/${id}`);
       toast.success("Topographie deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -56,7 +50,7 @@ const topographieStore = create<TopographieStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/topography/${id}`, {
+      const response = await axios.get(`/topography/${id}`, {
         params,
       });
       set({ topographie: response.data });
@@ -73,7 +67,7 @@ const topographieStore = create<TopographieStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/topography`, { params });
+      const response = await axios.get(`/topography`, { params });
       set({ topographieList: response.data });
       return response.data;
     } catch (error) {
@@ -84,7 +78,7 @@ const topographieStore = create<TopographieStore>((set) => ({
   },
   editTopographie: async (id) => {
     try {
-      const response = await axios.get(`/configuration/topography/${id}`);
+      const response = await axios.get(`/topography/${id}`);
       set({ topographie: response.data });
       return response.data;
     } catch (error) {

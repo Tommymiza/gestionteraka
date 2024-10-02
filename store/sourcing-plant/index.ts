@@ -10,10 +10,7 @@ const sourcingPlantStore = create<SourcingPlantStore>((set) => ({
   createSourcingPlant: async (sourcingPlant) => {
     try {
       set({ loading: true });
-      const response = await axios.post(
-        `/configuration/sourcing-plant`,
-        sourcingPlant
-      );
+      const response = await axios.post(`/sourcing-plant`, sourcingPlant);
       toast.success("SourcingPlant created successfully");
       return response.data;
     } catch (error: any) {
@@ -27,7 +24,7 @@ const sourcingPlantStore = create<SourcingPlantStore>((set) => ({
     try {
       set({ loading: true });
       const response = await axios.patch(
-        `/configuration/sourcing-plant/${id}`,
+        `/sourcing-plant/${id}`,
         sourcingPlant
       );
       set({ sourcingPlant: null });
@@ -42,9 +39,7 @@ const sourcingPlantStore = create<SourcingPlantStore>((set) => ({
   },
   deleteSourcingPlant: async (id) => {
     try {
-      const response = await axios.delete(
-        `/configuration/sourcing-plant/${id}`
-      );
+      const response = await axios.delete(`/sourcing-plant/${id}`);
       toast.success("SourcingPlant deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -58,7 +53,7 @@ const sourcingPlantStore = create<SourcingPlantStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/sourcing-plant/${id}`, {
+      const response = await axios.get(`/sourcing-plant/${id}`, {
         params,
       });
       set({ sourcingPlant: response.data });
@@ -75,7 +70,7 @@ const sourcingPlantStore = create<SourcingPlantStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/sourcing-plant`, {
+      const response = await axios.get(`/sourcing-plant`, {
         params,
       });
       set({ sourcingPlantList: response.data });
@@ -88,7 +83,7 @@ const sourcingPlantStore = create<SourcingPlantStore>((set) => ({
   },
   editSourcingPlant: async (id) => {
     try {
-      const response = await axios.get(`/configuration/sourcing-plant/${id}`);
+      const response = await axios.get(`/sourcing-plant/${id}`);
       set({ sourcingPlant: response.data });
       return response.data;
     } catch (error) {

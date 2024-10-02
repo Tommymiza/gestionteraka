@@ -10,10 +10,7 @@ const sourcingGraineStore = create<SourcingGraineStore>((set) => ({
   createSourcingGraine: async (sourcingGraine) => {
     try {
       set({ loading: true });
-      const response = await axios.post(
-        `/configuration/sourcing-graine`,
-        sourcingGraine
-      );
+      const response = await axios.post(`/sourcing-graine`, sourcingGraine);
       toast.success("SourcingGraine created successfully");
       return response.data;
     } catch (error: any) {
@@ -27,7 +24,7 @@ const sourcingGraineStore = create<SourcingGraineStore>((set) => ({
     try {
       set({ loading: true });
       const response = await axios.patch(
-        `/configuration/sourcing-graine/${id}`,
+        `/sourcing-graine/${id}`,
         sourcingGraine
       );
       set({ sourcingGraine: null });
@@ -42,9 +39,7 @@ const sourcingGraineStore = create<SourcingGraineStore>((set) => ({
   },
   deleteSourcingGraine: async (id) => {
     try {
-      const response = await axios.delete(
-        `/configuration/sourcing-graine/${id}`
-      );
+      const response = await axios.delete(`/sourcing-graine/${id}`);
       toast.success("SourcingGraine deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -58,7 +53,7 @@ const sourcingGraineStore = create<SourcingGraineStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/sourcing-graine/${id}`, {
+      const response = await axios.get(`/sourcing-graine/${id}`, {
         params,
       });
       set({ sourcingGraine: response.data });
@@ -75,7 +70,7 @@ const sourcingGraineStore = create<SourcingGraineStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/sourcing-graine`, {
+      const response = await axios.get(`/sourcing-graine`, {
         params,
       });
       set({ sourcingGraineList: response.data });
@@ -88,7 +83,7 @@ const sourcingGraineStore = create<SourcingGraineStore>((set) => ({
   },
   editSourcingGraine: async (id) => {
     try {
-      const response = await axios.get(`/configuration/sourcing-graine/${id}`);
+      const response = await axios.get(`/sourcing-graine/${id}`);
       set({ sourcingGraine: response.data });
       return response.data;
     } catch (error) {

@@ -64,7 +64,7 @@ export default function MaterialTable({
       showGlobalFilter: true,
       density: "compact",
       pagination: {
-        pageSize: 5,
+        pageSize: 10,
         pageIndex: 0,
       },
     },

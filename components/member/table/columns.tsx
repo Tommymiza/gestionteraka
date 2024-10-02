@@ -12,7 +12,7 @@ export default function Columns() {
         header: "Code du petit groupe",
       },
       {
-        accessorKey: "smallGroup.nom",
+        accessorKey: "SmallGroup.nom",
         header: "Nom du petit groupe",
       },
       {

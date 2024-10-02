@@ -10,7 +10,7 @@ const userStore = create<UserStore>((set) => ({
   createUser: async (user) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/users`, user);
+      const response = await axios.post(`/user`, user);
       toast.success("User created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,7 +23,7 @@ const userStore = create<UserStore>((set) => ({
   updateUser: async ({ id, user }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(`/users/${id}`, user);
+      const response = await axios.patch(`/user/${id}`, user);
       set({ user: null });
       toast.success("User updated successfully");
       return response.data;
@@ -36,7 +36,7 @@ const userStore = create<UserStore>((set) => ({
   },
   deleteUser: async (id) => {
     try {
-      const response = await axios.delete(`/users/${id}`);
+      const response = await axios.delete(`/user/${id}`);
       toast.success("User deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -50,7 +50,7 @@ const userStore = create<UserStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/users/${id}`, { params });
+      const response = await axios.get(`/user/${id}`, { params });
       set({ user: response.data });
       return response.data;
     } catch (error) {
@@ -65,7 +65,7 @@ const userStore = create<UserStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/users`, { params });
+      const response = await axios.get(`/user`, { params });
       set({ userList: response.data });
       return response.data;
     } catch (error) {
@@ -76,7 +76,7 @@ const userStore = create<UserStore>((set) => ({
   },
   editUser: async (id) => {
     try {
-      const response = await axios.get(`/users/${id}`);
+      const response = await axios.get(`/user/${id}`);
       set({ user: response.data });
       return response.data;
     } catch (error) {

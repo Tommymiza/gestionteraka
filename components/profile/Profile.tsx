@@ -20,7 +20,7 @@ import {
 } from "@mui/material";
 import { Image } from "antd";
 import { Form, Formik } from "formik";
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, Fragment, useState } from "react";
 import * as Yup from "yup";
 import Input from "../shared/Input";
 import Icons from "../utils/Icons";
@@ -77,10 +77,10 @@ export default function Profile() {
               })}
             />
             <ItemDetail
-              label="Email"
+              label="Username"
               valueKey={"email"}
               validation={Yup.object({
-                email: Yup.string().email().required(),
+                email: Yup.string().required(),
               })}
             />
             <ItemDetail
@@ -299,14 +299,14 @@ function ItemDetail({
             </Form>
           </Formik>
         ) : (
-          <>
+          <Fragment>
             <Typography variant="body1" color={"GrayText"}>
               {auth![valueKey]}
             </Typography>
             <IconButton size="large" onClick={() => setEdit(true)}>
               <Icons name="Pencil" size={15} />
             </IconButton>
-          </>
+          </Fragment>
         )}
       </Stack>
     </Stack>

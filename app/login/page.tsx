@@ -21,7 +21,10 @@ export default function Login() {
   const [loading, setLoading] = useState(false);
   const { login, check, auth } = authStore();
   const router = useRouter();
-  const handleSubmit = async (values: { email: string; password: string }) => {
+  const handleSubmit = async (values: {
+    email: string;
+    mot_de_passe: string;
+  }) => {
     try {
       setLoading(true);
       await login(values);
@@ -83,14 +86,14 @@ export default function Login() {
           <Formik
             initialValues={{
               email: "",
-              password: "",
+              mot_de_passe: "",
             }}
             onSubmit={(values) => {
               handleSubmit(values);
             }}
             validationSchema={Yup.object().shape({
-              email: Yup.string().email().required(),
-              password: Yup.string().required(),
+              email: Yup.string().required(),
+              mot_de_passe: Yup.string().required(),
             })}
           >
             {() => (
@@ -99,9 +102,9 @@ export default function Login() {
                   <Typography variant="h4" sx={{ fontWeight: "bold" }}>
                     Se connecter
                   </Typography>
-                  <Input name="email" label="Email" fullWidth />
+                  <Input name="email" label="Username" fullWidth />
                   <Input
-                    name="password"
+                    name="mot_de_passe"
                     type="password"
                     label="Mot de passe"
                     fullWidth

@@ -10,7 +10,7 @@ const solUsageStore = create<SolUsageStore>((set) => ({
   createSolUsage: async (solUsage) => {
     try {
       set({ loading: true });
-      const response = await axios.post(`/configuration/ground-use`, solUsage);
+      const response = await axios.post(`/ground-use`, solUsage);
       toast.success("SolUsage created successfully");
       return response.data;
     } catch (error: any) {
@@ -23,10 +23,7 @@ const solUsageStore = create<SolUsageStore>((set) => ({
   updateSolUsage: async ({ id, solUsage }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/ground-use/${id}`,
-        solUsage
-      );
+      const response = await axios.patch(`/ground-use/${id}`, solUsage);
       set({ solUsage: null });
       toast.success("SolUsage updated successfully");
       return response.data;
@@ -39,7 +36,7 @@ const solUsageStore = create<SolUsageStore>((set) => ({
   },
   deleteSolUsage: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/ground-use/${id}`);
+      const response = await axios.delete(`/ground-use/${id}`);
       toast.success("SolUsage deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -53,7 +50,7 @@ const solUsageStore = create<SolUsageStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/ground-use/${id}`, {
+      const response = await axios.get(`/ground-use/${id}`, {
         params,
       });
       set({ solUsage: response.data });
@@ -70,7 +67,7 @@ const solUsageStore = create<SolUsageStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/ground-use`, { params });
+      const response = await axios.get(`/ground-use`, { params });
       set({ solUsageList: response.data });
       return response.data;
     } catch (error) {
@@ -81,7 +78,7 @@ const solUsageStore = create<SolUsageStore>((set) => ({
   },
   editSolUsage: async (id) => {
     try {
-      const response = await axios.get(`/configuration/ground-use/${id}`);
+      const response = await axios.get(`/ground-use/${id}`);
       set({ solUsage: response.data });
       return response.data;
     } catch (error) {

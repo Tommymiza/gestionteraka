@@ -10,10 +10,7 @@ const lutteNuisibleStore = create<LutteNuisibleStore>((set) => ({
   createLutteNuisible: async (lutteNuisible) => {
     try {
       set({ loading: true });
-      const response = await axios.post(
-        `/configuration/lutte-nuisible`,
-        lutteNuisible
-      );
+      const response = await axios.post(`/lutte-nuisible`, lutteNuisible);
       toast.success("LutteNuisible created successfully");
       return response.data;
     } catch (error: any) {
@@ -27,7 +24,7 @@ const lutteNuisibleStore = create<LutteNuisibleStore>((set) => ({
     try {
       set({ loading: true });
       const response = await axios.patch(
-        `/configuration/lutte-nuisible/${id}`,
+        `/lutte-nuisible/${id}`,
         lutteNuisible
       );
       set({ lutteNuisible: null });
@@ -42,9 +39,7 @@ const lutteNuisibleStore = create<LutteNuisibleStore>((set) => ({
   },
   deleteLutteNuisible: async (id) => {
     try {
-      const response = await axios.delete(
-        `/configuration/lutte-nuisible/${id}`
-      );
+      const response = await axios.delete(`/lutte-nuisible/${id}`);
       toast.success("LutteNuisible deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -58,7 +53,7 @@ const lutteNuisibleStore = create<LutteNuisibleStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/lutte-nuisible/${id}`, {
+      const response = await axios.get(`/lutte-nuisible/${id}`, {
         params,
       });
       set({ lutteNuisible: response.data });
@@ -75,7 +70,7 @@ const lutteNuisibleStore = create<LutteNuisibleStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/lutte-nuisible`, {
+      const response = await axios.get(`/lutte-nuisible`, {
         params,
       });
       set({ lutteNuisibleList: response.data });
@@ -88,7 +83,7 @@ const lutteNuisibleStore = create<LutteNuisibleStore>((set) => ({
   },
   editLutteNuisible: async (id) => {
     try {
-      const response = await axios.get(`/configuration/lutte-nuisible/${id}`);
+      const response = await axios.get(`/lutte-nuisible/${id}`);
       set({ lutteNuisible: response.data });
       return response.data;
     } catch (error) {

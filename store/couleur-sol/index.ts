@@ -10,10 +10,7 @@ const solColorStore = create<SolColorStore>((set) => ({
   createSolColor: async (solColor) => {
     try {
       set({ loading: true });
-      const response = await axios.post(
-        `/configuration/ground-color`,
-        solColor
-      );
+      const response = await axios.post(`/ground-color`, solColor);
       toast.success("SolColor created successfully");
       return response.data;
     } catch (error: any) {
@@ -26,10 +23,7 @@ const solColorStore = create<SolColorStore>((set) => ({
   updateSolColor: async ({ id, solColor }) => {
     try {
       set({ loading: true });
-      const response = await axios.patch(
-        `/configuration/ground-color/${id}`,
-        solColor
-      );
+      const response = await axios.patch(`/ground-color/${id}`, solColor);
       set({ solColor: null });
       toast.success("SolColor updated successfully");
       return response.data;
@@ -42,7 +36,7 @@ const solColorStore = create<SolColorStore>((set) => ({
   },
   deleteSolColor: async (id) => {
     try {
-      const response = await axios.delete(`/configuration/ground-color/${id}`);
+      const response = await axios.delete(`/ground-color/${id}`);
       toast.success("SolColor deleted successfully");
       return response.data;
     } catch (error: any) {
@@ -56,7 +50,7 @@ const solColorStore = create<SolColorStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/ground-color/${id}`, {
+      const response = await axios.get(`/ground-color/${id}`, {
         params,
       });
       set({ solColor: response.data });
@@ -73,7 +67,7 @@ const solColorStore = create<SolColorStore>((set) => ({
       const params = {
         args: JSON.stringify(args),
       };
-      const response = await axios.get(`/configuration/ground-color`, {
+      const response = await axios.get(`/ground-color`, {
         params,
       });
       set({ solColorList: response.data });
@@ -86,7 +80,7 @@ const solColorStore = create<SolColorStore>((set) => ({
   },
   editSolColor: async (id) => {
     try {
-      const response = await axios.get(`/configuration/ground-color/${id}`);
+      const response = await axios.get(`/ground-color/${id}`);
       set({ solColor: response.data });
       return response.data;
     } catch (error) {

@@ -23,7 +23,7 @@ import * as Yup from "yup";
 
 const validationSchema = Yup.object({
   nom: Yup.string().required(),
-  email: Yup.string().email().required(),
+  email: Yup.string().required(),
   annee_naissance: Yup.number().required(),
   role: Yup.string().required(),
 });
@@ -121,7 +121,7 @@ export default function AddFormRelais() {
               <Grid item xs={12} md={6}>
                 <Stack gap={2}>
                   <Input fullWidth name="nom" label="Nom d'utilisateur" />
-                  <Input fullWidth name="email" label="Email" />
+                  <Input fullWidth name="email" label="Username" />
                   <Input fullWidth name="adresse" label="Adresse" />
                   <Input fullWidth name="num_tel" label="Téléphone" />
                   <Input
