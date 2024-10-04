@@ -17,6 +17,7 @@ export type SmallGroupItem = {
   operateur: UserItem;
   verificateur?: UserItem;
   members: MemberItem[];
+  smallGroupGps: any;
   _count?: {
     members: number;
   };

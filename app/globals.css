@@ -21,3 +21,47 @@
 body {
   background-color: var(--background);
 }
+
+.small-group-icon{
+  position: relative;
+}
+
+.small-group-pin{
+  width: 20px;
+  height: 20px;
+  background-color: #f7ff07;
+  color: white;
+  border-radius: 50%;
+}
+.small-group-label {
+  position: absolute;
+  top: -20px;
+  left: 50%;
+  transform: translateX(-50%);
+  white-space: nowrap;
+  color: white;
+  font-size: 12px;
+  font-weight: bolder;
+}
+
+.custom-cluster-icon {
+  border-radius: 50%;
+  color: white;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 12px;
+  font-weight: bold;
+  text-align: center;
+}
+
+.custom-cluster-icon .cluster-marker {
+  background-color: rgba(30, 194, 82, 0.4);
+  height: 30px;
+  width: 30px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
