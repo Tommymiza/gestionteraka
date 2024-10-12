@@ -4,8 +4,7 @@ import L, { LatLng, Layer } from "leaflet";
 import { useEffect, useMemo } from "react";
 import { GeoJSON } from "react-leaflet";
 export function SmallGroupCarte() {
-  const { smallGroupGpsList, getSmallGroupGpss, loading } =
-    smallGroupGpsStore();
+  const { smallGroupGpsList, getSmallGroupGpss } = smallGroupGpsStore();
   useEffect(() => {
     getSmallGroupGpss({
       include: {

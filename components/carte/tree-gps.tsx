@@ -42,7 +42,7 @@ export function TreeCarte() {
           return {
             type: "Feature",
             properties: {
-              nom: g.numero_arbre,
+              num: g.numero_arbre,
             },
             geometry: {
               type: g.geom.type,
@@ -55,12 +55,11 @@ export function TreeCarte() {
     }, [treeGpsList]);
   const { clusters, supercluster } = useSupercluster(trees, bounds, zoom);
 
-  return clusters.map((cluster) => {
+  return clusters.map((cluster, i) => {
     const [longitude, latitude] = cluster.geometry.coordinates;
     const { cluster: isCluster, point_count: pointCount } = cluster.properties;
 
     if (isCluster) {
-      // Afficher un cluster
       return (
         <Marker
           key={`cluster-${cluster.id}`}
@@ -70,13 +69,30 @@ export function TreeCarte() {
             click: () => {
               const expansionZoom = Math.min(
                 supercluster.getClusterExpansionZoom(+cluster.id!),
-                18 // Limiter à un zoom max de 18
+                22 // Limiter à un zoom max de 18
               );
               map.setView([latitude, longitude], expansionZoom);
             },
           }}
+        ></Marker>
+      );
+    } else {
+      return (
+        <Marker
+          key={`cluster-${i}`}
+          position={[latitude, longitude]}
+          icon={createClusterIcon(1)}
+          eventHandlers={{
+            click: () => {
+              // const expansionZoom = Math.min(
+              //   supercluster.getClusterExpansionZoom(+cluster.id!),
+              //   22 // Limiter à un zoom max de 18
+              // );
+              // map.setView([latitude, longitude], expansionZoom);
+            },
+          }}
         >
-          <Popup>{pointCount} points</Popup>
+          <Popup>N°: {cluster.properties.num}</Popup>
         </Marker>
       );
     }
@@ -91,7 +107,7 @@ const useSupercluster = (
   const supercluster = useRef(
     new Supercluster({
       radius: 40,
-      maxZoom: 18,
+      maxZoom: 21,
       minZoom: 0,
     })
   );

@@ -2,6 +2,7 @@
 import { tileLayer } from "leaflet";
 import "leaflet/dist/leaflet.css";
 import { MapContainer } from "react-leaflet";
+import { BosquetCarte } from "./bosquet-gps";
 import { SmallGroupCarte } from "./small-group-gps";
 import { TreeCarte } from "./tree-gps";
 
@@ -24,6 +25,7 @@ export default function MapInteractive() {
         <MapContainer
           center={position}
           zoom={13}
+          maxZoom={22}
           scrollWheelZoom={false}
           style={{
             width: "100%",
@@ -33,6 +35,7 @@ export default function MapInteractive() {
         >
           <SmallGroupCarte />
           <TreeCarte />
+          <BosquetCarte />
         </MapContainer>
       </div>
     </div>
