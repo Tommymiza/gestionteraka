@@ -100,7 +100,7 @@ export default function AddFormGazette() {
         <Form>
           <FormTitle>
             <Typography variant="h5">
-              {gazette ? "Modifier" : "Ajouter"} un membre
+              {gazette ? "Modifier" : "Ajouter"} une gazette
             </Typography>
             <ActionContainer>
               <Button
