@@ -48,6 +48,11 @@ export const menus: MenuProps[] = [
     icon: "UsersRound",
   },
   {
+    name: "Gazette",
+    path: "/gazette",
+    icon: "ScrollText",
+  },
+  {
     name: "Configurations",
     path: "/configurations",
     icon: "Settings",
