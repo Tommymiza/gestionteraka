@@ -83,7 +83,7 @@ export default function StatistiqueFormation({
     <div className="flex flex-col gap-6 w-1/2 max-md:w-full border p-2 dark:border-zinc-800 border-slate-200 rounded-md">
       <div className="flex justify-between w-full items-center p-2">
         <h1 className="font-bold text-lg">
-          Nombre d'inscriptions au centre de formation
+          Nombre d&apos;inscriptions au centre de formation
         </h1>
         <div className="flex items-center gap-2 flex-wrap justify-end">
           <Select
