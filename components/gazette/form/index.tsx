@@ -11,14 +11,13 @@ import {
   Divider,
   Stack,
   styled,
+  TextField,
   Typography,
 } from "@mui/material";
-import { Upload, UploadFile } from "antd";
-import { UploadChangeParam } from "antd/lib/upload";
 import { format } from "date-fns";
 import { Form, Formik } from "formik";
 import { useParams, useRouter } from "next/navigation";
-import { useEffect, useMemo, useState } from "react";
+import { ChangeEvent, useEffect, useMemo, useState } from "react";
 import toast from "react-hot-toast";
 import * as Yup from "yup";
 
@@ -45,14 +44,6 @@ export default function AddFormGazette() {
     }),
     [gazette]
   );
-
-  const handleChangeFile = (file: UploadChangeParam<UploadFile<any>>) => {
-    if (file.fileList.length > 0 && file.fileList[0].originFileObj) {
-      setFile(file.fileList[0].originFileObj);
-    } else {
-      setFile(null);
-    }
-  };
 
   const handleSubmit = async (values: Partial<GazetteItem>) => {
     try {
@@ -135,9 +126,20 @@ export default function AddFormGazette() {
           <FormContainer maxWidth="lg">
             <Input name="title" label="Titre" />
             <Input type="date" name="date_out" />
-            <Upload multiple={false} maxCount={1} onChange={handleChangeFile}>
-              <Button startIcon={<Icons name="Upload" />}>Upload</Button>
-            </Upload>
+            <TextField
+              type="file"
+              onChange={(e: ChangeEvent<HTMLInputElement>) => {
+                if (
+                  e.target.files &&
+                  e.target.files?.length > 0 &&
+                  e.target.files[0]
+                ) {
+                  setFile(e.target.files[0]);
+                } else {
+                  setFile(null);
+                }
+              }}
+            />
           </FormContainer>
         </Form>
       </Formik>
