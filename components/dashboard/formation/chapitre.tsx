@@ -175,6 +175,18 @@ export default function ChapitreChart({
           </Bar>
         </BarChart>
       </ResponsiveContainer>
+      <div className="p-2">
+        <div className="flex flex-row gap-2 font-bold">
+          <h1>Nombre de participants ayant terminé toutes les formations :</h1>
+          <p>
+            {
+              members.filter((m) => m.progressions.length === chapitres.length)
+                .length
+            }
+            &nbsp; personnes
+          </p>
+        </div>
+      </div>
     </div>
   );
 }
